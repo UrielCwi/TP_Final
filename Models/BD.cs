@@ -2,7 +2,7 @@ using Dapper;
 using System.Data.SqlClient;
 using System.Data;
 using System.Collections.Generic;
-namespace TP10.Models;
+namespace TP_FINAL.Models;
 public class BD{
     private static string _connectionString = @"Server=.; Database=BDSeries; Trusted_Connection=True";
     public static List<Tareas> GetTareas(int IdUsuario){
