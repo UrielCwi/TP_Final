@@ -2,22 +2,26 @@
     ViewData["Title"] = "Index";
 }
 <form Action='@Url.Action("Login","Home")'>
-<div class="bloque1">
+<div class="bloques">
+    <div class="bloque1">
     <div class="Titulo">
         INICIA SESION
     </div>
     <div class="Usuario">
         <h2>Usuario</h2>
-        <input type="text" class="inputlogin"></input>
+        <input type="text" class="inputlogin" required></input>
     </div>
     <div class="Contraseña">
         <h2>Contraseña</h2>
-        <input type="text" class="inputlogin"></input>
+        <input type="text" class="inputlogin" required></input>
     </div>
-    <button class="inicio"></button>
-</div>
-<div class="bloque2">
-    <img class="imagen"></img>
-    <h4></h4>
+        <h3>¿Olvidaste la contraseña?</h3>
+        <button class="inicio" type="submit">Iniciar sesion</button>
+        <div class="inicio"><a class="iniciotexto" href="Views\Home\Registro.cshtml">Registrarse</a></div>
+    </div>
+    <div class="bloque2">
+        <img class="imagen" src="/Imagenes/image.webp"></img>
+        <h2 style="font-size: 60px;">Topodiario</h2>
+    </div>
 </div>
 </form>

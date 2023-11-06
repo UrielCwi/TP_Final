@@ -28,12 +28,18 @@ public class HomeController : Controller
         ViewBag.Usuario = BD.LoginUsuario(Usuario.Nombre, Usuario.Contraseña);
         return View("Calendario");
     }
-    public IActionResult Notificaciones()
+    public IActionResult Notificaciones(int IdUsuario)
     {
+        ViewBag.Categoria = BD.GetCategorias(IdUsuario);        
+        ViewBag.Tareas = BD.GetTareas(IdUsuario);
         return View("Notificaciones");
     }
-    public IActionResult Home()
+    public IActionResult Home(int IdUsuario)
     {
+        ViewBag.Tareas = BD.GetTareas(IdUsuario);
         
+        return View();
     }
 }
+
+// Falta para el agregar tarea (Para el modal)

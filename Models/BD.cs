@@ -44,6 +44,8 @@ public class BD{
              FechaNacimiento = Usuario.FechaNacimiento}, commandType: CommandType.StoredProcedure);
         }
     }
+    // FALTA HACER LA PARTE PARA AGREGAR TAREA !!! 
+    
     public static void EditarTarea(Tareas Tarea){
         using(SqlConnection db = new SqlConnection(_connectionString)){
             string sp = "EditarTarea";
@@ -55,6 +57,13 @@ public class BD{
         using(SqlConnection db = new SqlConnection(_connectionString)){
             string sp = "BorrarTarea";
             db.Execute(sp, new{IdTarea = IdTarea}, commandType: CommandType.StoredProcedure);
+        }
+    }
+     public static void AgregarTarea(Tareas Tarea){
+        using(SqlConnection db = new SqlConnection(_connectionString)){
+            string sp = "AgregarTarea";
+            db.Execute(sp, new{IdTarea = Tarea.IdTarea, IdCategoria = Tarea.IdCategoria,
+            Nombre = Tarea.Nombre, Descripcion = Tarea.Descripcion}, commandType: CommandType.StoredProcedure);
         }
     }
 }
