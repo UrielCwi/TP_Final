@@ -20,6 +20,7 @@
         <p class="card-text">@i.Descripcion</p>
         @foreach (Categorias a in ViewBag.Categoria)
         {
+          @if (i.IdCategoria == a.IdCategoria)
             <p>@a.Nombre</p>
         }
     </div>
