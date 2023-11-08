@@ -1,0 +1,37 @@
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="bloques">
+<div class="bloque1">
+<form Action='@Url.Action("Registro","Home")'>
+    <div class="Titulo">
+        Registro
+    </div>
+    <div class="Usuario">
+        <h2>Usuario</h2>
+        <input type="text" class="inputlogin" required></input>
+    </div>
+    <div class="Usuario">
+        <h2>Email</h2>
+        <input type="text" class="inputlogin" required></input>
+    </div>
+    <div class="Usuario">
+        <h2>Fecha de nacimiento</h2>
+        <input type="text" class="inputlogin" required></input>
+    </div>
+    <div class="Contraseña">
+        <h2>Contraseña</h2>
+        <input type="text" class="inputlogin" required></input>
+    </div>
+    <div class="Contraseña">
+        <h2>Confirmar contraseña</h2>
+        <input type="text" class="inputlogin" required></input>
+    </div>
+        <button class="inicio" type="submit">Registrarse</button>
+</form>
+</div>
+    <div class="bloque2">
+        <img class="imagen" src="/Imagenes/image.webp"></img>
+        <h2 style="font-size: 60px;">Topodiario</h2>
+    </div>
+</div>

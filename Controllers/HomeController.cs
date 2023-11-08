@@ -8,6 +8,10 @@ public class HomeController : Controller
     {
         return View();
     }
+    public IActionResult MandarRegistro()
+    {
+        return View("Registro");
+    }
     public IActionResult Login(string Nombre, string Contraseña)
     {
         ViewBag.Error = null;
