@@ -6,30 +6,50 @@
   <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="site.css">
   <title>Card</title>
 </head>
 </html>
 <body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-<p>Estas son tus tareas de la <"semana"></p>
-</body>
-@* <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalTarea" onclick="NuevaTarea(@S.IdSerie, '@S.Nombre')">Nueva tarea</button> *@
- <div class="modal fade" id="ModalTarea" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="Titulo"></h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body" id="Cuerpo">
-        </div>
-        <div class="modal-footer">
-            <button class="complete-button" onclick="markAsCompleted()" data-bs-dismiss="modal">Marcar como completado</button>
-                  <button class="complete-button-editar" data-bs-dismiss="modal">Editar</button>
-          <button class="complete-button-cerrar" data-bs-dismiss="modal">Cerrar</button>
-        </div>
-      </div>
+<p>Estas son tus tareas de <div id="resultadoFiltro"></div></p>
+ <div id="filterOptions" class="horizontal-options">
+        <span class="filter-option" data-value="dia">l Día</span>
+        <span class="filter-option" data-value="semana"> la Semana</span>
+        <span class="filter-option" data-value="mes">l Mes</span>
     </div>
-  </div>
+            @foreach(var item in ViewBag.Tareas){
+ <div class="card">
+            <div class="header">
+                <h2>Tarea de programación</h2>
+                <div class="tag">Colegio</div>
+            </div>
+            <p>@ViewBag.Tareas.Descripcion</p>
+            <button class="complete-button" onclick="markAsCompleted()">Marcar como completado</button>
+        </div>
+            }
+</body>
+
+<button id="nuevaTareaButton">Nueva tarea</button>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 style="color: #051439;">Nueva Tarea</h2>
+            <form id="tareaForm">
+                <label for="nombreTarea" style="color: #051439;">Nombre de la tarea:</label>
+                <input type="text" id="nombreTarea" required> <br><br>
+
+                <label for="categoria" style="color: #051439;">Categoría:</label>
+                <input type="text" id="categoria"> <br><br>
+
+                <label for="descripcion" style="color: #051439;">Descripción:</label>
+                <textarea id="descripcion"></textarea> <br><br>
+
+                <label for="fechaHora" style="color: #051439;">Día y hora:</label>
+                <input type="datetime-local" id="fechaHora"> <br><br>
+
+                <button type="submit" style="background-color: #2980b9; color: #fff;">Agregar tarea</button>
+            </form>
+        </div>
+    </div>
+  

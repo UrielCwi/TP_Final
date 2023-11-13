@@ -12,10 +12,10 @@ public class HomeController : Controller
     {
         return View("Registro");
     }
-    public IActionResult Login(string Nombre, string Contraseña)
+    public IActionResult Login(string Usuario, string Contraseña)
     {
         ViewBag.Error = null;
-        ViewBag.Usuario = BD.LoginUsuario(Nombre, Contraseña);
+        ViewBag.Usuario = BD.LoginUsuario(Usuario, Contraseña);
         if (ViewBag.Usuario == null)
         {
             ViewBag.Error = "Usuario o contraseña incorrectos";
@@ -23,27 +23,29 @@ public class HomeController : Controller
         }
         else
         {
-            return View("Calendario");
+            return RedirectToAction("Home", new{IdUsuario = ViewBag.Usuario.IdUsuario});
         }
     }
     public IActionResult Registro(Usuarios Usuario)
     {
         BD.RegistrarUsuario(Usuario);
         ViewBag.Usuario = BD.LoginUsuario(Usuario.Nombre, Usuario.Contraseña);
-        return View("Calendario");
+        return RedirectToAction("Home", new{IdUsuario = ViewBag.Usuario.IdUsuario});
     }
     public IActionResult Notificaciones(int IdUsuario)
     {
+        ViewBag.Usuario = BD.GetUsuario(IdUsuario);
         ViewBag.Categoria = BD.GetCategorias(IdUsuario);        
         ViewBag.Tareas = BD.GetTareas(IdUsuario);
         return View("Notificaciones");
     }
     public IActionResult Home(int IdUsuario)
     {
+        ViewBag.Usuario = BD.GetUsuario(IdUsuario);
         ViewBag.Tareas = BD.GetTareas(IdUsuario);
-        
         return View();
     }
+    
 }
 
 // Falta para el agregar tarea (Para el modal)

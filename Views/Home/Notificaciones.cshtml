@@ -2,30 +2,28 @@
 @{
     ViewData["Title"] = "Notificaciones";
 }
-<nav class="navbar bg-body-tertiary">
-  <div class="container">
-    <a class="navbar-brand" href="#">
-      <img src="" alt="Bootstrap" width="30" height="24">
-    </a>
-  </div>
-</nav>
 </head>
-
 <body>
-@foreach (Tareas i in ViewBag.Tareas)
-{
-<div class="card mb-3">
-    <div class="card-body">
-        <h5 class="card-title">@i.Nombre</h5>
-        <p class="card-text">@i.Descripcion</p>
-        @foreach (Categorias a in ViewBag.Categoria)
+  <div class="card-notificacion">
+  @if(ViewBag.Tareas==null)
+  {
+    <p>"No tiene notificaciones"</p>
+  }
+  else
+  {
+    @foreach (Tareas i in ViewBag.Tareas)
+    {
+        <h5 class="nombre-tarea">@i.Nombre</h5>
+        <p class="descripcion-tarea">@i.Descripcion</p>
+      @foreach (Categorias a in ViewBag.Categoria)
+      {
+        @if (i.IdCategoria == a.IdCategoria)
         {
-          @if (i.IdCategoria == a.IdCategoria)
-          {
-            <p>@a.Nombre</p>
-          }
+        <p class="nombre-categoria">@a.Nombre</p>
         }
-    </div>
-</div>
-}
+      }
+
+    }
+  }
+  </div>
 </body>

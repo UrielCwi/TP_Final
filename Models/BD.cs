@@ -4,7 +4,7 @@ using System.Data;
 using System.Collections.Generic;
 namespace TP_FINAL.Models;
 public class BD{
-    private static string _connectionString = @"Server=.; Database=BDSeries; Trusted_Connection=True";
+    private static string _connectionString = @"Server=.; Database=TopodiarioBD; Trusted_Connection=True";
     public static List<Tareas> GetTareas(int IdUsuario){
         List<Tareas> Tareas = null;
         using(SqlConnection db = new SqlConnection(_connectionString)){
@@ -21,11 +21,19 @@ public class BD{
         }
         return Categorias;
     }
-    public static List<Usuarios> LoginUsuario(string Nombre, string Contraseña){
-        List<Usuarios> Usuarios = null;
+    public static Usuarios LoginUsuario(string Nombre, string Contraseña){
+        Usuarios Usuarios = null;
         using(SqlConnection db = new SqlConnection(_connectionString)){
             string sp = "LoginUsuario";
-            Usuarios = db.Query<Usuarios>(sp, new{Nombre = Nombre, Contraseña = Contraseña}, commandType: CommandType.StoredProcedure).ToList();
+            Usuarios = db.QueryFirstOrDefault<Usuarios>(sp, new{Nombre = Nombre, Contraseña = Contraseña}, commandType: CommandType.StoredProcedure);
+        }
+        return Usuarios;
+    }
+    public static Usuarios GetUsuario(int IdUsuario){
+        Usuarios Usuarios = null;
+        using(SqlConnection db = new SqlConnection(_connectionString)){
+            string sp = "GetUsuario";
+            Usuarios = db.QueryFirstOrDefault<Usuarios>(sp, new{IdUsuario = IdUsuario}, commandType: CommandType.StoredProcedure);
         }
         return Usuarios;
     }
@@ -43,9 +51,7 @@ public class BD{
             db.Execute(sp, new{Nombre = Usuario.Nombre, Contraseña = Usuario.Contraseña,
              FechaNacimiento = Usuario.FechaNacimiento}, commandType: CommandType.StoredProcedure);
         }
-    }
-    // FALTA HACER LA PARTE PARA AGREGAR TAREA !!! 
-    
+    }    
     public static void EditarTarea(Tareas Tarea){
         using(SqlConnection db = new SqlConnection(_connectionString)){
             string sp = "EditarTarea";
