@@ -9,27 +9,25 @@
         <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     </head>
     <body>
-    <nav class="navbar bg-body-tertiary">
-    <div class="container">
-    <a class="navbar-brand" href="">
-      <img src="\imagenes\image.webp" alt="Bootstrap" width="90" height="72">
-    </a>
-    <a class="navbar-brand" href="~/Home/Home.cshtml">
-      <img src="\imagenes\Home.jpg" alt="Bootstrap" width="90" height="72">
-    </a>
-    <a class="navbar-brand" href="~/Home/Tareas.cshtml">
-      <img src="\imagenes\Reloj.jpg" alt="Bootstrap" width="90" height="72">
-    </a>
-    <a class="navbar-brand" href="~/Home/Calendario.cshtml">
-      <img src="\imagenes\Calendario.jpg" alt="Bootstrap" width="90" height="72">
-    </a>
-    <a class="navbar-brand" href='@Url.Action("Notificaciones","Home", new{IdUsuario = ViewBag.Usuario.IdUsuario})'>
-      <img src="\imagenes\Notificaciones.jpg" alt="Bootstrap" width="90" height="72">
-    </a>
+  <div id="nav-container">
+    <div class="bg"></div>
+    <div class="button" tabindex="0">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
     </div>
-    </nav>
-        @RenderBody()
-        <script src="~/js/site.js" asp-append-version="true"></script>
-        @await RenderSectionAsync("Scripts", required: false)
+    <div id="nav-content" tabindex="0">
+      <ul>
+        <li><a href='@Url.Action("Home","Home", new{IdUsuario = ViewBag.Usuario.IdUsuario})'>Home</a></li>
+        <li><a href='@Url.Action("Tareas","Home", new{IdUsuario = ViewBag.Usuario.IdUsuario})'>Tareas</a></li>
+        <li><a href="#0">Calendario</a></li>
+        <li><a href='@Url.Action("Notificaciones","Home", new{IdUsuario = ViewBag.Usuario.IdUsuario})'>Notificaciones</a></li>
+      </ul>
+    </div>
+    </div>
+  </div>
+  @RenderBody()
+  <script src="~/js/site.js" asp-append-version="true"></script>
+  @await RenderSectionAsync("Scripts", required: false) 
     </body>
 </html>

@@ -43,6 +43,7 @@ public class HomeController : Controller
     {
         ViewBag.Usuario = BD.GetUsuario(IdUsuario);
         ViewBag.Tareas = BD.GetTareas(IdUsuario);
+        ViewBag.Categorias = BD.GetCategorias(IdUsuario);
         return View();
     }
     
