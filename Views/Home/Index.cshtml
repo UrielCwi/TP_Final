@@ -23,11 +23,11 @@
         <h2>Usuario</h2>
         <input type="text" class="inputlogin" name="Usuario" required></input>
     </div>
-    <div class="Contraseña">
+    <div class="Usuario">
         <h2>Contraseña</h2>
         <input type="text" class="inputlogin" name="Contraseña" required></input>
     </div>
-        <h3>¿Olvidaste la contraseña?</h3>
+        <a href='@Url.Action("MandarContraseña","Home")'><h3>¿Olvidaste la contraseña?</h3></a>
         <button class="inicio" type="submit">Iniciar sesion</button>
 </form>
 <form Action='@Url.Action("MandarRegistro","Home")'>

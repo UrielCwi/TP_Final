@@ -72,7 +72,7 @@ h3 {
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  margin-top: 5%;
+  margin-top: 10%;
 }
 .iniciotexto{
   display: absolute;
@@ -294,17 +294,6 @@ strong {
   color: #212121;
 }
 
-header {
-  display: flex;
-  position: fixed;
-  width: 100%;
-  height: 70px;
-  background: #212121;
-  color: #fff;
-  justify-content: center;
-  align-items: center;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
-}
 
 main {
   padding: 70px 20px 0;
@@ -399,7 +388,9 @@ main small {
 #nav-container:focus-within .icon-bar:nth-of-type(3) {
   transform: translate3d(0,-8px,0) rotate(-45deg);
 }
-
+.Usuario{
+  margin-bottom: 6%;
+}
 #nav-content {
   margin-top: 70px;
   padding: 20px;

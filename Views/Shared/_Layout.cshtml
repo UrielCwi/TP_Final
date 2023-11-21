@@ -9,7 +9,8 @@
         <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     </head>
     <body>
-  <div id="nav-container">
+    <header style="position:fixed; top: 0; margin: 10px 0px 20px 0px;">
+        <div id="nav-container">
     <div class="bg"></div>
     <div class="button" tabindex="0">
       <span class="icon-bar"></span>
@@ -26,6 +27,7 @@
     </div>
     </div>
   </div>
+    </header>
   @RenderBody()
   <script src="~/js/site.js" asp-append-version="true"></script>
   @await RenderSectionAsync("Scripts", required: false) 

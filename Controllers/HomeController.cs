@@ -12,6 +12,10 @@ public class HomeController : Controller
     {
         return View("Registro");
     }
+    public IActionResult MandarContraseña()
+    {
+        return View("RecuperarContraseña");
+    }
     public IActionResult Login(string Usuario, string Contraseña)
     {
         ViewBag.Error = null;
@@ -31,6 +35,11 @@ public class HomeController : Controller
         BD.RegistrarUsuario(Usuario);
         ViewBag.Usuario = BD.LoginUsuario(Usuario.Nombre, Usuario.Contraseña);
         return RedirectToAction("Home", new{IdUsuario = ViewBag.Usuario.IdUsuario});
+    }
+    public IActionResult RecuperarContraseña(string Usuario, string Contraseña, string NuevaContraseña)
+    {
+        BD.RecuperarContraseña(Usuario, Contraseña, NuevaContraseña);
+        return RedirectToAction("Index");
     }
     public IActionResult Notificaciones(int IdUsuario)
     {

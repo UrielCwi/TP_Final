@@ -65,6 +65,12 @@ public class BD{
             db.Execute(sp, new{IdTarea = IdTarea}, commandType: CommandType.StoredProcedure);
         }
     }
+    public static void RecuperarContraseña(string Usuario, string Contraseña, string NuevaContraseña){
+        using(SqlConnection db = new SqlConnection(_connectionString)){
+            string sp = "RecuperarContraseña";
+            db.Execute(sp, new{Usuario = Usuario, Contraseña = Contraseña, NuevaContraseña = NuevaContraseña}, commandType: CommandType.StoredProcedure);
+        }
+    }
      public static void AgregarTarea(Tareas Tarea){
         using(SqlConnection db = new SqlConnection(_connectionString)){
             string sp = "AgregarTarea";

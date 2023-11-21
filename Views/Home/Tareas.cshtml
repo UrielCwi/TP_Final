@@ -1,16 +1,6 @@
 @{
     ViewData["Title"] = "Home";
 }
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="site.css">
-  <title>Card</title>
-</head>
-</html>
-<body>
 <p>Estas son tus tareas de<div id="resultadoFiltro"></div></p>
  <div id="filterOptions" class="horizontal-options">
         <span class="filter-option" data-value="dia">l Día</span>
@@ -18,7 +8,7 @@
         <span class="filter-option" data-value="mes">l Mes</span>
     </div>
             @foreach(var item in ViewBag.Tareas){
- <div class="card">
+            <div class="card">
             <div class="header">
                 <h2>Tarea de programación</h2>
                 <div class="tag">Colegio</div>
@@ -27,10 +17,8 @@
             <button class="complete-button" onclick="markAsCompleted()">Marcar como completado</button>
         </div>
             }
-</body>
 
 <button id="nuevaTareaButton">Nueva tarea</button>
-
     <div id="modal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>

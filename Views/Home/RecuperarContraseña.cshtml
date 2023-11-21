@@ -15,27 +15,23 @@
     <body style="background-color: #130758;">
 <div class="bloques">
 <div class="bloque1">
-<form Action='@Url.Action("Registro","Home")'>
+<form Action='@Url.Action("RecuperarContraseña","Home")'>
     <div class="Titulo">
-        Registro
+        Cambiar contraseña
     </div>
     <div class="Usuario">
         <h2>Usuario</h2>
-        <input type="text" class="inputlogin" name="Nombre" required></input>
+        <input type="text" class="inputlogin" name="Usuario" required></input>
     </div>
     <div class="Usuario">
-        <h2>Fecha de nacimiento</h2>
-        <input type="date" class="inputlogin" name="FechaNacimiento" required></input>
-    </div>
-    <div class="Usuario">
-        <h2>Contraseña</h2>
+        <h2>Antigua contraseña</h2>
         <input type="text" class="inputlogin" name="Contraseña" required></input>
     </div>
     <div class="Usuario">
-        <h2>Confirmar contraseña</h2>
-        <input type="text" class="inputlogin" name="" required></input>
+        <h2>Nueva contraseña</h2>
+        <input type="text" class="inputlogin" name="NuevaContraseña" required></input>
     </div>
-        <button class="inicio" type="submit">Registrarse</button>
+        <button class="inicio" type="submit">Recuperar</button>
 </form>
 </div>
     <div class="bloque2">
