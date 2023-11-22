@@ -48,6 +48,13 @@ public class HomeController : Controller
         ViewBag.Tareas = BD.GetTareas(IdUsuario);
         return View("Notificaciones");
     }
+    public IActionResult Tareas(int IdUsuario)
+    {
+        ViewBag.Usuario = BD.GetUsuario(IdUsuario);
+        ViewBag.Categoria = BD.GetCategorias(IdUsuario);        
+        ViewBag.Tareas = BD.GetTareas(IdUsuario);
+        return View("Tareas");
+    }
     public IActionResult Home(int IdUsuario)
     {
         ViewBag.Usuario = BD.GetUsuario(IdUsuario);
@@ -55,7 +62,11 @@ public class HomeController : Controller
         ViewBag.Categorias = BD.GetCategorias(IdUsuario);
         return View();
     }
-    
+    public IActionResult AgregarTarea (Tareas tarea)
+    {
+        BD.AgregarTarea(tarea);
+        return RedirectToAction("Home");
+    }
 }
 
 // Falta para el agregar tarea (Para el modal)
