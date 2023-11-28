@@ -123,14 +123,14 @@ h2 {
 }
   
 .tag {
-    margin-left: 100px; 
+  margin-left: 10px; /* Ajusta el espacio entre el título y el tag */
   background-color: #7991b1;
   color: #fff;
   border-radius: 5px;
   padding: 5px 10px;
   font-weight: bold;
 }
-  
+
 .edit-button {
   background-color: #27ae60;
   color: #fff;
@@ -140,17 +140,43 @@ h2 {
   cursor: pointer;
 }
   
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.action-button {
+  width: 160px; /* Ajusta según sea necesario */
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
 .complete-button {
   background-color: #6a81a7;
   color: #fff;
   border: none;
   border-radius: 5px;
   padding: 10px;
-  width: 100%;
+  margin-left:10px;
+  
   cursor: pointer;
 }
-  
-.complete-button.completed {
+
+.button-detalle {
+  background-color: #6a81a7;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+
+ .complete-button.completed {
   background-color: #051439;
 }
   
@@ -252,7 +278,7 @@ button:hover {
   border: 1px solid #ccc;
   border-radius: 10px;
   padding: 20px;
-  width: 300px; 
+  width: 400px; 
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   text-align: left;
   margin-top: 100px; 
@@ -463,11 +489,6 @@ main small {
   transform: none;
 }
 
-
-
-
-
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -525,7 +546,7 @@ img {
   border: 1px solid #ccc;
   border-radius: 10px;
   padding: 20px;
-  width: 300px; 
+  width: 800px; 
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   text-align: left;
   margin-top: 100px; 
@@ -535,6 +556,7 @@ img {
 
 .content-container {
   margin-top: 80px; /* Ajusta este valor según sea necesario para que las tarjetas estén debajo de la barra de navegación */
+
 }
 
 .botonn{
@@ -542,4 +564,14 @@ img {
   top: 20px; /* Ajusta esta propiedad según sea necesario */
   right: 20px; /* Ajusta esta propiedad según sea necesario */
   z-index: 1000; /* Ajusta esta propiedad si es necesario */
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.complete-button {
+  width: 48%;
 }

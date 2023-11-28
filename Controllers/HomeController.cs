@@ -23,7 +23,7 @@ public class HomeController : Controller
         if (ViewBag.Usuario == null)
         {
             ViewBag.Error = "Usuario o contraseña incorrectos";
-            return View();
+            return View("Index");
         }
         else
         {
@@ -65,8 +65,20 @@ public class HomeController : Controller
     public IActionResult AgregarTarea (Tareas tarea)
     {
         BD.AgregarTarea(tarea);
-        return RedirectToAction("Home");
+        return RedirectToAction("Home", new{IdUsuario = tarea.IdUsuario});
+    }
+    public IActionResult EditarTarea (Tareas tarea)
+    {
+        BD.EditarTarea(tarea);
+        return RedirectToAction("Home", new{IdUsuario = tarea.IdUsuario});
+    }
+    public Tareas VerDetalleTarea(int IdTarea)
+    {
+        return BD.VerDetalleTarea(IdTarea);
+    }
+    public IActionResult EliminarTarea(int IdTarea, int IdUsuario){
+        BD.BorrarTarea(IdTarea);
+        return RedirectToAction("Home", new{IdUsuario = IdUsuario});
     }
 }
 
-// Falta para el agregar tarea (Para el modal)

@@ -37,6 +37,14 @@ public class BD{
         }
         return Usuarios;
     }
+    public static Tareas VerDetalleTarea(int IdTarea){
+        Tareas tarea = null;
+        using(SqlConnection db = new SqlConnection(_connectionString)){
+            string sp = "VerDetalleTarea";
+            tarea = db.QueryFirstOrDefault<Tareas>(sp, new{IdTarea = IdTarea}, commandType: CommandType.StoredProcedure);
+        }
+        return tarea;
+    }
     public static List<Categorias> GetCategoriaById(int IdCategoria){
         List<Categorias> Categorias = null;
         using(SqlConnection db = new SqlConnection(_connectionString)){
@@ -74,8 +82,8 @@ public class BD{
      public static void AgregarTarea(Tareas Tarea){
         using(SqlConnection db = new SqlConnection(_connectionString)){
             string sp = "AgregarTarea";
-            db.Execute(sp, new{IdTarea = Tarea.IdTarea, IdCategoria = Tarea.IdCategoria,
-            Nombre = Tarea.Nombre, Descripcion = Tarea.Descripcion}, commandType: CommandType.StoredProcedure);
+            db.Execute(sp, new{IdUsuario = Tarea.IdUsuario, IdCategoria = Tarea.IdCategoria,
+            Nombre = Tarea.Nombre, FechaRealizacion = Tarea.FechaRealizacion, Descripcion = Tarea.Descripcion}, commandType: CommandType.StoredProcedure);
         }
     }
 }
