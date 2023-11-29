@@ -86,4 +86,22 @@ public class BD{
             Nombre = Tarea.Nombre, FechaRealizacion = Tarea.FechaRealizacion, Descripcion = Tarea.Descripcion}, commandType: CommandType.StoredProcedure);
         }
     }
+}   
+   /* public static Tareas BuscarTareasPorNombre(int IdUsuario, string nombre)
+{
+    Tareas tarea = null;
+    using (SqlConnection db = new SqlConnection(_connectionString))
+    {
+        db.Open();
+        using (SqlCommand command = new SqlCommand("BuscarTareasPorNombre", db))
+        {
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.Add(new SqlParameter("@IdUsuario", SqlDbType.Int) { Value = IdUsuario });
+            command.Parameters.Add(new SqlParameter("@Nombre", SqlDbType.NVarChar, 255) { Value = nombre });
+
+            tarea = command.ExecuteReader(CommandBehavior.CloseConnection);
+        }
+    }
+    return tarea;
 }
+*/
