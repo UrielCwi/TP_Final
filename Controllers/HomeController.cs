@@ -80,7 +80,7 @@ public class HomeController : Controller
         BD.BorrarTarea(IdTarea);
         return RedirectToAction("Home", new{IdUsuario = IdUsuario});
     }
-    /*public IActionResult BuscarTareasPorNombre(string nombre)
+    public IActionResult BuscarTareaPorNombre(string nombre, int IdUsuario)
     {
         if (string.IsNullOrEmpty(nombre))
         {
@@ -88,12 +88,12 @@ public class HomeController : Controller
         }
         else
         {
-            ViewBag.Tareas = BD.BuscarTareasPorNombre(IdUsuario, nombre);
+            ViewBag.Tareas = BD.BuscarTareaPorNombre(IdUsuario, nombre);
         }
         ViewBag.Categorias = BD.GetCategorias(IdUsuario);
         ViewBag.Usuario = BD.GetUsuario(IdUsuario);
 
         return View("Home");
-    }*/
+    }
 }
 

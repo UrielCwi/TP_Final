@@ -3,6 +3,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Collections.Generic;
 namespace TP_FINAL.Models;
+
 public class BD{
     private static string _connectionString = @"Server=.; Database=TopodiarioBD; Trusted_Connection=True";
     public static List<Tareas> GetTareas(int IdUsuario){
@@ -86,22 +87,14 @@ public class BD{
             Nombre = Tarea.Nombre, FechaRealizacion = Tarea.FechaRealizacion, Descripcion = Tarea.Descripcion}, commandType: CommandType.StoredProcedure);
         }
     }
-}   
-   /* public static Tareas BuscarTareasPorNombre(int IdUsuario, string nombre)
+    public static List<Tareas> BuscarTareaPorNombre(int IdUsuario, string nombre)
 {
-    Tareas tarea = null;
+    List <Tareas> tarea = new List<Tareas>();
     using (SqlConnection db = new SqlConnection(_connectionString))
     {
-        db.Open();
-        using (SqlCommand command = new SqlCommand("BuscarTareasPorNombre", db))
-        {
-            command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.Add(new SqlParameter("@IdUsuario", SqlDbType.Int) { Value = IdUsuario });
-            command.Parameters.Add(new SqlParameter("@Nombre", SqlDbType.NVarChar, 255) { Value = nombre });
-
-            tarea = command.ExecuteReader(CommandBehavior.CloseConnection);
-        }
+        string sp = "BuscarTareaPorNombre"; //Uri, Como el método es db.Query, hacer una Query que llame a la SP "BuscarTareaPorNombre"
+        tarea = db.Query<Tareas>(sp, new { IdUsuario = IdUsuario, Nombre = nombre }, commandType: CommandType.StoredProcedure).ToList();// Teoricamente esto retorna una lista de tareas del nombre que buscas
     }
     return tarea;
 }
-*/
+}

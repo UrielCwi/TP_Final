@@ -1,6 +1,12 @@
 @{
     ViewData["Title"] = "Home";
 }
+<form class="formbusc" method="get" action='@Url.Action("BuscarTareasPorNombre", "Home")'>
+    <div class="mb-3">
+        <input type="text" placeholder="Ingresar nombre" class="form-control" name="nombre" id="nombre">
+    </div>
+    <button type="submit" class="btn btn-primary mb-3 ms-2">Buscar</button>
+</form>
 
  <div class="content-container">
      @foreach(var item in ViewBag.Tareas)
