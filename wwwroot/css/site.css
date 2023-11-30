@@ -10,6 +10,20 @@ html {
   }
 }
 
+.formbusc {
+  width: 100%;
+  margin-top: 2%; 
+  display: flex;
+  padding-left: 50%;
+  /*flex-direction: column;*/
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.mb-3 {
+  margin-bottom: 15px;
+}
+
 footer {
   position: fixed; 
   bottom: 0; 
@@ -147,7 +161,7 @@ h2 {
 }
 
 .action-button {
-  width: 160px; /* Ajusta según sea necesario */
+  width: 100%; /* Ajusta según sea necesario */
 }
 
 .button-container {
@@ -278,10 +292,26 @@ button:hover {
   border: 1px solid #ccc;
   border-radius: 10px;
   padding: 20px;
-  width: 400px; 
+  width: 260px; 
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   text-align: left;
   margin-top: 100px; 
+  margin-left: 20px; 
+  margin-right: 20px; 
+}
+
+.carddd {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  width: (100% - 40px); 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  text-align: left;
+  margin-top: 80px; 
   margin-left: 20px; 
   margin-right: 20px; 
 }
@@ -294,6 +324,11 @@ button:hover {
 }
 .descripcion-tarea{
 font-weight: 50;
+}
+.carddd-tarea{
+  font-weight: 250;
+  font-size: 16px;
+  color: #000;
 }
 .nombre-categoria{
   font-family: system-ui;
@@ -559,6 +594,9 @@ img {
 
 }
 
+.notificacioness{
+
+}
 .botonn{
   position: fixed;
   top: 20px; /* Ajusta esta propiedad según sea necesario */

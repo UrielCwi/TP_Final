@@ -4,28 +4,31 @@
 <head>
 </head>
 <body>
-  <div class="card-notificacion">
   @if(ViewBag.Tareas==null)
   {
-    <p>"No tiene notificaciones"</p>
+    <p>"No tiene notificaciones de tareas del día de hoy"</p>
   }
   else
   {
+  <div class="notificacioness">
     @foreach (Tareas i in ViewBag.Tareas)
     {
       @if(DateTime.Now.ToShortDateString() == @i.FechaRealizacion.ToShortDateString())
       {
-        <h5 class="nombre-tarea">@i.Nombre</h5>
-        <p class="descripcion-tarea">@i.Descripcion</p>
+      <div class="carddd">
+          <h5 class="carddd-tarea">¡Acordate de hacer la tarea @i.Nombre!</h5>
+          <p class="carddd-tarea">Que trata sobre...@i.Descripcion</p>
         @foreach (Categorias a in ViewBag.Categoria)
         {
-        @if (i.IdCategoria == a.IdCategoria)
+          @if (i.IdCategoria == a.IdCategoria)
           {
-            <p class="nombre-categoria">@a.Nombre</p>
+          <p class="carddd-tarea">Es de la categoría @a.Nombre</p>
           }
         }
-      } 
+      <p class="carddd-tarea">Y lo tenes que tener listo para el @i.FechaRealizacion.ToShortDateString()</p>
+      </div>
+      }
     }
+    </div>
   }
-  </div>
 </body>

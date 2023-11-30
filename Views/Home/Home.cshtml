@@ -1,6 +1,14 @@
 @{
     ViewData["Title"] = "Home";
 }
+<form class="formbusc" method="get" action='@Url.Action("BuscarTareaPorNombre", "Home")'>
+  <input type="hidden" name="IdUsuario" value="@ViewBag.Usuario.IdUsuario"></input>
+    <div class="mb-3">
+        <input type="text" placeholder="Ingresar nombre" class="form-control" name="nombre" id="nombre">
+    </div>
+    <button type="submit" class="btn btn-primary mb-3 ms-2">Buscar</button>
+</form>
+
  <div class="content-container">
      @foreach(var item in ViewBag.Tareas)
     {
@@ -56,8 +64,8 @@
             <input type="text" class="form-control" name="Descripcion" id="exampleInputEmail1" aria-describedby="emailHelp">
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Envíar</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
         </div>
         </form>
       </div>
@@ -123,11 +131,25 @@
             <input type="text" class="form-control" name="Descripcion" id="exampleInputEmail1" aria-describedby="emailHelp" required>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Envíar</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
         </div>
         </form>
       </div>
     </div>
   </div>
 </div>
+
+<!---@using (Html.BeginForm("Buscar", "Home", FormMethod.Post))
+{
+  <label>Buscar por nombre: </label>
+  <input type="text" name="searchTerm" />
+  <input type="submit" value="Buscar" />
+}
+ Lista de items
+<ul>
+  @foreach (Tareas tarea in ViewBag.Tareas)
+  {
+      <li>@tarea.Nombre</li>
+  }
+</ul>

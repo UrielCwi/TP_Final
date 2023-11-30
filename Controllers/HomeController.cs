@@ -76,19 +76,24 @@ public class HomeController : Controller
     {
         return BD.VerDetalleTarea(IdTarea);
     }
-    public IActionResult EliminarTarea(int IdTarea, int IdUsuario){
+    public IActionResult EliminarTarea(int IdTarea, int IdUsuario)
+    {
         BD.BorrarTarea(IdTarea);
         return RedirectToAction("Home", new{IdUsuario = IdUsuario});
     }
-    public IActionResult Buscador(string Nombre, int IdUsuario)
+    public IActionResult BuscarTareaPorNombre(string nombre, int IdUsuario)
     {
-        ViewBag.Tareas = BD.GetTareas(IdUsuario);
-        var busqueda = ViewBag.Tareas;
-        if (!String.IsNullOrEmpty(Nombre))
+        if (string.IsNullOrEmpty(nombre))
         {
-            busqueda = busqueda.Where(busqueda >= busqueda.Nombre.Contains(Nombre));
+            ViewBag.Tareas = BD.GetTareas(IdUsuario); 
         }
-        return RedirectToAction("Home", new{IdUsuario = IdUsuario});
+        else
+        {
+            ViewBag.Tareas = BD.BuscarTareaPorNombre(IdUsuario, nombre);
+        }
+        ViewBag.Categorias = BD.GetCategorias(IdUsuario);
+        ViewBag.Usuario = BD.GetUsuario(IdUsuario);
+        return View("Home");
     }
 }
 

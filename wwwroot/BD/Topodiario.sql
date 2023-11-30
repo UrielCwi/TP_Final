@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [TopodiarioBD]    Script Date: 28/11/2023 19:25:56 ******/
+/****** Object:  Database [TopodiarioBD]    Script Date: 30/11/2023 19:10:08 ******/
 CREATE DATABASE [TopodiarioBD]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -82,7 +82,7 @@ ALTER DATABASE [TopodiarioBD] SET QUERY_STORE = OFF
 GO
 USE [TopodiarioBD]
 GO
-/****** Object:  Table [dbo].[Categorias]    Script Date: 28/11/2023 19:25:57 ******/
+/****** Object:  Table [dbo].[Categorias]    Script Date: 30/11/2023 19:10:08 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -99,7 +99,7 @@ CREATE TABLE [dbo].[Categorias](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Tareas]    Script Date: 28/11/2023 19:25:57 ******/
+/****** Object:  Table [dbo].[Tareas]    Script Date: 30/11/2023 19:10:08 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -117,7 +117,7 @@ CREATE TABLE [dbo].[Tareas](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Usuarios]    Script Date: 28/11/2023 19:25:57 ******/
+/****** Object:  Table [dbo].[Usuarios]    Script Date: 30/11/2023 19:10:08 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -145,6 +145,8 @@ INSERT [dbo].[Tareas] ([IdTarea], [IdUsuario], [IdCategoria], [Nombre], [FechaRe
 GO
 INSERT [dbo].[Tareas] ([IdTarea], [IdUsuario], [IdCategoria], [Nombre], [FechaRealizacion], [Descripcion]) VALUES (6, 1, 1, N'FUNCIONA PERO PARA EL CULO AJAJAJ', CAST(N'2023-11-16' AS Date), N'sjgfioj')
 GO
+INSERT [dbo].[Tareas] ([IdTarea], [IdUsuario], [IdCategoria], [Nombre], [FechaRealizacion], [Descripcion]) VALUES (1002, 1, 1, N'Que se yo', CAST(N'2023-11-30' AS Date), N'sd')
+GO
 SET IDENTITY_INSERT [dbo].[Tareas] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Usuarios] ON 
@@ -168,7 +170,7 @@ REFERENCES [dbo].[Usuarios] ([IdUsuario])
 GO
 ALTER TABLE [dbo].[Tareas] CHECK CONSTRAINT [FK_Tareas_Usuarios]
 GO
-/****** Object:  StoredProcedure [dbo].[AgregarTarea]    Script Date: 28/11/2023 19:25:57 ******/
+/****** Object:  StoredProcedure [dbo].[AgregarTarea]    Script Date: 30/11/2023 19:10:08 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -198,7 +200,7 @@ BEGIN
 		   @Descripcion)
 END
 GO
-/****** Object:  StoredProcedure [dbo].[BorrarTarea]    Script Date: 28/11/2023 19:25:57 ******/
+/****** Object:  StoredProcedure [dbo].[BorrarTarea]    Script Date: 30/11/2023 19:10:08 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -214,7 +216,30 @@ DELETE FROM [dbo].[Tareas]
       WHERE IdTarea = @IdTarea
 END
 GO
-/****** Object:  StoredProcedure [dbo].[EditarTarea]    Script Date: 28/11/2023 19:25:57 ******/
+/****** Object:  StoredProcedure [dbo].[BuscarTareaPorNombre]    Script Date: 30/11/2023 19:10:08 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[BuscarTareaPorNombre]
+	(
+		@IdUsuario int
+		,@nombre VARCHAR(max)
+	)
+AS
+BEGIN
+	SET NOCOUNT ON;
+SELECT [IdTarea]
+      ,[IdUsuario]
+      ,[IdCategoria]
+      ,[Nombre]
+      ,[FechaRealizacion]
+      ,[Descripcion]
+  FROM [dbo].[Tareas]
+  WHERE IdUsuario = @IdUsuario AND Nombre = @nombre
+END
+GO
+/****** Object:  StoredProcedure [dbo].[EditarTarea]    Script Date: 30/11/2023 19:10:08 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -236,7 +261,7 @@ UPDATE [dbo].[Tareas]
  WHERE IdTarea = @IdTarea
 END
 GO
-/****** Object:  StoredProcedure [dbo].[GetCategoriaById]    Script Date: 28/11/2023 19:25:57 ******/
+/****** Object:  StoredProcedure [dbo].[GetCategoriaById]    Script Date: 30/11/2023 19:10:08 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -257,7 +282,7 @@ SELECT [IdCategoria]
   WHERE IdCategoria = @IdCategoria
 END
 GO
-/****** Object:  StoredProcedure [dbo].[GetCategorias]    Script Date: 28/11/2023 19:25:57 ******/
+/****** Object:  StoredProcedure [dbo].[GetCategorias]    Script Date: 30/11/2023 19:10:08 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -278,7 +303,7 @@ SELECT [IdCategoria]
   WHERE IdUsuario = @IdUsuario
 END
 GO
-/****** Object:  StoredProcedure [dbo].[GetTareas]    Script Date: 28/11/2023 19:25:57 ******/
+/****** Object:  StoredProcedure [dbo].[GetTareas]    Script Date: 30/11/2023 19:10:08 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -300,7 +325,7 @@ SELECT [IdTarea]
   WHERE IdUsuario = @IdUsuario
 END
 GO
-/****** Object:  StoredProcedure [dbo].[GetUsuario]    Script Date: 28/11/2023 19:25:57 ******/
+/****** Object:  StoredProcedure [dbo].[GetUsuario]    Script Date: 30/11/2023 19:10:08 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -320,7 +345,7 @@ SELECT [IdUsuario]
   WHERE IdUsuario = @IdUsuario
 END
 GO
-/****** Object:  StoredProcedure [dbo].[LoginUsuario]    Script Date: 28/11/2023 19:25:57 ******/
+/****** Object:  StoredProcedure [dbo].[LoginUsuario]    Script Date: 30/11/2023 19:10:08 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -341,7 +366,7 @@ BEGIN
 	WHERE Nombre = @Nombre AND Contraseña = @Contraseña
 END
 GO
-/****** Object:  StoredProcedure [dbo].[RecuperarContraseña]    Script Date: 28/11/2023 19:25:57 ******/
+/****** Object:  StoredProcedure [dbo].[RecuperarContraseña]    Script Date: 30/11/2023 19:10:08 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -359,7 +384,7 @@ UPDATE [dbo].[Usuarios]
  WHERE Nombre = @Usuario AND Contraseña = @Contraseña
 END
 GO
-/****** Object:  StoredProcedure [dbo].[RegistrarUsuario]    Script Date: 28/11/2023 19:25:57 ******/
+/****** Object:  StoredProcedure [dbo].[RegistrarUsuario]    Script Date: 30/11/2023 19:10:08 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -383,7 +408,7 @@ INSERT INTO [dbo].[Usuarios]
 		   @FechaNacimiento)
 END
 GO
-/****** Object:  StoredProcedure [dbo].[VerDetalleTarea]    Script Date: 28/11/2023 19:25:57 ******/
+/****** Object:  StoredProcedure [dbo].[VerDetalleTarea]    Script Date: 30/11/2023 19:10:08 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
