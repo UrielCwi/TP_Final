@@ -80,5 +80,15 @@ public class HomeController : Controller
         BD.BorrarTarea(IdTarea);
         return RedirectToAction("Home", new{IdUsuario = IdUsuario});
     }
+    public IActionResult Buscador(string Nombre, int IdUsuario)
+    {
+        ViewBag.Tareas = BD.GetTareas(IdUsuario);
+        var busqueda = ViewBag.Tareas;
+        if (!String.IsNullOrEmpty(Nombre))
+        {
+            busqueda = busqueda.Where(busqueda >= busqueda.Nombre.Contains(Nombre));
+        }
+        return RedirectToAction("Home", new{IdUsuario = IdUsuario});
+    }
 }
 

@@ -3,7 +3,7 @@
 }
  <div class="content-container">
      @foreach(var item in ViewBag.Tareas)
-{
+    {
     <div class="cardd">
         <div class="header">
             <h2>@item.Nombre</h2>
@@ -20,7 +20,7 @@
             <button type="button" class="action-button button-detalle" data-bs-toggle="modal" data-bs-target="#ModalDetalle" onclick="MostrarDetalles(@item.IdTarea)">Ver más detalles</button>
         </div>
     </div>
-}
+            }
     </div>
 <button type="button" class="botonn" data-bs-toggle="modal" data-bs-target="#ModalAgregarTarea">Nueva tarea</button>
 <div class="modal fade" id="ModalAgregarTarea" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

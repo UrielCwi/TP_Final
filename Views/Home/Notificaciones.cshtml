@@ -13,16 +13,18 @@
   {
     @foreach (Tareas i in ViewBag.Tareas)
     {
+      @if(DateTime.Now.ToShortDateString() == @i.FechaRealizacion.ToShortDateString())
+      {
         <h5 class="nombre-tarea">@i.Nombre</h5>
         <p class="descripcion-tarea">@i.Descripcion</p>
-      @foreach (Categorias a in ViewBag.Categoria)
-      {
-        @if (i.IdCategoria == a.IdCategoria)
+        @foreach (Categorias a in ViewBag.Categoria)
         {
-        <p class="nombre-categoria">@a.Nombre</p>
+        @if (i.IdCategoria == a.IdCategoria)
+          {
+            <p class="nombre-categoria">@a.Nombre</p>
+          }
         }
-      }
-
+      } 
     }
   }
   </div>
