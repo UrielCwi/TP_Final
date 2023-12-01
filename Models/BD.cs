@@ -57,15 +57,14 @@ public class BD{
     public static void RegistrarUsuario(Usuarios Usuario){
         using(SqlConnection db = new SqlConnection(_connectionString)){
             string sp = "RegistrarUsuario";
-            db.Execute(sp, new{Nombre = Usuario.Nombre, Contraseña = Usuario.Contraseña,
-             FechaNacimiento = Usuario.FechaNacimiento}, commandType: CommandType.StoredProcedure);
+            db.Execute(sp, new{Nombre = Usuario.Nombre, Contraseña = Usuario.Contraseña, FechaNacimiento = Usuario.FechaNacimiento, Codigo = Usuario.Codigo}, commandType: CommandType.StoredProcedure);
         }
     }    
     public static void EditarTarea(Tareas Tarea){
         using(SqlConnection db = new SqlConnection(_connectionString)){
             string sp = "EditarTarea";
             db.Execute(sp, new{IdTarea = Tarea.IdTarea, IdCategoria = Tarea.IdCategoria,
-            Nombre = Tarea.Nombre, Descripcion = Tarea.Descripcion}, commandType: CommandType.StoredProcedure);
+            Nombre = Tarea.Nombre, FechaRealizacion = Tarea.FechaRealizacion, Descripcion = Tarea.Descripcion}, commandType: CommandType.StoredProcedure);
         }
     }
     public static void BorrarTarea(int IdTarea){
@@ -74,27 +73,39 @@ public class BD{
             db.Execute(sp, new{IdTarea = IdTarea}, commandType: CommandType.StoredProcedure);
         }
     }
-    public static void RecuperarContraseña(string Usuario, string Contraseña, string NuevaContraseña){
+    public static void RecuperarContraseña(string Usuario, string Codigo,string NuevaContraseña){
         using(SqlConnection db = new SqlConnection(_connectionString)){
             string sp = "RecuperarContraseña";
-            db.Execute(sp, new{Usuario = Usuario, Contraseña = Contraseña, NuevaContraseña = NuevaContraseña}, commandType: CommandType.StoredProcedure);
+            db.Execute(sp, new{Usuario = Usuario, Codigo=Codigo, NuevaContraseña = NuevaContraseña}, commandType: CommandType.StoredProcedure);
         }
     }
      public static void AgregarTarea(Tareas Tarea){
         using(SqlConnection db = new SqlConnection(_connectionString)){
             string sp = "AgregarTarea";
-            db.Execute(sp, new{IdUsuario = Tarea.IdUsuario, IdCategoria = Tarea.IdCategoria,
-            Nombre = Tarea.Nombre, FechaRealizacion = Tarea.FechaRealizacion, Descripcion = Tarea.Descripcion}, commandType: CommandType.StoredProcedure);
+            db.Execute(sp, new{IdUsuario = Tarea.IdUsuario, IdCategoria = Tarea.IdCategoria, Nombre = Tarea.Nombre, FechaRealizacion = Tarea.FechaRealizacion, Descripcion = Tarea.Descripcion}, commandType: CommandType.StoredProcedure);
+        }
+    }
+     public static void AgregarCategoria(Categorias Categoria){
+        using(SqlConnection db = new SqlConnection(_connectionString)){
+            string sp = "AgregarCategoria";
+            db.Execute(sp, new{IdUsuario = Categoria.IdUsuario, Nombre = Categoria.Nombre}, commandType: CommandType.StoredProcedure);
         }
     }
     public static List<Tareas> BuscarTareaPorNombre(int IdUsuario, string nombre)
     {
-    List <Tareas> tarea = new List<Tareas>();
+    List <Tareas> tarea = new List<Tareas>(); 
     using (SqlConnection db = new SqlConnection(_connectionString))
     {
-        string sp = "BuscarTareaPorNombre"; //Uri, Como el método es db.Query, hacer una Query que llame a la SP "BuscarTareaPorNombre"
-        tarea = db.Query<Tareas>(sp, new { IdUsuario = IdUsuario, Nombre = nombre }, commandType: CommandType.StoredProcedure).ToList();// Teoricamente esto retorna una lista de tareas del nombre que buscas
+        string sp = "BuscarTareaPorNombre"; 
+        tarea = db.Query<Tareas>(sp, new { IdUsuario = IdUsuario, Nombre = nombre }, commandType: CommandType.StoredProcedure).ToList();
     }
     return tarea;
-}
+    }
+    public static void Hecho(int IdTarea)
+    {
+        using(SqlConnection db = new SqlConnection(_connectionString)){
+            string sp = "MarcarComoHecho";
+            db.Execute(sp, new{IdTarea = IdTarea}, commandType: CommandType.StoredProcedure);
+        }
+    }
 }

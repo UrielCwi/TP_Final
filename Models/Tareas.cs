@@ -5,4 +5,5 @@ public class Tareas{
     public string Nombre {get; set;}
     public DateTime FechaRealizacion{get; set;}
     public string Descripcion{get; set;}
+    public bool Hecho{ get; set; }
 }

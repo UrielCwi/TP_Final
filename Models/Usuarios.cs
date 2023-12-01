@@ -3,4 +3,5 @@ public class Usuarios{
     public string Nombre{get; set;}
     public string Contraseña{get; set;}
     public DateTime FechaNacimiento{get; set;}
+    public string Codigo{get; set;}
 }

@@ -31,6 +31,7 @@
             }
     </div>
 <button type="button" class="botonn" data-bs-toggle="modal" data-bs-target="#ModalAgregarTarea">Nueva tarea</button>
+
 <div class="modal fade" id="ModalAgregarTarea" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -50,6 +51,8 @@
             <option value="@a.IdCategoria">@a.Nombre</option>
           }
         </select>
+        
+       <button type="button" class="botonn" data-bs-toggle="modal" data-bs-target="#ModalAgregarCategoria">Crear categoria</button>
         </div>
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Nombre</label>
@@ -73,7 +76,8 @@
   </div>
 </div>
 </div>
-<!-- Falta el modal para ver detalles (De ahi se puede editar, eliminar o cerrar)-->
+
+
 <div class="modal fade" id="ModalDetalle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -96,6 +100,32 @@
   </div>
 </div>
 
+<!-- Modal agregar categoría -->
+
+<div class="modal fade" id="ModalAgregarCategoria" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Agregar categoría</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form Action='@Url.Action("AgregarCategoria","Home")'>
+          <input type="hidden" name="IdUsuario" value="@ViewBag.Usuario.IdUsuario">
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Nombre</label>
+            <input type="text" class="form-control" name="Nombre" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="modal-footer">
+        <button class="btn btn-primary" data-bs-target="#ModalAgregarTarea" data-bs-toggle="modal">Volver</button>
+        <button class="btn btn-primary" data-bs-target="#ModalAgregarTarea" data-bs-toggle="modal">Guardar</button>
+        </div>
+        </form>
+    </div>
+    </div>
+  </div>
+</div>
+
 <!--Modal para editar-->
 <div class="modal fade" id="ModalEditar" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
@@ -111,7 +141,6 @@
         <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Categorias</label>
         <select class="form-select" name="IdCategoria" aria-label="Default select example">
-          <option selected>Elegi una categoria</option>
           @foreach (Categorias a in ViewBag.Categorias)
           {
             <option value="@a.IdCategoria">@a.Nombre</option>
@@ -139,17 +168,3 @@
     </div>
   </div>
 </div>
-
-<!---@using (Html.BeginForm("Buscar", "Home", FormMethod.Post))
-{
-  <label>Buscar por nombre: </label>
-  <input type="text" name="searchTerm" />
-  <input type="submit" value="Buscar" />
-}
- Lista de items
-<ul>
-  @foreach (Tareas tarea in ViewBag.Tareas)
-  {
-      <li>@tarea.Nombre</li>
-  }
-</ul>
