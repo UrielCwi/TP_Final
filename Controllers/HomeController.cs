@@ -41,12 +41,13 @@ public class HomeController : Controller
         BD.RecuperarContraseña(Usuario, Codigo, NuevaContraseña);
         return RedirectToAction("Index");
     }
-    public IActionResult Notificaciones(int IdUsuario)
+    
+    public IActionResult Calendario(int IdUsuario)
     {
         ViewBag.Usuario = BD.GetUsuario(IdUsuario);
         ViewBag.Categoria = BD.GetCategorias(IdUsuario);        
         ViewBag.Tareas = BD.GetTareas(IdUsuario);
-        return View("Notificaciones");
+        return View("Calendario");
     }
     public IActionResult Tareas(int IdUsuario)
     {
@@ -100,7 +101,7 @@ public class HomeController : Controller
     }
     public IActionResult MarcarCompletado(int IdUsuario, int IdTarea){
         BD.Hecho(IdTarea);
-        return RedirectToAction("Notificaciones", new{IdUsuario = IdUsuario});
+        return RedirectToAction("Calendario", new{IdUsuario = IdUsuario});
     } 
 }
 
