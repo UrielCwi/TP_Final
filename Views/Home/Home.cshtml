@@ -10,16 +10,14 @@
 </form>
  @foreach(var item in ViewBag.Tareas)
     {
-
-      <div class="card text-bg-light mb-3" style="max-width: 18rem;">
+  <!--<div class="card text-bg-light mb-3" style="max-width: 18rem;">
   <div class="card-header">Header</div>
   <div class="card-body">
     <h5 class="card-title">Light card title</h5>
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
   </div>
-</div>
- <<div class="content-container">
-    
+</div>-->
+ <div class="content-container">
     <div class="cardd">
         <div class="header">
             <h2>@item.Nombre</h2>
@@ -36,8 +34,8 @@
             <button type="button" class="action-button button-detalle" data-bs-toggle="modal" data-bs-target="#ModalDetalle" onclick="MostrarDetalles(@item.IdTarea)">Ver más detalles</button>
         </div>
     </div>
-    } 
   </div>
+  }
 <button type="button" class="botonn" data-bs-toggle="modal" data-bs-target="#ModalAgregarTarea">Nueva tarea</button>
 <!-- AGREGAR TAREA -->
 <div class="modal fade" id="ModalAgregarTarea" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

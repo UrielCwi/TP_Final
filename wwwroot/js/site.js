@@ -51,7 +51,7 @@ function createCalendar(year, month){
                 const td = document.createElement("td");
 
                 // Verificar si hay tareas para esta fecha
-                const dateKey = \`${year}-${String(month + 1).padStart(2, "0")}-${String(currentDay).padStart(2, "0")}`;
+                const dateKey = `${year}-${String(month + 1).padStart(2, "0")}-${String(currentDay).padStart(2, "0")}`;
                 if (tasks[dateKey] && tasks[dateKey].length > 0) {
                     const taskMarker = document.createElement("div");
                     taskMarker.className = "task-marker";
@@ -68,7 +68,7 @@ function createCalendar(year, month){
                     tasks[dateKey].forEach((task) => {
                         const taskInfoText = document.createElement("div");
                         taskInfoText.className = "task-info-text";
-                        taskInfoText.textContent = \`${task.name} (${task.time})`;
+                        taskInfoText.textContent = `${task.name} (${task.time})`;
                         taskInfo.appendChild(taskInfoText);
                     });
 
@@ -91,7 +91,7 @@ function createCalendar(year, month){
         table.appendChild(row);
     }
 
-    calendar.innerHTML = "";
+    calendar.innerHTML = "Topocalendario";
     calendar.appendChild(table);
 }
 
