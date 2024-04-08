@@ -1,42 +1,29 @@
 @{
     ViewData["Title"] = "Home";
 }
-<form class="formbusc" method="get" action='@Url.Action("BuscarTareaPorNombre", "Home")'>
-  <input type="hidden" name="IdUsuario" value="@ViewBag.Usuario.IdUsuario"></input>
-    <div class="mb-3">
-        <input type="text" placeholder="Ingresar nombre" class="form-control" name="nombre" id="nombre">
-    </div>
-    <button type="submit" class="btn btn-primary mb-3 ms-2">Buscar</button>
-</form>
- @foreach(var item in ViewBag.Tareas)
-    {
-  <!--<div class="card text-bg-light mb-3" style="max-width: 18rem;">
-<div class="card-header">Header</div>
-  <div class="card-body">
-    <h5 class="card-title">Light card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  </div>
-</div>-->
- <div class="content-container">
-    <div class="cardd">
-        <div class="header">
-            <h2>@item.Nombre</h2>
-            @foreach (Categorias a in ViewBag.Categorias)
-            {
-                @if (item.IdCategoria == a.IdCategoria)
+
+@foreach(var item in ViewBag.Tareas)
+{
+    <div class="content-container">
+        <div class="cardd @((DateTime.Today == item.FechaRealizacion.Date) ? "today-task" : "")">
+            <div class="header">
+                <h2>@item.Nombre</h2>
+                @foreach (Categorias a in ViewBag.Categorias)
                 {
-                    <div class="tag">@a.Nombre</div>
+                    @if (item.IdCategoria == a.IdCategoria)
+                    {
+                        <div class="tag">@a.Nombre</div>
+                    }
                 }
-            }
-        </div>
-        <p>@item.Descripcion</p>
-        <div class="button-container">
-            <button type="button" class="action-button button-detalle" data-bs-toggle="modal" data-bs-target="#ModalDetalle" onclick="MostrarDetalles(@item.IdTarea)">Ver más detalles</button>
+            </div>
+            <p>@item.Descripcion</p>
+            <div class="button-container">
+                <button type="button" class="action-button button-detalle" onclick="MarcarComoCompletado(@item.IdTarea)">Marcar como completado</button>
+            </div>
         </div>
     </div>
-  </div>
-  }
-<button type="button" class="botonn" data-bs-toggle="modal" data-bs-target="#ModalAgregarTarea">Nueva tarea</button>
+}
+
 <!-- AGREGAR TAREA -->
 <div class="modal fade" id="ModalAgregarTarea" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
