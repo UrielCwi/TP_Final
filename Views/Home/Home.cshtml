@@ -1,29 +1,29 @@
 @{
     ViewData["Title"] = "Home";
 }
-
-@foreach(var item in ViewBag.Tareas)
-{
-    <div class="content-container">
-        <div class="cardd @((DateTime.Today == item.FechaRealizacion.Date) ? "today-task" : "")">
-            <div class="header">
-                <h2>@item.Nombre</h2>
-                @foreach (Categorias a in ViewBag.Categorias)
-                {
-                    @if (item.IdCategoria == a.IdCategoria)
+<div class="cardFlex">
+    @foreach(var item in ViewBag.Tareas)
+    {
+        <div class="content-container">
+            <div class="cardd @((DateTime.Today == item.FechaRealizacion.Date) ? "today-task" : "")">
+                <div class="header">
+                    <h2>@item.Nombre</h2>
+                    @foreach (Categorias a in ViewBag.Categorias)
                     {
-                        <div class="tag">@a.Nombre</div>
+                        @if (item.IdCategoria == a.IdCategoria)
+                        {
+                            <div class="tag">@a.Nombre</div>
+                        }
                     }
-                }
-            </div>
-            <p>@item.Descripcion</p>
-            <div class="button-container">
-                <button type="button" class="action-button button-detalle" onclick="MarcarComoCompletado(@item.IdTarea)">Marcar como completado</button>
+                </div>
+                <p>@item.Descripcion</p>
+                <div class="button-container">
+                    <button type="button" class="action-button button-detalle" onclick="MarcarComoCompletado(@item.IdTarea)">Marcar como completado</button>
+                </div>
             </div>
         </div>
-    </div>
-}
-
+    }
+</div>
 <!-- AGREGAR TAREA -->
 <div class="modal fade" id="ModalAgregarTarea" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">

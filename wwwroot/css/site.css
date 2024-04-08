@@ -292,6 +292,72 @@ button:hover {
   margin-left: 20px; 
   margin-right: 20px; 
 }
+.cardFlex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.cardFlex .content-container {
+  max-width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.cardFlex .cardd {
+  background-color: #f9f9f9;
+  padding: 20px;
+}
+
+.cardFlex .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.cardFlex .header h2 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.cardFlex .tag {
+  background-color: #007bff;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.cardFlex p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.cardFlex .button-container {
+  text-align: right;
+}
+
+.cardFlex .action-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.cardFlex .action-button:hover {
+  background-color: #0056b3;
+}
+
+.cardFlex .today-task {
+  border: 2px solid #ff7f50;
+}
 .cardd {
   display: flex;
   flex-direction: column;
