@@ -102,6 +102,9 @@ public class HomeController : Controller
     public IActionResult MarcarCompletado(int IdUsuario, int IdTarea){
         BD.Hecho(IdTarea);
         return RedirectToAction("Calendario", new{IdUsuario = IdUsuario});
-    } 
+    }
+    public List<Tareas> GetTareas(int IdUsuario){
+        return BD.GetTareas(IdUsuario);
+    }
 }
 

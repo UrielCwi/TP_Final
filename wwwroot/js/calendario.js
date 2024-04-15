@@ -1,3 +1,19 @@
+let ListaTareas;
+
+function GetTareas(IdUsuario){
+  $.ajax({
+    type:'GET',
+    datatype:'JSON',
+    url:'/Home/GetTareas',
+    data: {IdUsuario: IdUsuario},
+    success:
+    function(response){
+      ListaTareas = response;
+    }
+  })
+}
+GetTareas(document.getElementById('IdUsuario').value)
+
 const isLeapYear = (year) => {
     return (
       (year % 4 === 0 && year % 100 !== 0 && year % 400 !== 0) ||
@@ -9,18 +25,18 @@ const isLeapYear = (year) => {
   };
   let calendar = document.querySelector('.calendar');
   const month_names = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
+      'Enero',
+      'Febrero',
+      'Marzo',
+      'Abril',
+      'Mayo',
+      'Junio',
+      'Julio',
+      'Agosto',
+      'Septiembre',
+      'Octubre',
+      'Noviembre',
+      'Deciembre',
     ];
   let month_picker = document.querySelector('#month-picker');
   const dayTextFormate = document.querySelector('.day-text-formate');
@@ -65,15 +81,19 @@ const isLeapYear = (year) => {
     calendar_header_year.innerHTML = year;
   
     let first_day = new Date(year, month);
-  
-  
+
+    let day;
     for (let i = 0; i <= days_of_month[month] + first_day.getDay() - 1; i++) {
-  
-      let day = document.createElement('div');
-  
+      Fecha = new Date(month + i + year)
+      ListaTareas.forEach(item => {
+        if (item.FechaRealizacion == Fecha) {
+          day = document.createElement('button type="button" class="btn btn-outline-success me-2" data-bs-toggle="modal" data-bs-target="#ModalVerDetalle"');
+        }{
+          day = document.createElement('div')
+        }
+      });
       if (i >= first_day.getDay()) {
         day.innerHTML = i - first_day.getDay() + 1;
-  
         if (i - first_day.getDay() + 1 === currentDate.getDate() &&
           year === currentDate.getFullYear() &&
           month === currentDate.getMonth()
