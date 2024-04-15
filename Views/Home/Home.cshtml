@@ -1,6 +1,9 @@
 @{
     ViewData["Title"] = "Home";
 }
+<header>   <link rel="stylesheet" href="~/css/home.css">
+
+</header>
 <div class="cardFlex">
     @foreach(var item in ViewBag.Tareas)
     {
@@ -17,6 +20,8 @@
                     }
                 </div>
                 <p>@item.Descripcion</p>
+                <p>@item.FechaRealizacion.ToShortDateString()</p>
+
                 <div class="button-container">
                     <button type="button" class="action-button button-detalle" onclick="MarcarComoCompletado(@item.IdTarea)">Marcar como completado</button>
                 </div>

@@ -119,7 +119,7 @@ h3 {
   flex-direction: row;
 }
 .today-task {
-  border: 2px solid #ff7f0e;
+  border: 2px solid #0eff42;
 }
 
 .imagen{
@@ -275,149 +275,7 @@ button {
 button:hover {
   background-color: #051439;
 }
-/*Card de notificacion*/
 
-.card-notificacion {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  padding: 20px;
-  width: calc(100% - 40px); 
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  text-align: left;
-  margin-top: 100px; 
-  margin-left: 20px; 
-  margin-right: 20px; 
-}
-.cardFlex {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-
-.cardFlex .content-container {
-  max-width: 300px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.cardFlex .cardd {
-  background-color: #f9f9f9;
-  padding: 20px;
-}
-
-.cardFlex .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-.cardFlex .header h2 {
-  font-size: 20px;
-  margin: 0;
-}
-
-.cardFlex .tag {
-  background-color: #007bff;
-  color: #fff;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 14px;
-}
-
-.cardFlex p {
-  font-size: 16px;
-  line-height: 1.5;
-  margin-bottom: 20px;
-}
-
-.cardFlex .button-container {
-  text-align: right;
-}
-
-.cardFlex .action-button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.cardFlex .action-button:hover {
-  background-color: #0056b3;
-}
-
-.cardFlex .today-task {
-  border: 2px solid #ff7f50;
-}
-.cardd {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  padding: 20px;
-  width: 260px; 
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  text-align: left;
-  margin-top: 100px; 
-  margin-left: 20px; 
-  margin-right: 10%; 
-}
-
-.carddd {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  border: 1px solid #2f00ff;
-  border-radius: 10px;
-  padding: 20px;
-  width: (100% - 40px); 
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  text-align: left;
-  margin-top: 80px; 
-  margin-left: 20px; 
-  margin-right: 20px; 
-}
-
-
-.nombre-tarea {
-  font-weight: 250;
-  font-size: 14px;
-  color: #000;
-}
-.descripcion-tarea{
-font-weight: 50;
-}
-
-.carddd-tarea{
-  font-weight: 250;
-  font-size: 16px;
-  color: #000;
-}
-.nombre-categoria{
-  font-family: system-ui;
-  width: auto;
-  padding: 12px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: start;
-  background: #6a81a7;
-  border-radius: 80px;
-  font-weight: 500;
-  font-size: 14px;
-}
 .buttonAdd{
   width: 15%;
   margin-left: 1.5%;
