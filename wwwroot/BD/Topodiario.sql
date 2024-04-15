@@ -282,7 +282,7 @@ AS
 BEGIN
 	SET NOCOUNT ON;
 DECLARE @Final VARCHAR(max)
-SET @Final = @nombre + '%'
+SET @Final = '%' + @nombre + '%'
 SELECT [IdTarea]
       ,[IdUsuario]
       ,[IdCategoria]
