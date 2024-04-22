@@ -1,4 +1,4 @@
-let ListaTareas;
+let tasks;
 
 function GetTareas(IdUsuario){
   $.ajax({
@@ -6,170 +6,107 @@ function GetTareas(IdUsuario){
     datatype:'JSON',
     url:'/Home/GetTareas',
     data: {IdUsuario: IdUsuario},
-    success:
-    function(response){
-      ListaTareas = response;
+    success: function(response){
+      tasks = response;
+      const currentDate = new Date();
+      const currentYear = currentDate.getFullYear();
+      const currentMonth = currentDate.getMonth();
+      createCalendar(currentYear, currentMonth);
     }
-  })
-}
-GetTareas(document.getElementById('IdUsuario').value)
-
-const isLeapYear = (year) => {
-    return (
-      (year % 4 === 0 && year % 100 !== 0 && year % 400 !== 0) ||
-      (year % 100 === 0 && year % 400 === 0)
-    );
-  };
-  const getFebDays = (year) => {
-    return isLeapYear(year) ? 29 : 28;
-  };
-  let calendar = document.querySelector('.calendar');
-  const month_names = [
-      'Enero',
-      'Febrero',
-      'Marzo',
-      'Abril',
-      'Mayo',
-      'Junio',
-      'Julio',
-      'Agosto',
-      'Septiembre',
-      'Octubre',
-      'Noviembre',
-      'Deciembre',
-    ];
-  let month_picker = document.querySelector('#month-picker');
-  const dayTextFormate = document.querySelector('.day-text-formate');
-  const timeFormate = document.querySelector('.time-formate');
-  const dateFormate = document.querySelector('.date-formate');
-  
-  month_picker.onclick = () => {
-    month_list.classList.remove('hideonce');
-    month_list.classList.remove('hide');
-    month_list.classList.add('show');
-    dayTextFormate.classList.remove('showtime');
-    dayTextFormate.classList.add('hidetime');
-    timeFormate.classList.remove('showtime');
-    timeFormate.classList.add('hideTime');
-    dateFormate.classList.remove('showtime');
-    dateFormate.classList.add('hideTime');
-  };
-  
-  const generateCalendar = (month, year) => {
-    let calendar_days = document.querySelector('.calendar-days');
-    calendar_days.innerHTML = '';
-    let calendar_header_year = document.querySelector('#year');
-    let days_of_month = [
-        31,
-        getFebDays(year),
-        31,
-        30,
-        31,
-        30,
-        31,
-        31,
-        30,
-        31,
-        30,
-        31,
-      ];
-  
-    let currentDate = new Date();
-  
-    month_picker.innerHTML = month_names[month];
-  
-    calendar_header_year.innerHTML = year;
-  
-    let first_day = new Date(year, month);
-
-    let day;
-    for (let i = 0; i <= days_of_month[month] + first_day.getDay() - 1; i++) {
-      Fecha = new Date(month + i + year)
-      ListaTareas.forEach(item => {
-        if (item.FechaRealizacion == Fecha) {
-          day = document.createElement('button type="button" class="btn btn-outline-success me-2" data-bs-toggle="modal" data-bs-target="#ModalVerDetalle"');
-        }{
-          day = document.createElement('div')
-        }
-      });
-      if (i >= first_day.getDay()) {
-        day.innerHTML = i - first_day.getDay() + 1;
-        if (i - first_day.getDay() + 1 === currentDate.getDate() &&
-          year === currentDate.getFullYear() &&
-          month === currentDate.getMonth()
-        ) {
-          day.classList.add('current-date');
-        }
-      }
-      calendar_days.appendChild(day);
-    }
-  };
-  
-  let month_list = calendar.querySelector('.month-list');
-  month_names.forEach((e, index) => {
-    let month = document.createElement('div');
-    month.innerHTML = `<div>${e}</div>`;
-  
-    month_list.append(month);
-    month.onclick = () => {
-      currentMonth.value = index;
-      generateCalendar(currentMonth.value, currentYear.value);
-      month_list.classList.replace('show', 'hide');
-      dayTextFormate.classList.remove('hideTime');
-      dayTextFormate.classList.add('showtime');
-      timeFormate.classList.remove('hideTime');
-      timeFormate.classList.add('showtime');
-      dateFormate.classList.remove('hideTime');
-      dateFormate.classList.add('showtime');
-    };
   });
-  
-  (function() {
-    month_list.classList.add('hideonce');
-  })();
-  document.querySelector('#pre-year').onclick = () => {
-    --currentYear.value;
-    generateCalendar(currentMonth.value, currentYear.value);
-  };
-  document.querySelector('#next-year').onclick = () => {
-    ++currentYear.value;
-    generateCalendar(currentMonth.value, currentYear.value);
-  };
-  
-  let currentDate = new Date();
-  let currentMonth = { value: currentDate.getMonth() };
-  let currentYear = { value: currentDate.getFullYear() };
-  generateCalendar(currentMonth.value, currentYear.value);
-  
-  const todayShowTime = document.querySelector('.time-formate');
-  const todayShowDate = document.querySelector('.date-formate');
-  
-  const currshowDate = new Date();
-  const showCurrentDateOption = {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    weekday: 'long',
-  };
-  const currentDateFormate = new Intl.DateTimeFormat(
-    'en-US',
-    showCurrentDateOption
-  ).format(currshowDate);
-  todayShowDate.textContent = currentDateFormate;
-  setInterval(() => {
-    const timer = new Date();
-    const option = {
-      hour: 'numeric',
-      minute: 'numeric',
-      second: 'numeric',
-    };
-    const formateTimer = new Intl.DateTimeFormat('en-us', option).format(timer);
-    let time = `${`${timer.getHours()}`.padStart(
-        2,
-        '0'
-      )}:${`${timer.getMinutes()}`.padStart(
-        2,
-        '0'
-      )}: ${`${timer.getSeconds()}`.padStart(2, '0')}`;
-    todayShowTime.textContent = formateTimer;
-  }, 1000);
+}
+
+GetTareas(document.getElementById('IdUsuario').value);
+
+function createCalendar(year, month) {
+  const calendar = document.getElementById("calendar");
+  calendar.innerHTML = "";
+
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+  // Crear array de nombres de los días de la semana
+  const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+  // Agregar nombres de los días de la semana al calendario
+  for (let i = 0; i < dayNames.length; i++) {
+    const dayNameElement = document.createElement("div");
+    dayNameElement.classList.add("day-name");
+    dayNameElement.textContent = dayNames[i];
+    calendar.appendChild(dayNameElement);
+  }
+
+  // Llenar el calendario con los días del mes
+  for (let i = 1; i <= daysInMonth; i++) {
+      const dayElement = document.createElement("div");
+      dayElement.classList.add("day");
+      dayElement.textContent = i;
+      dayElement.setAttribute("data-day", i);
+      dayElement.addEventListener("click", () => openModal(i));
+      calendar.appendChild(dayElement);
+  }
+
+  markTasks(year, month);
+}
+
+function markTasks(year, month) {
+  tasks.forEach(task => {
+      const taskDate = new Date(task.FechaRealizacion);
+      if (taskDate.getFullYear() === year && taskDate.getMonth() === month) {
+          const dayElement = document.querySelector(`.day[data-day="${taskDate.getDate()}"]`);
+          if (dayElement) {
+              dayElement.classList.add("task");
+          }
+      }
+  });
+}
+
+function openModal(day) {
+  const modal = document.getElementById("modal");
+  const modalDay = document.getElementById("modalDay");
+  const taskList = document.getElementById("taskList");
+
+  modalDay.textContent = day;
+
+  const tasksForDay = tasks.filter(task => {
+      const taskDate = new Date(task.FechaRealizacion);
+      return taskDate.getDate() === day;
+  });
+
+  taskList.innerHTML = "";
+  tasksForDay.forEach(task => {
+      const li = document.createElement("li");
+      li.textContent = task.Nombre + ": " + task.Descripcion;
+      taskList.appendChild(li);
+  });
+
+  modal.style.display = "block";
+}
+
+function closeModal() {
+  const modal = document.getElementById("modal");
+  modal.style.display = "none";
+}
+
+function prevMonth() {
+  const currentDate = new Date();
+  let currentYear = currentDate.getFullYear();
+  let currentMonth = currentDate.getMonth();
+  currentMonth--;
+  if (currentMonth < 0) {
+    currentMonth = 11;
+    currentYear--;
+  }
+  createCalendar(currentYear, currentMonth);
+}
+
+function nextMonth() {
+  const currentDate = new Date();
+  let currentYear = currentDate.getFullYear();
+  let currentMonth = currentDate.getMonth();
+  currentMonth++;
+  if (currentMonth > 11) {
+    currentMonth = 0;
+    currentYear++;
+  }
+  createCalendar(currentYear, currentMonth);
+}

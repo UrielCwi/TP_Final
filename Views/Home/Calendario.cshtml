@@ -8,44 +8,22 @@
   <link rel="stylesheet" href="~/css/calendario.css">
   <script src="~/js/calendario.js" defer></script>
 </head>
-<div type="hidden" id="IdUsuario" value="@ViewBag.Usuario.IdUsuario"></div>
- <div class="contianer">
-    <div class="calendar">
-      <div class="calendar-header">
-        <span class="month-picker" id="month-picker"> May </span>
-        <div class="year-picker" id="year-picker">
-          <span class="year-change" id="pre-year">
-            <pre><</pre>
-          </span>
-          <span id="year"></span>
-          <span class="year-change" id="next-year">
-            <pre>></pre>
-          </span>
-        </div>
-      </div>
 
-      <div class="calendar-body">
-        <div class="calendar-week-days">
-          <div>Dom</div>
-          <div>Lun</div>
-          <div>Mar</div>
-          <div>Mie</div>
-          <div>Jue</div>
-          <div>Vie</div>
-          <div>Sab</div>
-        </div>
-        <div class="calendar-days">
-        </div>
-      </div>
-      <div class="calendar-footer">
-      </div>
-      <div class="date-time-formate">
-        <div class="day-text-formate"></div>
-        <div class="date-time-value">
-          <div class="time-formate">01:41:20</div>
-          <div class="date-formate">03 - march - 2022</div>
-        </div>
-      </div>
-      <div class="month-list"></div>
-    </div>
-  </div>
+<div class="calendar" id="calendar">
+  <div class="day-label">Sun</div>
+  <div class="day-label">Mon</div>
+  <div class="day-label">Tue</div>
+  <div class="day-label">Wed</div>
+  <div class="day-label">Thu</div>
+  <div class="day-label">Fri</div>
+  <div class="day-label">Sat</div>
+</div>
+
+<div type="hidden" id="IdUsuario" value="@ViewBag.Usuario.IdUsuario"></div>
+<div class="calendar" id="calendar"></div>
+
+<div class="modal" id="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h2>Tasks for Day <span id="modalDay"></span></h2>
+    <ul id="taskList"></ul>
+</div>
