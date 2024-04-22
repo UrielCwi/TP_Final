@@ -16,8 +16,8 @@
   padding: 10px;
   cursor: pointer;
   box-sizing: border-box; /* Incluir el padding en el tamaño */
-  width: 120px; /* Ajustar el tamaño de las celdas */
-  height: 120px; /* Altura fija para cada día */
+  width: 240px; /* Ajustar el tamaño de las celdas */
+  height: 200px; /* Altura fija para cada día */
 }
 
 .modal {
