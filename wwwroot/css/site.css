@@ -263,7 +263,7 @@ padding: 16px;
 }
 
 /* Estilos para el botón "Guardar Tarea" */
-button {
+button.guardado {
   background-color: #2980b9;
   color: #fff;
   border: none;

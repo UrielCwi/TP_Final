@@ -4,6 +4,7 @@
 <header>   <link rel="stylesheet" href="~/css/home.css">
 
 </header>
+
 <div class="cardFlex">
     @foreach(var item in ViewBag.Tareas)
     { 
@@ -71,7 +72,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button class="guardado" type="submit" class="btn btn-primary">Guardar</button>
           </div>
           </form>
             </div>

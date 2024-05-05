@@ -6,18 +6,22 @@ public class HomeController : Controller
 {
     public IActionResult Index()
     {
+        ViewBag.BarraBusqueda = false;
         return View();
     }
     public IActionResult MandarRegistro()
     {
+        ViewBag.BarraBusqueda = false;
         return View("Registro");
     }
     public IActionResult MandarContraseña()
     {
+        ViewBag.BarraBusqueda = false;
         return View("RecuperarContraseña");
     }
     public IActionResult Login(string Usuario, string Contraseña)
     {
+        ViewBag.BarraBusqueda = false;
         ViewBag.Error = null;
         ViewBag.Usuario = BD.LoginUsuario(Usuario, Contraseña);
         if (ViewBag.Usuario == null)
@@ -47,6 +51,7 @@ public class HomeController : Controller
         ViewBag.Usuario = BD.GetUsuario(IdUsuario);
         ViewBag.Categoria = BD.GetCategorias(IdUsuario);        
         ViewBag.Tareas = BD.GetTareas(IdUsuario);
+        ViewBag.BarraBusqueda = false;
         return View("Calendario");
     }
     public IActionResult Tareas(int IdUsuario)
@@ -54,6 +59,7 @@ public class HomeController : Controller
         ViewBag.Usuario = BD.GetUsuario(IdUsuario);
         ViewBag.Categoria = BD.GetCategorias(IdUsuario);        
         ViewBag.Tareas = BD.GetTareas(IdUsuario);
+        ViewBag.BarraBusqueda = false;
         return View("Tareas");
     }
     public IActionResult Home(int IdUsuario)
@@ -61,6 +67,7 @@ public class HomeController : Controller
         ViewBag.Usuario = BD.GetUsuario(IdUsuario);
         ViewBag.Tareas = BD.GetTareas(IdUsuario);
         ViewBag.Categorias = BD.GetCategorias(IdUsuario);
+        ViewBag.BarraBusqueda = true;
         return View();
     }
     public IActionResult AgregarTarea (Tareas tarea)
@@ -89,7 +96,7 @@ public class HomeController : Controller
     }
     public IActionResult BuscarTareaPorNombre(string nombre, int IdUsuario)
     {
-    
+        ViewBag.BarraBusqueda = false;
         ViewBag.Tareas = BD.GetTareas(IdUsuario); 
         if (!string.IsNullOrEmpty(nombre))
         {
