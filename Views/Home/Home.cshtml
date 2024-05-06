@@ -7,32 +7,43 @@
 
 <div class="cardFlex">
     @foreach(var item in ViewBag.Tareas)
-    { 
-    <div class= "row">
-      <div class= "col-ig-6">
-        <div class="content-container">
-            <div class="cardd @((DateTime.Today == item.FechaRealizacion.Date) ? "today-task" : "")">
-                <div class="header">
-                  <h2>@item.Nombre</h2>
-                  @foreach (Categorias a in ViewBag.Categorias)
-                  {
-                    @if (item.IdCategoria == a.IdCategoria)
-                    {
-                      <div class="tag">@a.Nombre</div>
-                    }
-                  }
-                </div>
-                <p>@item.Descripcion</p>
-                <p>@item.FechaRealizacion.ToShortDateString()</p>
+    {
+    <div class="row">
+        <div class="col-ig-6">
+            <div class="content-container">
+                <div class="cardd @((DateTime.Today == item.FechaRealizacion.Date) ? "today-task" : "")">
+                    <div class="header">
+                        <h2>@item.Nombre</h2>
+                        @foreach (Categorias a in ViewBag.Categorias)
+                        {
+                            @if (item.IdCategoria == a.IdCategoria)
+                            {
+                                <div class="tag">@a.Nombre</div>
+                            }
+                        }
+                    </div>
+                    <p>@item.Descripcion</p>
+                    <p>@item.FechaRealizacion.ToShortDateString()</p>
 
-                <div class="button-container">
-                    <button type="button" class="action-button button-detalle" onclick="MarcarComoCompletado(@item.IdTarea)">Marcar como completado</button>
+                    <div class="button-container">
+                        @if (!item.Hecho)
+                        {
+                            <form Action='@Url.Action("MarcarCompletado", "Home")' method="post">
+                                <input type="hidden" name="IdUsuario" value="@ViewBag.Usuario.IdUsuario" />
+                                <input type="hidden" name="IdTarea" value="@item.IdTarea" />
+                                <button type="submit" class="action-button button-detalle">Marcar como completado</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <button type="button" class="action-button button-detalle" disabled>Completado</button>
+                        }
+                    </div>
                 </div>
             </div>
-          </div>
-        </div>  
-      </div>
-    }
+        </div>
+    </div>
+}
 </div>
 <!-- AGREGAR TAREA -->
 <div class= "row">

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace TP_FINAL.Models;
 
 public class BD{
-    private static string _connectionString = @"Server=LAPTOP-88C90MSI\SQLEXPRESS; Database=TopodiarioBD; Trusted_Connection=True";
+    private static string _connectionString = @"Server=.; Database=TopodiarioBD; Trusted_Connection=True";
     public static List<Tareas> GetTareas(int IdUsuario){
         List<Tareas> Tareas = null;
         using(SqlConnection db = new SqlConnection(_connectionString)){

@@ -145,11 +145,11 @@ SET IDENTITY_INSERT [dbo].[Tareas] ON
 GO
 INSERT [dbo].[Tareas] ([IdTarea], [IdUsuario], [IdCategoria], [Nombre], [FechaRealizacion], [Descripcion], [Hecho]) VALUES (1006, 1, 1, N'Historia Judia', CAST(N'2023-12-12' AS Date), N'Prueba Historia Judia', 0)
 GO
-INSERT [dbo].[Tareas] ([IdTarea], [IdUsuario], [IdCategoria], [Nombre], [FechaRealizacion], [Descripcion], [Hecho]) VALUES (1009, 1, 2, N'Trabajo UX/UI', CAST(N'2023-12-15' AS Date), N'Holachau', NULL)
+INSERT [dbo].[Tareas] ([IdTarea], [IdUsuario], [IdCategoria], [Nombre], [FechaRealizacion], [Descripcion], [Hecho]) VALUES (1009, 1, 2, N'Trabajo UX/UI', CAST(N'2023-12-15' AS Date), N'Holachau', 0)
 GO
-INSERT [dbo].[Tareas] ([IdTarea], [IdUsuario], [IdCategoria], [Nombre], [FechaRealizacion], [Descripcion], [Hecho]) VALUES (1010, 1, 2, N'wsdaf', CAST(N'2023-12-01' AS Date), N'Holachau', 1)
+INSERT [dbo].[Tareas] ([IdTarea], [IdUsuario], [IdCategoria], [Nombre], [FechaRealizacion], [Descripcion], [Hecho]) VALUES (1010, 1, 2, N'wsdaf', CAST(N'2023-12-01' AS Date), N'Holachau', 0)
 GO
-INSERT [dbo].[Tareas] ([IdTarea], [IdUsuario], [IdCategoria], [Nombre], [FechaRealizacion], [Descripcion], [Hecho]) VALUES (1011, 1, 2, N'wsdaf', CAST(N'2023-12-01' AS Date), N'Holachau', 1)
+INSERT [dbo].[Tareas] ([IdTarea], [IdUsuario], [IdCategoria], [Nombre], [FechaRealizacion], [Descripcion], [Hecho]) VALUES (1011, 1, 2, N'wsdaf', CAST(N'2023-12-01' AS Date), N'Holachau', 0)
 GO
 SET IDENTITY_INSERT [dbo].[Tareas] OFF
 GO
