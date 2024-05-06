@@ -41,7 +41,7 @@ $(document).ready(function () {
       'Septiembre',
       'Octubre',
       'Noviembre',
-      'Deciembre',
+      'Diciembre',
     ];
   let month_picker = document.querySelector('#month-picker');
   const dayTextFormate = document.querySelector('.day-text-formate');
@@ -65,19 +65,19 @@ $(document).ready(function () {
     calendar_days.innerHTML = '';
     let calendar_header_year = document.querySelector('#year');
     let days_of_month = [
-        31,
-        getFebDays(year),
-        31,
-        30,
-        31,
-        30,
-        31,
-        31,
-        30,
-        31,
-        30,
-        31,
-      ];
+      31,
+      getFebDays(year),
+      31,
+      30,
+      31,
+      30,
+      31,
+      31,
+      30,
+      31,
+      30,
+      31,
+    ];
   
     let currentDate = new Date();
   
@@ -87,34 +87,38 @@ $(document).ready(function () {
   
     let first_day = new Date(year, month);
   
-    let day;
-    var breaker = false;
-    var Fecha1;
-    for (let i = 0; i <= days_of_month[month] + first_day.getDay() - 1; i++) {
-      tasks.forEach(item => {
-         Fecha1 = new Date(item.fechaRealizacion.substring(0,10));
-         Fecha1.setDate(Fecha1.getDate() + 1)
-        if (breaker === true || Fecha1.getDate() === i - first_day.getDay() + 1 && Fecha1.getMonth() === month && Fecha1.getFullYear() === year) {
-          day = document.createElement('button');
-          day.classList.add('proton');
-          day.addEventListener("click", function(e) {
-            alert(item.nombre + "\n" + item.descripcion)
-          });
-          breaker = true
-        } else {
-          day = document.createElement('div')
-        }
-      });
-      breaker = false
+    for (let i = 0; i < days_of_month[month] + first_day.getDay(); i++) {
+      let day = document.createElement('div');
       if (i >= first_day.getDay()) {
-        day.innerHTML = i - first_day.getDay() + 1;
-        if (i - first_day.getDay() + 1 === currentDate.getDate() &&
-          year === currentDate.getFullYear() &&
-          month === currentDate.getMonth()
-        ) {
+        let dayNumber = i - first_day.getDay() + 1;
+        day.innerHTML = dayNumber;
+  
+        if (dayNumber === currentDate.getDate() &&
+            year === currentDate.getFullYear() &&
+            month === currentDate.getMonth()) {
           day.classList.add('current-date');
         }
+        console.log(dayNumber)
+  
+        // Verificar si hay una tarea para este día
+        tasks.forEach(item => {
+          let taskDate = new Date(item.fechaRealizacion.substring(0, 10));
+          taskDate.setDate(taskDate.getDate() + 1)
+          console.log(taskDate, taskDate.getDate() === dayNumber &&
+          taskDate.getMonth() === month &&
+          taskDate.getFullYear() === year)
+          if (taskDate.getDate() === dayNumber &&
+              taskDate.getMonth() === month &&
+              taskDate.getFullYear() === year) {
+                console.log("entro")
+            day.classList.add('proton');
+            day.addEventListener("click", function(e) {
+              alert(item.nombre + "\n" + item.descripcion);
+            });
+          }
+        });
       }
+  
       calendar_days.appendChild(day);
     }
   };
