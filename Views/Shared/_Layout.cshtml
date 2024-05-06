@@ -28,9 +28,9 @@
               <li class="nav-item">
                 <a class="nav-link" href='@Url.Action("Calendario","Home", new{IdUsuario = ViewBag.Usuario.IdUsuario})'>Calendario</a>
               </li>
-              <button type="button" class="btn btn-outline-success me-2" data-bs-toggle="modal" data-bs-target="#ModalAgregarTarea">Nueva tarea</button>
               @if (ViewBag.BarraBusqueda){
-                <form class="d-flex" method="get" action='@Url.Action("BuscarTareaPorNombre", "Home")'>
+              <button type="button" class="btn btn-outline-success me-2" data-bs-toggle="modal" data-bs-target="#ModalAgregarTarea">Nueva tarea</button>
+              <form class="d-flex" method="get" action='@Url.Action("BuscarTareaPorNombre", "Home")'>
                 <input type="hidden" name="IdUsuario" value="@ViewBag.Usuario.IdUsuario"></input>
                 <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" name="nombre" id="nombre">
                 <button class="btn btn-outline-primary" type="submit">Buscar</button>
