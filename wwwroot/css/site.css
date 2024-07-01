@@ -14,6 +14,9 @@ nav{
   width: 100%;
 }
 
+body{
+  background-color: #F3F3F1;
+}
 .formbusc {
   width: 100%;
   margin-top: 2%; 
@@ -40,8 +43,6 @@ footer {
   height: 690px;
   flex-shrink: 0;
   border-radius: 30px 0px 0px 30px;
-  background: #ffffff; 
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 .Titulo{
   padding-top: 15%;
@@ -57,13 +58,14 @@ footer {
 h2 {
   font-family: Arial, Helvetica, sans-serif;
   margin-bottom: 2%;
-  text-align: center;
+  text-align: left;
 }
 .inputlogin{
-  border-radius: 16px;
   border: 1px solid #000135;
+  border-radius: 10px;
+  color:#fff;
   background: #CF2F29;
-  margin-left: 13%;
+  height:35px;
   width: 70%;
   font-size: 15px;
 }
@@ -106,8 +108,6 @@ h3 {
 .bloque2{
   clear: both;
   border-radius: 0px 30px 30px 0px;
-  background: #ffffff;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   width: 524px;
   height: 690px;
   flex-shrink: 0;
@@ -123,11 +123,10 @@ h3 {
 
 .imagen{
   border-radius: 26px;
-  width: 228px;
-  height: 228px;
+  width: 500px;
+  height: 500px;
   flex-shrink: 0;
   border-radius: 26px;
-  background: lightgray 50% / cover no-repeat;
   margin-top: 25%;
   margin-left: 28%;
 }
@@ -366,7 +365,7 @@ main small {
   background: transparent;
   border-radius: 0;
   height: 70px;
-  width: 30px;
+  width: 70%;
   cursor: pointer;
   pointer-events: auto;
   margin-left: 25px;
@@ -396,9 +395,7 @@ main small {
 #nav-container:focus-within .icon-bar:nth-of-type(3) {
   transform: translate3d(0,-8px,0) rotate(-45deg);
 }
-.Usuario{
-  margin-bottom: 6%;
-}
+
 #nav-content {
   margin-top: 70px;
   padding: 20px;
@@ -609,4 +606,14 @@ img {
 
 .complete-button {
   width: 48%;
+}
+
+.hola{
+  font-size:20px;
+}
+
+.inputlogin::placeholder {
+  color: #b3b3b3; /* Color blanco para el placeholder */
+  margin-left: 30px; /* Margen izquierdo de 5px */
+  padding-left:5px;
 }

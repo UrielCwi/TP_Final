@@ -19,15 +19,16 @@
             <div class="bloque1">
             <form Action='@Url.Action("Login","Home")'>
                 <div class="Titulo">
-                    INICIA SESION
+                    Iniciar sesión
                 </div>
+                <h2 classname="hola">Hola, bienvenido de nuevo 👋 </h2>
                 <div class="Usuario">
-                    <h2>Usuario</h2>
-                    <input type="text" class="inputlogin" name="Usuario" required></input>
+                    <h2>Email</h2>
+                    <input type="text" class="inputlogin" name="Usuario" required placeholder="Email"></input>
                 </div>
                 <div class="Usuario">
                     <h2>Contraseña</h2>
-                    <input type="password" class="inputlogin" name="Contraseña" required></input>
+                    <input type="password" class="inputlogin" name="Contraseña" required placeholder="Contraseña"></input>
                 </div>
                     <a href='@Url.Action("MandarContraseña","Home")'><h3>¿Olvidaste la contraseña?</h3></a>
                     <button class="inicio" type="submit">Iniciar sesion</button>
@@ -37,8 +38,7 @@
             </form>
             </div>
                 <div class="bloque2">
-                    <img class="imagen" src="/Imagenes/GREV.jfif"></img>
-                    <h2 style="font-size: 60px;">GREV</h2>
+                    <img class="imagen" src="/Imagenes/GREV.png"></img>
                 </div>
             </div>
         </div>
