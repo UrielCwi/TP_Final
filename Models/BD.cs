@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace TP_FINAL.Models;
 
 public class BD{
-    private static string _connectionString = @"Server=.; Database=TopodiarioBD; Trusted_Connection=True";
+    private static string _connectionString = @"Server=.; Database=Grev; Trusted_Connection=True";
     public static List<Tareas> GetTareas(int IdUsuario){
         List<Tareas> Tareas = null;
         using(SqlConnection db = new SqlConnection(_connectionString)){
@@ -22,21 +22,21 @@ public class BD{
         }
         return Categorias;
     }
-    public static Usuarios LoginUsuario(string Nombre, string Contraseña){
-        Usuarios Usuarios = null;
+    public static Usuario LoginUsuario(string Nombre, string Contraseña){
+        Usuario Usuario = null;
         using(SqlConnection db = new SqlConnection(_connectionString)){
             string sp = "LoginUsuario";
-            Usuarios = db.QueryFirstOrDefault<Usuarios>(sp, new{Nombre = Nombre, Contraseña = Contraseña}, commandType: CommandType.StoredProcedure);
+            Usuario = db.QueryFirstOrDefault<Usuario>(sp, new{nombre = Nombre, contraseña = Contraseña}, commandType: CommandType.StoredProcedure);
         }
-        return Usuarios;
+        return Usuario;
     }
-    public static Usuarios GetUsuario(int IdUsuario){
-        Usuarios Usuarios = null;
+    public static Usuario GetUsuario(int IdUsuario){
+        Usuario Usuario = null;
         using(SqlConnection db = new SqlConnection(_connectionString)){
             string sp = "GetUsuario";
-            Usuarios = db.QueryFirstOrDefault<Usuarios>(sp, new{IdUsuario = IdUsuario}, commandType: CommandType.StoredProcedure);
+            Usuario = db.QueryFirstOrDefault<Usuario>(sp, new{IdUsuario = IdUsuario}, commandType: CommandType.StoredProcedure);
         }
-        return Usuarios;
+        return Usuario;
     }
     public static Tareas VerDetalleTarea(int IdTarea){
         Tareas tarea = null;
@@ -54,10 +54,10 @@ public class BD{
         }
         return Categorias;
     }
-    public static void RegistrarUsuario(Usuarios Usuario){
+    public static void RegistrarUsuario(Usuario Usuario){
         using(SqlConnection db = new SqlConnection(_connectionString)){
             string sp = "RegistrarUsuario";
-            db.Execute(sp, new{Nombre = Usuario.Nombre, Contraseña = Usuario.Contraseña, FechaNacimiento = Usuario.FechaNacimiento, Codigo = Usuario.Codigo}, commandType: CommandType.StoredProcedure);
+            db.Execute(sp, new{Nombre = Usuario.nombre, Contraseña = Usuario.contraseña}, commandType: CommandType.StoredProcedure);
         }
     }    
     public static void EditarTarea(Tareas Tarea){
@@ -88,7 +88,7 @@ public class BD{
      public static void AgregarCategoria(Categorias Categoria){
         using(SqlConnection db = new SqlConnection(_connectionString)){
             string sp = "AgregarCategoria";
-            db.Execute(sp, new{IdUsuario = Categoria.IdUsuario, Nombre = Categoria.Nombre}, commandType: CommandType.StoredProcedure);
+            db.Execute(sp, new{IdUsuario = Categoria.IdUsuario, Nombre = Categoria.nombre}, commandType: CommandType.StoredProcedure);
         }
     }
     public static List<Tareas> BuscarTareaPorNombre(int IdUsuario, string nombre)
@@ -106,6 +106,37 @@ public class BD{
         using(SqlConnection db = new SqlConnection(_connectionString)){
             string sp = "MarcarComoHecho";
             db.Execute(sp, new{IdTarea = IdTarea}, commandType: CommandType.StoredProcedure);
+        }
+    }
+
+    public IEnumerable<Usuario> GetUsuariosActivos()
+    {
+        using (var connection = new SqlConnection(_connectionString))
+        {
+            connection.Open();
+            string query = "SELECT * FROM Usuario WHERE activo = 1";
+            return connection.Query<Usuario>(query);
+        }
+    }
+
+    public Usuario GetUsuarioPorId(int id)
+    {
+        using (var connection = new SqlConnection(_connectionString))
+        {
+            connection.Open();
+            string query = "SELECT * FROM Usuario WHERE id = @Id";
+            return connection.QueryFirstOrDefault<Usuario>(query, new { Id = id });
+        }
+    }
+
+    public void InsertarUsuario(Usuario usuario)
+    {
+        using (var connection = new SqlConnection(_connectionString))
+        {
+            connection.Open();
+            string query = @"INSERT INTO Usuario (nombre, apellido, idTipoUsuario, nombreUsu, contraseña, empresa, activo)
+                             VALUES (@Nombre, @Apellido, @IdTipoUsuario, @NombreUsu, @Contraseña, @Empresa, @Activo)";
+            connection.Execute(query, usuario);
         }
     }
 }

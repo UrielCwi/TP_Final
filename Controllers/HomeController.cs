@@ -34,10 +34,10 @@ public class HomeController : Controller
             return RedirectToAction("Home", new{IdUsuario = ViewBag.Usuario.IdUsuario});
         }
     }
-    public IActionResult Registro(Usuarios Usuario)
+    public IActionResult Registro(Usuario Usuario)
     {
         BD.RegistrarUsuario(Usuario);
-        ViewBag.Usuario = BD.LoginUsuario(Usuario.Nombre, Usuario.Contraseña);
+        ViewBag.Usuario = BD.LoginUsuario(Usuario.nombre, Usuario.contraseña);
         return RedirectToAction("Home", new{IdUsuario = ViewBag.Usuario.IdUsuario});
     }
     public IActionResult RecuperarContraseña(string Usuario, string Codigo, string NuevaContraseña)

@@ -18,7 +18,7 @@
                         {
                             @if (item.IdCategoria == a.IdCategoria)
                             {
-                                <div class="tag">@a.Nombre</div>
+                                <div class="tag">@a.nombre</div>
                             }
                         }
                     </div>
@@ -64,7 +64,7 @@
             <option selected>Elegi una categoria</option>
             @foreach (Categorias a in ViewBag.Categorias)
             {
-              <option value="@a.IdCategoria">@a.Nombre</option>
+              <option value="@a.IdCategoria">@a.nombre</option>
             }
           </select>
         <button type="button" class="botonn" data-bs-toggle="modal" data-bs-target="#ModalAgregarCategoria">Crear categoria</button>
@@ -169,7 +169,7 @@
         <select class="form-select" name="IdCategoria" aria-label="Default select example">
           @foreach (Categorias a in ViewBag.Categorias)
           {
-            <option value="@a.IdCategoria">@a.Nombre</option>
+            <option value="@a.IdCategoria">@a.nombre</option>
           }
         </select>
         </div>
