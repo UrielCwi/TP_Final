@@ -125,7 +125,7 @@ CREATE TABLE [dbo].[Empresa](
 	[ubicacion] [geography] NOT NULL,
 	[pais] [varchar](50) NOT NULL,
 	[telefono] [int] NOT NULL,
-	[activo] [bit] NOT NULL,
+	[ ] [bit] NOT NULL,
  CONSTRAINT [PK_Empresa] PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
@@ -218,10 +218,10 @@ CREATE TABLE [dbo].[Usuario](
 	[nombre] [varchar](50) NOT NULL,
 	[apellido] [varchar](50) NOT NULL,
 	[idTipoUsuario] [int] NOT NULL,
-	[nombreUsu] [varchar](50) NOT NULL,
+	[email] [varchar](50) NOT NULL,
 	[contraseña] [varchar](50) NOT NULL,
 	[empresa] [varchar](50) NOT NULL,
-	[activo] [bit] NOT NULL,
+	[ ] [bit] NOT NULL,
  CONSTRAINT [PK_Usuario] PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
@@ -251,7 +251,7 @@ SET IDENTITY_INSERT [dbo].[TiposUsuario] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Usuario] ON 
 
-INSERT [dbo].[Usuario] ([id], [nombre], [apellido], [idTipoUsuario], [nombreUsu], [contraseña], [empresa], [activo]) VALUES (13, N'Lucas', N'Ruiz Barrea', 5, N'LucasRu', N'1234', N'Gerda Cafe', 1)
+INSERT [dbo].[Usuario] ([id], [nombre], [apellido], [idTipoUsuario], [email], [contraseña], [empresa]) VALUES (13, N'Lucas', N'Ruiz Barrea', 5, N'LucasRu@gmail.com', N'1234', N'Gerda Cafe')
 SET IDENTITY_INSERT [dbo].[Usuario] OFF
 GO
 ALTER TABLE [dbo].[DetalleVenta]  WITH CHECK ADD  CONSTRAINT [FK_DetalleVenta_Ventas] FOREIGN KEY([idVenta])
@@ -286,14 +286,24 @@ GO
 USE [Grev]
 GO
 CREATE PROCEDURE LoginUsuario
-    @Nombre NVARCHAR(50),
-    @Contraseña NVARCHAR(50)
+    @email VARCHAR(50),
+    @contraseña VARCHAR(50)
 AS
 BEGIN
-    SELECT *
-    FROM Usuario
-    WHERE nombre = @Nombre AND contraseña = @Contraseña;
+    SET NOCOUNT ON;
+        IF EXISTS (SELECT 1 FROM Usuario WHERE email = @email AND contraseña = @contraseña AND   = 1)
+    BEGIN
+        SELECT id, nombre, apellido, idTipoUsuario, email, empresa
+        FROM Usuario
+        WHERE email = @email AND contraseña = @contraseña AND   = 1;
+        RETURN 0; 
+    END
+    ELSE
+    BEGIN
+        RETURN -1; 
+    END
 END
+
 GO
 
 CREATE PROCEDURE ObtenerPlatos
@@ -415,3 +425,20 @@ BEGIN
 	WHERE Fecha = @Fecha AND Importe = @Importe;
 END
 GO
+	CREATE PROCEDURE RegistrarUsuario
+    @nombre VARCHAR(50),
+    @apellido VARCHAR(50),
+    @email VARCHAR(50),
+    @contraseña VARCHAR(50),
+    @empresa VARCHAR(50)
+AS
+BEGIN
+    SET NOCOUNT ON;
+    IF EXISTS (SELECT 1 FROM Usuario WHERE email = @email)
+    BEGIN
+        RETURN -1;
+    END
+    INSERT INTO Usuario (nombre, apellido, email, contraseña, empresa,  )
+    VALUES (@nombre, @apellido, @email, @contraseña, @empresa, 1);
+    SELECT SCOPE_IDENTITY() AS NuevoUsuarioID;
+END

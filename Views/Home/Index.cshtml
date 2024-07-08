@@ -1,46 +1,41 @@
 ﻿@{
-    ViewData["Title"] = "Index";
-    Layout = "" ;
+ViewData["Title"] = "Index";
+Layout = "";
 }
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>@ViewData["Title"] - Topodiario - Apellido</title>
+        <meta name="" content="" />
+        <title>@ViewData["Title"] - GREV - Apellido</title>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
     </head>
 <body>
-    <div class= "row">
-        <div class= "col-ig-6">
-            <div class="bloques">
-            <div class="bloque1">
-            <form Action='@Url.Action("Login","Home")'>
-                <div class="Titulo">
-                    Iniciar sesión
+        <div class="container-fluid vh-100 d-flex align-items-center justify-content-center">
+            <div class="row w-100">
+                <div class="col-md-6 d-flex flex-column align-items-start">
+                    <h1 class="text-start">GREV</h1>
+                    <h2 class="mb-4d">Login now</h2>
+                    <p class="text-start">Hola, bienvenido de nuevo 👋</p>
+                    <form action='@Url.Action("Login","Home")' class="w-100">
+                    <div class="form-group mb-3">
+                    <p class="text-start">Email</p>
+                    <input type="email" class="form-control" name="Usuario" required placeholder="Email">
                 </div>
-                <h2 classname="hola">Hola, bienvenido de nuevo 👋 </h2>
-                <div class="Usuario">
-                    <h2>Email</h2>
-                    <input type="text" class="inputlogin" name="Usuario" required placeholder="Email"></input>
+                <div class="form-group mb-3">
+                    <p class="text-start">Contraseña</p>
+                    <input type="password" class="form-control" name="Contraseña" required placeholder="Contraseña">
+                    </div>
+                    <button class="btn btn-primary w-100 mb-3" type="submit">Logearse</button>
+                    </form>
+                    <a href='@Url.Action("MandarRegistro","Home")' class="w-100 d-block text-start">¿Estás interesado en unirte? <span class="text-danger">¡Clickea aquí!</span></a>
                 </div>
-                <div class="Usuario">
-                    <h2>Contraseña</h2>
-                    <input type="password" class="inputlogin" name="Contraseña" required placeholder="Contraseña"></input>
-                </div>
-                    <a href='@Url.Action("MandarContraseña","Home")'><h3>¿Olvidaste la contraseña?</h3></a>
-                    <button class="inicio" type="submit">Iniciar sesion</button>
-            </form>
-            <form Action='@Url.Action("MandarRegistro","Home")'>
-                <button class="inicio" type="submit">Registrarse</button>
-            </form>
-            </div>
-                <div class="bloque2">
-                    <img class="imagen" src="/Imagenes/GREV.png"></img>
-                </div>
+                <div class="col-md-6 d-flex align-items-center justify-content-center">
+                <img class="img-fluid" src="~/Imagenes/GREV.png" alt="GREV Logo">
             </div>
         </div>
     </div>
-</body>
+    </body>
+</html>

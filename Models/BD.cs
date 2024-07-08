@@ -22,11 +22,11 @@ public class BD{
         }
         return Categorias;
     }
-    public static Usuario LoginUsuario(string Nombre, string Contraseña){
+    public static Usuario LoginUsuario(string Email, string Contraseña){
         Usuario Usuario = null;
         using(SqlConnection db = new SqlConnection(_connectionString)){
             string sp = "LoginUsuario";
-            Usuario = db.QueryFirstOrDefault<Usuario>(sp, new{nombre = Nombre, contraseña = Contraseña}, commandType: CommandType.StoredProcedure);
+            Usuario = db.QueryFirstOrDefault<Usuario>(sp, new{email = Email, contraseña = Contraseña}, commandType: CommandType.StoredProcedure);
         }
         return Usuario;
     }
@@ -57,7 +57,7 @@ public class BD{
     public static void RegistrarUsuario(Usuario Usuario){
         using(SqlConnection db = new SqlConnection(_connectionString)){
             string sp = "RegistrarUsuario";
-            db.Execute(sp, new{Nombre = Usuario.nombre, Contraseña = Usuario.contraseña}, commandType: CommandType.StoredProcedure);
+            db.Execute(sp, new{ Nombre = Usuario.nombre, Apellido = Usuario.apellido, Email = Usuario.email, Contraseña = Usuario.contraseña, Empresa = Usuario.empresa, }, commandType: CommandType.StoredProcedure);
         }
     }    
     public static void EditarTarea(Tareas Tarea){
@@ -109,16 +109,6 @@ public class BD{
         }
     }
 
-    public IEnumerable<Usuario> GetUsuariosActivos()
-    {
-        using (var connection = new SqlConnection(_connectionString))
-        {
-            connection.Open();
-            string query = "SELECT * FROM Usuario WHERE activo = 1";
-            return connection.Query<Usuario>(query);
-        }
-    }
-
     public Usuario GetUsuarioPorId(int id)
     {
         using (var connection = new SqlConnection(_connectionString))
@@ -134,8 +124,8 @@ public class BD{
         using (var connection = new SqlConnection(_connectionString))
         {
             connection.Open();
-            string query = @"INSERT INTO Usuario (nombre, apellido, idTipoUsuario, nombreUsu, contraseña, empresa, activo)
-                             VALUES (@Nombre, @Apellido, @IdTipoUsuario, @NombreUsu, @Contraseña, @Empresa, @Activo)";
+            string query = @"INSERT INTO Usuario (nombre, apellido, idTipoUsuario, email, contraseña, empresa)
+                             VALUES (@Nombre, @Apellido, @IdTipoUsuario, @Email, @Contraseña, @Empresa)";
             connection.Execute(query, usuario);
         }
     }

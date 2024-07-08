@@ -1,4 +1,4 @@
-namespace Topodiario.Models;
+namespace GREV.Models;
 
 public class ErrorViewModel
 {

@@ -37,8 +37,14 @@ public class HomeController : Controller
     public IActionResult Registro(Usuario Usuario)
     {
         BD.RegistrarUsuario(Usuario);
-        ViewBag.Usuario = BD.LoginUsuario(Usuario.nombre, Usuario.contraseña);
-        return RedirectToAction("Home", new{IdUsuario = ViewBag.Usuario.IdUsuario});
+        ViewBag.Usuario = BD.LoginUsuario(Usuario.email, Usuario.contraseña);
+        if (!ViewBag.Usurio)
+        {
+            return View("Registro");
+        }
+        else{
+            return RedirectToAction("Home", new{IdUsuario = ViewBag.Usuario.IdUsuario});
+        }
     }
     public IActionResult RecuperarContraseña(string Usuario, string Codigo, string NuevaContraseña)
     {
