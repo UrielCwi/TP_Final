@@ -291,11 +291,11 @@ CREATE PROCEDURE LoginUsuario
 AS
 BEGIN
     SET NOCOUNT ON;
-        IF EXISTS (SELECT 1 FROM Usuario WHERE email = @email AND contraseña = @contraseña AND   = 1)
+        IF EXISTS (SELECT 1 FROM Usuario WHERE email = @email AND contraseña = @contraseña)
     BEGIN
         SELECT id, nombre, apellido, idTipoUsuario, email, empresa
         FROM Usuario
-        WHERE email = @email AND contraseña = @contraseña AND   = 1;
+        WHERE email = @email AND contraseña = @contraseña;
         RETURN 0; 
     END
     ELSE
@@ -438,7 +438,17 @@ BEGIN
     BEGIN
         RETURN -1;
     END
-    INSERT INTO Usuario (nombre, apellido, email, contraseña, empresa,  )
-    VALUES (@nombre, @apellido, @email, @contraseña, @empresa, 1);
+    INSERT INTO Usuario (nombre, apellido, email, contraseña, empresa)
+    VALUES (@nombre, @apellido, @email, @contraseña, @empresa);
     SELECT SCOPE_IDENTITY() AS NuevoUsuarioID;
+END
+CREATE PROCEDURE GetUsuario
+    @IdUsuario INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    SELECT IdUsuario, Nombre, Apellido, IdTipoUsuario, Email, Empresa
+    FROM Usuario
+    WHERE IdUsuario = @IdUsuario;
 END

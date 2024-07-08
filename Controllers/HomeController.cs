@@ -31,7 +31,7 @@ public class HomeController : Controller
         }
         else
         {
-            return RedirectToAction("Home", new{IdUsuario = ViewBag.Usuario.IdUsuario});
+            return RedirectToAction("Home", new{IdUsuario = ViewBag.Usuario.idUsuario});
         }
     }
     public IActionResult Registro(Usuario Usuario)
@@ -43,10 +43,10 @@ public class HomeController : Controller
             return View("Registro");
         }
         else{
-            return RedirectToAction("Home", new{IdUsuario = ViewBag.Usuario.IdUsuario});
+            return RedirectToAction("Home", new{IdUsuario = ViewBag.Usuario.idUsuario});
         }
     }
-    public IActionResult RecuperarContraseña(string Usuario, string Codigo, string NuevaContraseña)
+   /*public IActionResult RecuperarContraseña(string Usuario, string Codigo, string NuevaContraseña)
     {
         BD.RecuperarContraseña(Usuario, Codigo, NuevaContraseña);
         return RedirectToAction("Index");
@@ -67,16 +67,16 @@ public class HomeController : Controller
         ViewBag.Tareas = BD.GetTareas(IdUsuario);
         ViewBag.BarraBusqueda = false;
         return View("Tareas");
-    }
+    }*/
     public IActionResult Home(int IdUsuario)
     {
         ViewBag.Usuario = BD.GetUsuario(IdUsuario);
-        ViewBag.Tareas = BD.GetTareas(IdUsuario);
-        ViewBag.Categorias = BD.GetCategorias(IdUsuario);
+        //ViewBag.Tareas = BD.GetTareas(IdUsuario);
+       // ViewBag.Categorias = BD.GetCategorias(IdUsuario);
         ViewBag.BarraBusqueda = true;
         return View();
     }
-    public IActionResult AgregarTarea (Tareas tarea)
+   /* public IActionResult AgregarTarea (Tareas tarea)
     {
         BD.AgregarTarea(tarea);
         return RedirectToAction("Home", new{IdUsuario = tarea.IdUsuario});
@@ -118,6 +118,6 @@ public class HomeController : Controller
     }
     public List<Tareas> GetTareas(int IdUsuario){
         return BD.GetTareas(IdUsuario);
-    }
+    }*/
 }
 

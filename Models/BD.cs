@@ -6,7 +6,7 @@ namespace TP_FINAL.Models;
 
 public class BD{
     private static string _connectionString = @"Server=.; Database=Grev; Trusted_Connection=True";
-    public static List<Tareas> GetTareas(int IdUsuario){
+    /*public static List<Tareas> GetTareas(int IdUsuario){
         List<Tareas> Tareas = null;
         using(SqlConnection db = new SqlConnection(_connectionString)){
             string sp = "GetTareas";
@@ -21,7 +21,7 @@ public class BD{
             Categorias = db.Query<Categorias>(sp, new{IdUsuario = IdUsuario}, commandType: CommandType.StoredProcedure).ToList();
         }
         return Categorias;
-    }
+    }*/
     public static Usuario LoginUsuario(string Email, string Contraseña){
         Usuario Usuario = null;
         using(SqlConnection db = new SqlConnection(_connectionString)){
@@ -30,15 +30,15 @@ public class BD{
         }
         return Usuario;
     }
-    public static Usuario GetUsuario(int IdUsuario){
+    public static Usuario GetUsuario(int idUsuario){
         Usuario Usuario = null;
         using(SqlConnection db = new SqlConnection(_connectionString)){
             string sp = "GetUsuario";
-            Usuario = db.QueryFirstOrDefault<Usuario>(sp, new{IdUsuario = IdUsuario}, commandType: CommandType.StoredProcedure);
+            Usuario = db.QueryFirstOrDefault<Usuario>(sp, new{IdUsuario = idUsuario}, commandType: CommandType.StoredProcedure);
         }
         return Usuario;
     }
-    public static Tareas VerDetalleTarea(int IdTarea){
+   /* public static Tareas VerDetalleTarea(int IdTarea){
         Tareas tarea = null;
         using(SqlConnection db = new SqlConnection(_connectionString)){
             string sp = "VerDetalleTarea";
@@ -53,14 +53,14 @@ public class BD{
             Categorias = db.Query<Categorias>(sp, new{IdCategoria = IdCategoria}, commandType: CommandType.StoredProcedure).ToList();
         }
         return Categorias;
-    }
+    }*/
     public static void RegistrarUsuario(Usuario Usuario){
         using(SqlConnection db = new SqlConnection(_connectionString)){
             string sp = "RegistrarUsuario";
             db.Execute(sp, new{ Nombre = Usuario.nombre, Apellido = Usuario.apellido, Email = Usuario.email, Contraseña = Usuario.contraseña, Empresa = Usuario.empresa, }, commandType: CommandType.StoredProcedure);
         }
     }    
-    public static void EditarTarea(Tareas Tarea){
+   /* public static void EditarTarea(Tareas Tarea){
         using(SqlConnection db = new SqlConnection(_connectionString)){
             string sp = "EditarTarea";
             db.Execute(sp, new{IdTarea = Tarea.IdTarea, IdCategoria = Tarea.IdCategoria,
@@ -107,7 +107,7 @@ public class BD{
             string sp = "MarcarComoHecho";
             db.Execute(sp, new{IdTarea = IdTarea}, commandType: CommandType.StoredProcedure);
         }
-    }
+    }*/
 
     public Usuario GetUsuarioPorId(int id)
     {
