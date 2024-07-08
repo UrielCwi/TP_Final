@@ -31,7 +31,7 @@ public class HomeController : Controller
         }
         else
         {
-            return RedirectToAction("Home", new{IdUsuario = ViewBag.Usuario.idUsuario});
+            return View("Home");
         }
     }
     public IActionResult Registro(Usuario Usuario)
@@ -70,7 +70,7 @@ public class HomeController : Controller
     }*/
     public IActionResult Home(int IdUsuario)
     {
-        ViewBag.Usuario = BD.GetUsuario(IdUsuario);
+        
         //ViewBag.Tareas = BD.GetTareas(IdUsuario);
        // ViewBag.Categorias = BD.GetCategorias(IdUsuario);
         ViewBag.BarraBusqueda = true;

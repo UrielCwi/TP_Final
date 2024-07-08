@@ -193,21 +193,6 @@ CREATE TABLE [dbo].[PreguntasFrecuentes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[TiposUsuario]    Script Date: 10/6/2024 09:51:07 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[TiposUsuario](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[TipoUsuario] [varchar](50) NOT NULL,
-	[EsAdmin] [bit] NOT NULL,
- CONSTRAINT [PK_TiposUsuario] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
 /****** Object:  Table [dbo].[Usuario]    Script Date: 10/6/2024 09:51:07 ******/
 SET ANSI_NULLS ON
 GO
@@ -217,7 +202,6 @@ CREATE TABLE [dbo].[Usuario](
 	[id] [int] IDENTITY(1,1) NOT NULL,
 	[nombre] [varchar](50) NOT NULL,
 	[apellido] [varchar](50) NOT NULL,
-	[idTipoUsuario] [int] NOT NULL,
 	[email] [varchar](50) NOT NULL,
 	[contraseña] [varchar](50) NOT NULL,
 	[empresa] [varchar](50) NOT NULL,
@@ -243,15 +227,9 @@ CREATE TABLE [dbo].[Ventas](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-SET IDENTITY_INSERT [dbo].[TiposUsuario] ON 
-
-INSERT [dbo].[TiposUsuario] ([Id], [TipoUsuario], [EsAdmin]) VALUES (4, N'Admin', 1)
-INSERT [dbo].[TiposUsuario] ([Id], [TipoUsuario], [EsAdmin]) VALUES (5, N'Usuario', 0)
-SET IDENTITY_INSERT [dbo].[TiposUsuario] OFF
-GO
 SET IDENTITY_INSERT [dbo].[Usuario] ON 
 
-INSERT [dbo].[Usuario] ([id], [nombre], [apellido], [idTipoUsuario], [email], [contraseña], [empresa]) VALUES (13, N'Lucas', N'Ruiz Barrea', 5, N'LucasRu@gmail.com', N'1234', N'Gerda Cafe')
+INSERT [dbo].[Usuario] ([id], [nombre], [apellido], [email], [contraseña], [empresa]) VALUES (13, N'Lucas', N'Ruiz Barrea', 5, N'LucasRu@gmail.com', N'1234', N'Gerda Cafe')
 SET IDENTITY_INSERT [dbo].[Usuario] OFF
 GO
 ALTER TABLE [dbo].[DetalleVenta]  WITH CHECK ADD  CONSTRAINT [FK_DetalleVenta_Ventas] FOREIGN KEY([idVenta])
@@ -274,13 +252,6 @@ REFERENCES [dbo].[Categorias] ([id])
 GO
 ALTER TABLE [dbo].[Plato] CHECK CONSTRAINT [FK_Plato_Categorias]
 GO
-ALTER TABLE [dbo].[Usuario]  WITH CHECK ADD  CONSTRAINT [FK_Usuario_TiposUsuario] FOREIGN KEY([idTipoUsuario])
-REFERENCES [dbo].[TiposUsuario] ([Id])
-GO
-ALTER TABLE [dbo].[Usuario] CHECK CONSTRAINT [FK_Usuario_TiposUsuario]
-GO
-USE [master]
-GO
 ALTER DATABASE [Grev] SET  READ_WRITE 
 GO
 USE [Grev]
@@ -293,7 +264,7 @@ BEGIN
     SET NOCOUNT ON;
         IF EXISTS (SELECT 1 FROM Usuario WHERE email = @email AND contraseña = @contraseña)
     BEGIN
-        SELECT id, nombre, apellido, idTipoUsuario, email, empresa
+        SELECT id, nombre, apellido, email, empresa
         FROM Usuario
         WHERE email = @email AND contraseña = @contraseña;
         RETURN 0; 
@@ -448,7 +419,7 @@ AS
 BEGIN
     SET NOCOUNT ON;
     
-    SELECT IdUsuario, Nombre, Apellido, IdTipoUsuario, Email, Empresa
+    SELECT IdUsuario, Nombre, Apellido, Email, Empresa
     FROM Usuario
     WHERE IdUsuario = @IdUsuario;
 END

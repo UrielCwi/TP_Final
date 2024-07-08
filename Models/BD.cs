@@ -124,8 +124,7 @@ public class BD{
         using (var connection = new SqlConnection(_connectionString))
         {
             connection.Open();
-            string query = @"INSERT INTO Usuario (nombre, apellido, idTipoUsuario, email, contraseña, empresa)
-                             VALUES (@Nombre, @Apellido, @IdTipoUsuario, @Email, @Contraseña, @Empresa)";
+            string query = @"INSERT INTO Usuario (nombre, apellido, email, contraseña, empresa) VALUES (@Nombre, @Apellido, @Email, @Contraseña, @Empresa)";
             connection.Execute(query, usuario);
         }
     }
