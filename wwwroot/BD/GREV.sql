@@ -1,4 +1,4 @@
-﻿USE [master]
+﻿﻿USE [master]
 GO
 /****** Object:  Database [Grev]    Script Date: 10/6/2024 09:51:07 ******/
 CREATE DATABASE [Grev]

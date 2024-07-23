@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace TP_FINAL.Models;
 
 public class BD{
-    private static string _connectionString = @"Server=.; Database=Grev; Trusted_Connection=True";
+    private static string _connectionString =  @"Server=.; Database=Grev; Trusted_Connection=True";
     /*public static List<Tareas> GetTareas(int IdUsuario){
         List<Tareas> Tareas = null;
         using(SqlConnection db = new SqlConnection(_connectionString)){
@@ -57,7 +57,7 @@ public class BD{
     public static void RegistrarUsuario(Usuario Usuario){
         using(SqlConnection db = new SqlConnection(_connectionString)){
             string sp = "RegistrarUsuario";
-            db.Execute(sp, new{ Nombre = Usuario.nombre, Apellido = Usuario.apellido, Email = Usuario.email, Contraseña = Usuario.contraseña, Empresa = Usuario.empresa, }, commandType: CommandType.StoredProcedure);
+            db.Execute(sp, new{ nombre = Usuario.nombre, apellido = Usuario.apellido, email = Usuario.email, contraseña = Usuario.contraseña, empresa = Usuario.empresa, }, commandType: CommandType.StoredProcedure);
         }
     }    
    /* public static void EditarTarea(Tareas Tarea){

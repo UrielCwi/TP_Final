@@ -38,7 +38,7 @@ public class HomeController : Controller
     {
         BD.RegistrarUsuario(Usuario);
         ViewBag.Usuario = BD.LoginUsuario(Usuario.email, Usuario.contraseña);
-        if (!ViewBag.Usurio)
+        if (!ViewBag.Usuario)
         {
             return View("Registro");
         }
