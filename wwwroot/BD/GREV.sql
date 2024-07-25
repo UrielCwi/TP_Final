@@ -423,3 +423,67 @@ BEGIN
     FROM Usuario
     WHERE IdUsuario = @IdUsuario;
 END
+CREATE PROCEDURE InsertarPlato
+    @nombre VARCHAR(50),
+    @idCategoria INT
+AS
+BEGIN
+    INSERT INTO Plato (nombre, idCategoria)
+    VALUES (@nombre, @idCategoria);
+END
+GO
+CREATE PROCEDURE InsertarIngrediente
+    @descripcion VARCHAR(50),
+    @cantidad VARCHAR(50)
+AS
+BEGIN
+    INSERT INTO Ingrediente (descripcion, cantidad)
+    VALUES (@descripcion, @cantidad);
+END
+GO
+CREATE PROCEDURE ActualizarPlato
+    @id INT,
+    @nombre VARCHAR(50),
+    @idCategoria INT
+AS
+BEGIN
+    UPDATE Plato
+    SET nombre = @nombre, idCategoria = @idCategoria
+    WHERE id = @id;
+END
+GO
+CREATE PROCEDURE ActualizarIngrediente
+    @id INT,
+    @descripcion VARCHAR(50),
+    @cantidad VARCHAR(50)
+AS
+BEGIN
+    UPDATE Ingrediente
+    SET descripcion = @descripcion, cantidad = @cantidad
+    WHERE id = @id;
+END
+GO
+CREATE PROCEDURE EliminarPlato
+    @id INT
+AS
+BEGIN
+    DELETE FROM Plato
+    WHERE id = @id;
+END
+GO
+CREATE PROCEDURE EliminarIngrediente
+    @id INT
+AS
+BEGIN
+    DELETE FROM Ingrediente
+    WHERE id = @id;
+END
+GO
+CREATE PROCEDURE BuscarPlato
+    @nombre VARCHAR(50)
+AS
+BEGIN
+    SELECT * FROM Plato
+    WHERE nombre LIKE '%' + @nombre + '%';
+END
+GO
