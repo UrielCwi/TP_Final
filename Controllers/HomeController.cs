@@ -34,18 +34,30 @@ public class HomeController : Controller
             return View("Home");
         }
     }
-    public IActionResult Registro(Usuario Usuario)
-    {
-        BD.RegistrarUsuario(Usuario);
-        ViewBag.Usuario = BD.LoginUsuario(Usuario.email, Usuario.contraseña);
-        if (!ViewBag.Usuario)
+    public IActionResult Registro(Usuario usuario)
         {
-            return View("Registro");
+            try
+            {
+                BD.InsertarUsuario(usuario);
+                ViewBag.Usuario = BD.LoginUsuario(usuario.email, usuario.contraseña);
+
+                if (ViewBag.Usuario == null)
+                {
+                    ViewBag.Error = "Error en el registro.";
+                    return View("Registro");
+                }
+                else
+                {
+                    return RedirectToAction("Home", new { IdUsuario = ViewBag.Usuario.Id });
+                }
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+                return View("Registro");
+            }
         }
-        else{
-            return RedirectToAction("Home", new{IdUsuario = ViewBag.Usuario.idUsuario});
-        }
-    }
+        
    /*public IActionResult RecuperarContraseña(string Usuario, string Codigo, string NuevaContraseña)
     {
         BD.RecuperarContraseña(Usuario, Codigo, NuevaContraseña);

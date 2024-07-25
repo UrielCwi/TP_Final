@@ -2,8 +2,8 @@ using Dapper;
 using System.Data.SqlClient;
 using System.Data;
 using System.Collections.Generic;
-namespace TP_FINAL.Models;
 
+namespace TP_FINAL.Models;
 public class BD{
     private static string _connectionString =  @"Server=.; Database=Grev; Trusted_Connection=True";
     /*public static List<Tareas> GetTareas(int IdUsuario){
@@ -22,14 +22,29 @@ public class BD{
         }
         return Categorias;
     }*/
-    public static Usuario LoginUsuario(string Email, string Contraseña){
-        Usuario Usuario = null;
-        using(SqlConnection db = new SqlConnection(_connectionString)){
-            string sp = "LoginUsuario";
-            Usuario = db.QueryFirstOrDefault<Usuario>(sp, new{email = Email, contraseña = Contraseña}, commandType: CommandType.StoredProcedure);
+    public static Usuario LoginUsuario(string email, string contraseña)
+        {
+            Usuario usuario = null;
+            try
+            {
+                using (SqlConnection db = new SqlConnection(_connectionString))
+                {
+                    string sp = "LoginUsuario";
+                    usuario = db.QueryFirstOrDefault<Usuario>(sp, new { email = email, contraseña = contraseña }, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"SQL Error: {ex.Message}");
+                throw;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"General Error: {ex.Message}");
+                throw;
+            }
+            return usuario;
         }
-        return Usuario;
-    }
     public static Usuario GetUsuario(int idUsuario){
         Usuario Usuario = null;
         using(SqlConnection db = new SqlConnection(_connectionString)){
@@ -38,6 +53,50 @@ public class BD{
         }
         return Usuario;
     }
+    public static List<Plato> GetPlatos()
+        {
+            using (SqlConnection db = new SqlConnection(_connectionString))
+            {
+                string sp = "GetPlatos";
+                return db.Query<Plato>(sp, commandType: CommandType.StoredProcedure).ToList();
+            }
+        }
+
+        public static Plato GetPlato(int id)
+        {
+            using (SqlConnection db = new SqlConnection(_connectionString))
+            {
+                string sp = "GetPlato";
+                return db.QueryFirstOrDefault<Plato>(sp, new { Id = id }, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public static void InsertarPlato(Plato plato)
+        {
+            using (SqlConnection db = new SqlConnection(_connectionString))
+            {
+                string sp = "InsertarPlato";
+                db.Execute(sp, new { plato.Nombre, plato.IdCategoria }, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public static void ActualizarPlato(Plato plato)
+        {
+            using (SqlConnection db = new SqlConnection(_connectionString))
+            {
+                string sp = "ActualizarPlato";
+                db.Execute(sp, new { plato.Id, plato.Nombre, plato.IdCategoria }, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public static void EliminarPlato(int id)
+        {
+            using (SqlConnection db = new SqlConnection(_connectionString))
+            {
+                string sp = "EliminarPlato";
+                db.Execute(sp, new { Id = id }, commandType: CommandType.StoredProcedure);
+            }
+        }
    /* public static Tareas VerDetalleTarea(int IdTarea){
         Tareas tarea = null;
         using(SqlConnection db = new SqlConnection(_connectionString)){
@@ -54,12 +113,26 @@ public class BD{
         }
         return Categorias;
     }*/
-    public static void RegistrarUsuario(Usuario Usuario){
-        using(SqlConnection db = new SqlConnection(_connectionString)){
-            string sp = "RegistrarUsuario";
-            db.Execute(sp, new{ nombre = Usuario.nombre, apellido = Usuario.apellido, email = Usuario.email, contraseña = Usuario.contraseña, empresa = Usuario.empresa, }, commandType: CommandType.StoredProcedure);
+    public static int RegistrarUsuario(Usuario usuario){
+        int nuevoUsuarioId = -1;
+        try{
+            using(SqlConnection db = new SqlConnection(_connectionString)){
+                string sp = "RegistrarUsuario";
+                var parameters = db.QueryFirstOrDefault<int>(sp, new{ Nombre = usuario.nombre, Apellido = usuario.apellido, Email = usuario.email, Contraseña = usuario.contraseña, Empresa = usuario.empresa, }, commandType: CommandType.StoredProcedure);
+                nuevoUsuarioId = db.QuerySingleOrDefault<int>(sp, parameters, commandType: CommandType.StoredProcedure);}
         }
-    }    
+          catch (SqlException ex)
+            {
+                Console.WriteLine($"SQL Error: {ex.Message}");
+                throw;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"General Error: {ex.Message}");
+                throw;
+            }
+            return nuevoUsuarioId;
+        }
    /* public static void EditarTarea(Tareas Tarea){
         using(SqlConnection db = new SqlConnection(_connectionString)){
             string sp = "EditarTarea";
@@ -119,7 +192,7 @@ public class BD{
         }
     }
 
-    public void InsertarUsuario(Usuario usuario)
+    public static void InsertarUsuario(Usuario usuario)
     {
         using (var connection = new SqlConnection(_connectionString))
         {
@@ -128,4 +201,5 @@ public class BD{
             connection.Execute(query, usuario);
         }
     }
+    
 }
