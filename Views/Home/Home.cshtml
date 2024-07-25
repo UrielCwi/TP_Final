@@ -4,6 +4,30 @@
 <header>   <link rel="stylesheet" href="~/css/home.css">
 
 </header>
+<div class="container">
+    <h2>Lista de Platos</h2>
+    <div class="row">
+        @foreach(var plato in ViewBag.Platos)
+        {
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">@plato.Nombre</h5>
+                        <p class="card-text">@plato.Descripcion</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a href='@Url.Action("Details", "Plato", new { id = plato.Id })' class="btn btn-sm btn-outline-secondary">Ver</a>
+                                <a href='@Url.Action("Edit", "Plato", new { id = plato.Id })' class="btn btn-sm btn-outline-secondary">Editar</a>
+                                <a href='@Url.Action("Delete", "Plato", new { id = plato.Id })' class="btn btn-sm btn-outline-danger">Eliminar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <a href='@Url.Action("Create", "Plato")' class="btn btn-primary">Agregar Nuevo Plato</a>
+</div>
 @*
 <div class="cardFlex">
     @foreach(var item in ViewBag.Tareas)
