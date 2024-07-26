@@ -76,7 +76,7 @@ public class BD{
             using (SqlConnection db = new SqlConnection(_connectionString))
             {
                 string sp = "InsertarPlato";
-                db.Execute(sp, new { plato.Nombre, plato.IdCategoria }, commandType: CommandType.StoredProcedure);
+                db.Execute(sp, new { plato.nombre, plato.idCategoria, plato.precio }, commandType: CommandType.StoredProcedure);
             }
         }
 
@@ -85,7 +85,7 @@ public class BD{
             using (SqlConnection db = new SqlConnection(_connectionString))
             {
                 string sp = "ActualizarPlato";
-                db.Execute(sp, new { plato.Id, plato.Nombre, plato.IdCategoria }, commandType: CommandType.StoredProcedure);
+                db.Execute(sp, new { plato.id, plato.nombre, plato.idCategoria, plato.precio }, commandType: CommandType.StoredProcedure);
             }
         }
 

@@ -8,8 +8,8 @@ namespace TP_FINAL.Controllers
     {
         public IActionResult Index()
         {
-            List<Plato> platos = BD.GetPlatos();
-            return View(platos);
+            List<Plato> plato = BD.GetPlatos();
+            return View(plato);
         }
 
         public IActionResult Create()

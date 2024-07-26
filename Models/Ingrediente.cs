@@ -1,7 +1,8 @@
 public class Ingrediente
 {
-    public int Id { get; set; }
-    public string Descripcion { get; set; }
-    public string Cantidad { get; set; }
+    public int id { get; set; }
+    public string descripcion { get; set; }
+    public string cantidad { get; set; }
+    public int valorUnidad { get; set; }
 }
     
