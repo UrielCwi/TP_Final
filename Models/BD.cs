@@ -61,6 +61,15 @@ public class BD{
                 return db.Query<Plato>(sp, commandType: CommandType.StoredProcedure).ToList();
             }
         }
+        public static List<Ingrediente> GetIngredientes()
+        {
+            using (SqlConnection db = new SqlConnection(_connectionString))
+            {
+                string sp = "GetIngredientes";
+                return db.Query<Ingrediente>(sp, commandType: CommandType.StoredProcedure).ToList();
+            }
+        }
+
 
         public static Plato GetPlato(int id)
         {
@@ -68,6 +77,14 @@ public class BD{
             {
                 string sp = "GetPlato";
                 return db.QueryFirstOrDefault<Plato>(sp, new { Id = id }, commandType: CommandType.StoredProcedure);
+            }
+        }
+         public static Ingrediente GetIngrediente(int id)
+        {
+            using (SqlConnection db = new SqlConnection(_connectionString))
+            {
+                string sp = "GetIngrediente";
+                return db.QueryFirstOrDefault<Ingrediente>(sp, new { Id = id }, commandType: CommandType.StoredProcedure);
             }
         }
 
@@ -80,6 +97,15 @@ public class BD{
             }
         }
 
+         public static void InsertarIngrediente(Ingrediente ingrediente)
+        {
+            using (SqlConnection db = new SqlConnection(_connectionString))
+            {
+                string sp = "InsertarIngrediente";
+                db.Execute(sp, new { ingrediente.descripcion, ingrediente.cantidad, ingrediente.valorUnidad}, commandType: CommandType.StoredProcedure);
+            }
+        }
+
         public static void ActualizarPlato(Plato plato)
         {
             using (SqlConnection db = new SqlConnection(_connectionString))
@@ -88,12 +114,28 @@ public class BD{
                 db.Execute(sp, new { plato.id, plato.nombre, plato.idCategoria, plato.precio }, commandType: CommandType.StoredProcedure);
             }
         }
+        public static void ActualizarIngrediente(Ingrediente ingrediente)
+        {
+            using (SqlConnection db = new SqlConnection(_connectionString))
+            {
+                string sp = "ActualizarIngrediente";
+                db.Execute(sp, new { ingrediente.id, ingrediente.descripcion, ingrediente.cantidad, ingrediente.valorUnidad }, commandType: CommandType.StoredProcedure);
+            }
+        }
 
         public static void EliminarPlato(int id)
         {
             using (SqlConnection db = new SqlConnection(_connectionString))
             {
                 string sp = "EliminarPlato";
+                db.Execute(sp, new { Id = id }, commandType: CommandType.StoredProcedure);
+            }
+        }
+        public static void EliminarIngrediente(int id)
+        {
+            using (SqlConnection db = new SqlConnection(_connectionString))
+            {
+                string sp = "EliminarIngrediente";
                 db.Execute(sp, new { Id = id }, commandType: CommandType.StoredProcedure);
             }
         }

@@ -1,0 +1,34 @@
+@{
+    ViewData["Title"] = "Agregar Ingrediente";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<h2>Gestión de Ingredientes</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Agregar Nuevo Ingrediente</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Descripcion</th>
+            <th>Cantidad</th>
+            <th>Valor por Unidad</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.descipcion</td>
+            <td>@item.id</td>
+            <td>
+                <a asp-action="Editar" asp-route-id="@item.id" class="btn btn-secondary">Editar</a> |
+                <a asp-action="Eliminar" asp-route-id="@item.id" class="btn btn-danger">Eliminar</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

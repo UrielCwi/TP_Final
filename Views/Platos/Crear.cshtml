@@ -1,5 +1,4 @@
-
-@model Plato//fijarse si dejar esto o poner la clase Plato
+@model Plato
 
 @{
     ViewData["Title"] = "Crear Plato";
@@ -8,14 +7,15 @@
 <h2>@ViewData["Title"]</h2>
 
 <form Action='@Url.Action("Crear","Platos")' method="post">
+    <input type="hidden" name="id" value="@model.id" />
     <div class="form-group">
         <label asp-for="nombre" class="control-label"></label>
-        <input tipe="text" name="nombre" class="form-control" id="nombrePlato" text="@Model.nombre" required />
+        <input type="text" name="nombre" class="form-control" id="nombrePlato" text="@Model.nombre" required />
         <span asp-validation-for="nombre" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="idCategoria" class="control-label"></label>
-        <input name="idCategoria" class="form-control" type="number" id="idCategoria" text="" required />
+        <input name="idCategoria" class="form-control" type="number" id="idCategoria" text="@Model.nombre" required />
         <span asp-validation-for="idCategoria" class="text-danger"></span>
     </div>
     <div class="form-group">
