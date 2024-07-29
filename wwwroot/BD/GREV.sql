@@ -491,3 +491,25 @@ BEGIN
     WHERE nombre LIKE '%' + @nombre + '%';
 END
 GO
+CREATE PROCEDURE InsertarIngrediente
+    @descripcion VARCHAR(50),
+    @cantidad INT,
+	@valorUnidad INT
+AS
+BEGIN
+    INSERT INTO Ingrediente (descripcion, cantidad, valorUnidad)
+    VALUES (@descripcion, @cantidad, @valorUnidad);
+END
+GO
+CREATE PROCEDURE ActualizarIngrediente
+    @id INT,
+    @descripcion VARCHAR(50),
+    @cantidad INT,
+	@valorUnidad INT
+AS
+BEGIN
+    UPDATE Ingrediente
+    SET descripcion = @descripcion, cantidad = @cantidad, valorUnidad = @valorUnidad
+    WHERE id = @id;
+END
+GO

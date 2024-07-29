@@ -6,11 +6,11 @@
 <h2>@ViewData["Title"]</h2>
 
  <form Action='@Url.Action("Editar","Platos")' method="post">
-    <input type="hidden" name="id" value="@Model.id" />
+    <input type="hidden" name="id" value="@model.id" />
     <div class="form-group">
         <label asp-for="nombre" class="control-label" text="Nombre"></label>
-        <input type="text" class="form-control" name="nombre" id="nombrePlato" text="@Model.nombre" required />
-        <input type="number" class="form-control" name="idCategoria" id="idCategoria" text="@Moddel.idCategoria" required />
+        <input type="text" class="form-control" name="nombre" id="nombrePlato" text="@model.nombre" required />
+        <input type="number" class="form-control" name="idCategoria" id="idCategoria" text="@model.idCategoria" required />
         
         <span asp-validation-for="nombre" class="text-danger"></span>
     </div>

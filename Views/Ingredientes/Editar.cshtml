@@ -1,0 +1,18 @@
+@model Ingrediente
+@{
+    ViewData["Title"] = "Editar Ingrediente";
+}
+
+ <form Action='@Url.Action("Editar","Ingredientes")' method="post">
+    <input type="hidden" name="id" value="@model.id" />
+    <div class="form-group">
+        <label asp-for="descripcion" class="control-label" text="Descripcion"></label>
+        <input type="text" class="form-control" name="descripcion" id="descripcionIngrediente" text="@model.descipcion" required />
+        <input type="number" class="form-control" name="id" id="id" text="@model.id" required />
+        
+        <span asp-validation-for="descripcion" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Guardar" class="btn btn-primary" />
+    </div>
+</form>
