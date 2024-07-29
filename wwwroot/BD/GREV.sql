@@ -1,4 +1,4 @@
-﻿﻿USE [master]
+﻿﻿﻿USE [master]
 GO
 /****** Object:  Database [Grev]    Script Date: 10/6/2024 09:51:07 ******/
 CREATE DATABASE [Grev]
@@ -78,9 +78,6 @@ GO
 ALTER DATABASE [Grev] SET QUERY_STORE = OFF
 GO
 USE [Grev]
-GO
-/****** Object:  User [alumno]    Script Date: 10/6/2024 09:51:07 ******/
-CREATE USER [alumno] FOR LOGIN [alumno] WITH DEFAULT_SCHEMA=[dbo]
 GO
 /****** Object:  Table [dbo].[Categorias]    Script Date: 10/6/2024 09:51:07 ******/
 SET ANSI_NULLS ON
@@ -415,19 +412,21 @@ BEGIN
     VALUES (@nombre, @apellido, @email, @contraseña, @empresa);
     SELECT SCOPE_IDENTITY() AS NuevoUsuarioID;
 END
+GO
 CREATE PROCEDURE GetUsuario
     @IdUsuario INT
 AS
 BEGIN
     SET NOCOUNT ON;
     
-    SELECT IdUsuario, Nombre, Apellido, Email, Empresa
+    SELECT id, Nombre, Apellido, Email, Empresa
     FROM Usuario
-    WHERE IdUsuario = @IdUsuario;
+    WHERE id = @IdUsuario;
 END
+GO
 CREATE PROCEDURE InsertarPlato
     @nombre VARCHAR(50),
-    @idCategoria INT
+    @idCategoria INT,
 	@precio INT
 AS
 BEGIN
@@ -437,7 +436,7 @@ END
 GO
 CREATE PROCEDURE InsertarIngrediente
     @descripcion VARCHAR(50),
-    @cantidad VARCHAR(50)
+    @cantidad VARCHAR(50),
 	@valorUnidad INT
 AS
 BEGIN
@@ -448,7 +447,7 @@ GO
 CREATE PROCEDURE ActualizarPlato
     @id INT,
     @nombre VARCHAR(50),
-    @idCategoria INT
+    @idCategoria INT,
 	@precio INT
 AS
 BEGIN
@@ -460,7 +459,7 @@ GO
 CREATE PROCEDURE ActualizarIngrediente
     @id INT,
     @descripcion VARCHAR(50),
-    @cantidad VARCHAR(50)
+    @cantidad VARCHAR(50),
 	@valorUnidad INT
 AS
 BEGIN
