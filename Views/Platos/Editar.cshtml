@@ -1,23 +1,20 @@
+@model Plato
 @{
     ViewData["Title"] = "Editar Plato";
 }
 
 <h2>@ViewData["Title"]</h2>
 
-<form asp-action="Edit">
+ <form Action='@Url.Action("Editar","Platos")' method="post">
+    <input type="hidden" name="id" value="@Model.id" />
     <div class="form-group">
-        <label asp-for="nombre" class="control-label"></label>
-        <input asp-for="nombre" class="form-control" />
+        <label asp-for="nombre" class="control-label" text="Nombre"></label>
+        <input type="text" class="form-control" name="nombre" id="nombrePlato" text="@Model.nombre" required />
+        <input type="number" class="form-control" name="idCategoria" id="idCategoria" text="@Moddel.idCategoria" required />
+        
         <span asp-validation-for="nombre" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="idCategoria" class="control-label"></label>
-        <input asp-for="idCategoria" class="form-control" />
-        <span asp-validation-for="idCategoria" class="text-danger"></span>
     </div>
     <div class="form-group">
         <input type="submit" value="Guardar" class="btn btn-primary" />
     </div>
 </form>
-
-<a asp-action="Index">Regresar a la lista</a>

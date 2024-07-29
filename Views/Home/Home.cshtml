@@ -16,9 +16,9 @@
                         <p class="card-text">@plato.descripcion</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <a href='@Url.Action("Details", "Plato", new { id = plato.id })' class="btn btn-sm btn-outline-secondary">Ver</a>
-                                <a href='@Url.Action("Edit", "Plato", new { id = plato.id })' class="btn btn-sm btn-outline-secondary">Editar</a>
-                                <a href='@Url.Action("Delete", "Plato", new { id = plato.id })' class="btn btn-sm btn-outline-danger">Eliminar</a>
+                                <a href='@Url.Action("Details", "Platos", new { id = plato.id })' class="btn btn-sm btn-outline-secondary">Ver</a>
+                                <a href='@Url.Action("Editar", "Platos", new { id = plato.id })' class="btn btn-sm btn-outline-secondary">Editar</a>
+                                <a href='@Url.Action("Eliminar", "Platos", new { id = plato.id })' class="btn btn-sm btn-outline-danger">Eliminar</a>
                             </div>
                         </div>
                     </div>
@@ -26,7 +26,7 @@
             </div>
         }
     </div>
-    <a href='@Url.Action("Create", "Plato")' class="btn btn-primary">Agregar Nuevo Plato</a>
+    <a href='@Url.Action("Create", "Platos")' class="btn btn-primary">Agregar Nuevo Plato</a>
 </div>
 @*
 <div class="cardFlex">

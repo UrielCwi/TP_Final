@@ -1,4 +1,4 @@
-﻿﻿﻿USE [master]
+﻿﻿USE [master]
 GO
 /****** Object:  Database [Grev]    Script Date: 10/6/2024 09:51:07 ******/
 CREATE DATABASE [Grev]
@@ -204,7 +204,6 @@ CREATE TABLE [dbo].[Usuario](
 	[email] [varchar](50) NOT NULL,
 	[contraseña] [varchar](50) NOT NULL,
 	[empresa] [varchar](50) NOT NULL,
-	[ ] [bit] NOT NULL,
  CONSTRAINT [PK_Usuario] PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
@@ -228,7 +227,7 @@ CREATE TABLE [dbo].[Ventas](
 GO
 SET IDENTITY_INSERT [dbo].[Usuario] ON 
 
-INSERT [dbo].[Usuario] ([id], [nombre], [apellido], [email], [contraseña], [empresa]) VALUES (13, N'Lucas', N'Ruiz Barrea', 5, N'LucasRu@gmail.com', N'1234', N'Gerda Cafe')
+INSERT [dbo].[Usuario] ([nombre], [apellido], [email], [contraseña], [empresa]) VALUES (N'Lucas', N'Ruiz Barrea', N'LucasRu@gmail.com', N'1234', N'Gerda Cafe')
 SET IDENTITY_INSERT [dbo].[Usuario] OFF
 GO
 ALTER TABLE [dbo].[DetalleVenta]  WITH CHECK ADD  CONSTRAINT [FK_DetalleVenta_Ventas] FOREIGN KEY([idVenta])

@@ -8,8 +8,8 @@ namespace TP_FINAL.Controllers
     {
         public IActionResult Index()
         {
-            List<Plato> plato = BD.GetPlatos();
-            return View(plato);
+            List<Plato> platos = BD.GetPlatos();
+            return View(platos);
         }
 
         public IActionResult Create()
@@ -49,6 +49,7 @@ namespace TP_FINAL.Controllers
             return View(plato);
         }
 
+        [HttpPost]
         public IActionResult Eliminar(int id)
         {
             Plato plato = BD.GetPlato(id);
