@@ -1,3 +1,4 @@
+@model Plato
 @{
     ViewData["Title"] = "Home";
 }
@@ -6,27 +7,27 @@
 </header>
 <div class="container">
     <h2>Lista de Platos</h2>
-    <div class="row">
+    @*<div class="row">
         @foreach(var plato in ViewBag.Plato)
         {
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
                     <div class="card-body">
                         <h5 class="card-title">@plato.nombre</h5>
-                        <p class="card-text">@plato.descripcion</p>
+                        <p class="card-text">@plato.descripcion</p>*@
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <a href='@Url.Action("Details", "Platos", new { id = plato.id })' class="btn btn-sm btn-outline-secondary">Ver</a>
-                                <a href='@Url.Action("Editar", "Platos", new { id = plato.id })' class="btn btn-sm btn-outline-secondary">Editar</a>
-                                <a href='@Url.Action("Eliminar", "Platos", new { id = plato.id })' class="btn btn-sm btn-outline-danger">Eliminar</a>
+                                <a href='@Url.Action("Index", "Platos", new { id = Model.id })' class="btn btn-sm btn-outline-secondary">Ver</a>
+                                <a href='@Url.Action("Editar", "Platos", new { id = Model.id })' class="btn btn-sm btn-outline-secondary">Editar</a>
+                                <a href='@Url.Action("Eliminar", "Platos", new { id = Model.id })' class="btn btn-sm btn-outline-danger">Eliminar</a>
                             </div>
                         </div>
-                    </div>
+                    @*</div>
                 </div>
             </div>
         }
-    </div>
-    <a href='@Url.Action("Create", "Platos")' class="btn btn-primary">Agregar Nuevo Plato</a>
+    </div>*@
+    <a href='@Url.Action("Crear", "Platos")' class="btn btn-primary">Agregar Nuevo Plato</a>
 </div>
 @*
 <div class="cardFlex">

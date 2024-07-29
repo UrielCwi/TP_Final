@@ -48,7 +48,7 @@ public class HomeController : Controller
                 }
                 else
                 {
-                    return RedirectToAction("Home", new { IdUsuario = ViewBag.Usuario.Id });
+                    return RedirectToAction("Home", new { IdUsuario = ViewBag.Usuario.id });
                 }
             }
             catch (Exception ex)

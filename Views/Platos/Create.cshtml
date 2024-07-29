@@ -1,0 +1,29 @@
+
+@model Plato//fijarse si dejar esto o poner la clase Plato
+
+@{
+    ViewData["Title"] = "Crear Plato";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form Action='@Url.Action("Crear","Platos")' method="post">
+    <div class="form-group">
+        <label asp-for="nombre" class="control-label"></label>
+        <input tipe="text" name="nombre" class="form-control" id="nombrePlato" text="@Model.nombre" required />
+        <span asp-validation-for="nombre" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="idCategoria" class="control-label"></label>
+        <input name="idCategoria" class="form-control" type="number" id="idCategoria" text="" required />
+        <span asp-validation-for="idCategoria" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="precio" class="control-label"></label>
+        <input name="precio" class="form-control" type="number" id="precio" text="@Model.precio" required />
+        <span asp-validation-for="precio" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Crear" class="btn btn-primary" />
+    </div>
+</form>

@@ -1,7 +1,7 @@
 let tasks = [];
 
 const urlParams = new URLSearchParams(window.location.search);
-const idUsuario = urlParams.get('IdUsuario');
+const idUsuario = urlParams.get('id');
 
 function GetTareas(idUsuario){
   $.ajax({
