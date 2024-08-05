@@ -9,6 +9,11 @@ public class HomeController : Controller
         ViewBag.BarraBusqueda = false;
         return View();
     }
+    /*public IActionResult Index(string errorMessage = null)
+    {
+        ViewBag.ErrorMessage = errorMessage;
+        return View();
+    }*/
     public IActionResult MandarRegistro()
     {
         ViewBag.BarraBusqueda = false;

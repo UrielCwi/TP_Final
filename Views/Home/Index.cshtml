@@ -19,17 +19,23 @@ Layout = "";
                     <h1 class="text-start">GREV</h1>
                     <h2 class="mb-4d">Login now</h2>
                     <p class="text-start">Hola, bienvenido de nuevo 👋</p>
-                    <form action='@Url.Action("Login","Home")' class="w-100">
-                    <div class="form-group mb-3">
-                    <p class="text-start">Email</p>
-                    <input type="email" class="form-control" name="Usuario" required placeholder="Email">
-                </div>
-                <div class="form-group mb-3">
-                    <p class="text-start">Contraseña</p>
-                    <input type="password" class="form-control" name="Contraseña" required placeholder="Contraseña">
+                    @*@if (ViewBag.ErrorMessage != null)
+                    {
+                    <div class="alert alert-danger" role="alert">
+                        @ViewBag.ErrorMessage
                     </div>
-                    <button class="btn btn-primary w-100 mb-3" type="submit">Logearse</button>
-                    </form>
+                    }*@@*NO FUNCIONA*@
+                        <form action='@Url.Action("Login","Home")' class="w-100">
+                            <div class="form-group mb-3">
+                                <p class="text-start">Email</p>
+                                <input type="email" class="form-control" name="Usuario" required placeholder="Email">
+                            </div>
+                            <div class="form-group mb-3">
+                                <p class="text-start">Contraseña</p>
+                                <input type="password" class="form-control" name="Contraseña" required placeholder="Contraseña">
+                            </div>
+                            <button class="btn btn-primary w-100 mb-3" type="submit">Logearse</button>
+                        </form>
                     <a href='@Url.Action("MandarRegistro","Home")' class="w-100 d-block text-start">¿Estás interesado en unirte? <span class="text-danger">¡Clickea aquí!</span></a>
                 </div>
                 <div class="col-md-6 d-flex align-items-center justify-content-center">
