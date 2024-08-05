@@ -512,4 +512,10 @@ BEGIN
     SET descripcion = @descripcion, cantidad = @cantidad, valorUnidad = @valorUnidad
     WHERE id = @id;
 END
-GO
+CREATE PROCEDURE AgregarCategoria (nombre)
+		@nombre
+	AS
+	BEGIN 
+		INSERT INTO Categorias (nombre)
+		VALUES (@nombre)
+	END
