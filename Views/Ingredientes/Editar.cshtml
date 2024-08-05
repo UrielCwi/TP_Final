@@ -7,11 +7,21 @@
 <h2>@ViewData["Title"]</h2>
 
 <form Action='@Url.Action("Editar","Ingredientes")' method="post">
-    <input type="hidden" name="id" value="@model.id" />
+    <input type="hidden" name="id" value="@Model.id" />
     <div class="form-group">
         <label asp-for="descripcion" class="control-label" text="Descripcion"></label>
         <input type="text" class="form-control" name="descripcion" id="descripcionIngrediente" text="@Model.descipcion" required />        
         <span asp-validation-for="descripcion" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="cantidad" class="control-label" text="cantidad"></label>
+        <input type="number" class="form-control" name="cantidad" id="cantidad" text="@Model.cantidad" required />
+        <span asp-validation-for="cantidad" class="text-danger"></span>
+    </div>
+     <div class="form-group">
+        <label asp-for="valorUnidad" class="control-label" text="valorUnidad"></label>
+        <input type="number" class="form-control" name="valorUnidad" id="valorUnidad" text="@Model.valorUnidad" required />
+        <span asp-validation-for="valorUnidad" class="text-danger"></span>
     </div>
     <div class="form-group">
         <input type="submit" value="Guardar" class="btn btn-primary" />
