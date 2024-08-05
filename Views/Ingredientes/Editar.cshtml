@@ -9,13 +9,8 @@
 <form Action='@Url.Action("Editar","Ingredientes")' method="post">
     <input type="hidden" name="id" value="@model.id" />
     <div class="form-group">
-        <label asp-for="id" class="control-label" text="id"></label>
-        <input type="number" class="form-control" name="id" id="id" text="@model.id" required />
-        <span asp-validation-for="id" class="text-danger"></span>
-    </div>
-    <div class="form-group">
         <label asp-for="descripcion" class="control-label" text="Descripcion"></label>
-        <input type="text" class="form-control" name="descripcion" id="descripcionIngrediente" text="@model.descipcion" required />        
+        <input type="text" class="form-control" name="descripcion" id="descripcionIngrediente" text="@Model.descipcion" required />        
         <span asp-validation-for="descripcion" class="text-danger"></span>
     </div>
     <div class="form-group">

@@ -7,7 +7,7 @@
 <h2>@ViewData["Title"]</h2>
 
 <form Action='@Url.Action("Crear","Platos")' method="post">
-    <input type="hidden" name="id" value="@model.id" />
+    <input type="hidden" name="id" value="@Model.id" />
     <div class="form-group">
         <label asp-for="nombre" class="control-label"></label>
         <input type="text" name="nombre" class="form-control" id="nombrePlato" text="@Model.nombre" required />
