@@ -6,22 +6,15 @@ using System.Collections.Generic;
 namespace TP_FINAL.Models;
 public class BD{
     private static string _connectionString =  @"Server=.; Database=Grev; Trusted_Connection=True";
-    /*public static List<Tareas> GetTareas(int IdUsuario){
-        List<Tareas> Tareas = null;
-        using(SqlConnection db = new SqlConnection(_connectionString)){
-            string sp = "GetTareas";
-            Tareas = db.Query<Tareas>(sp, new{IdUsuario = IdUsuario}, commandType: CommandType.StoredProcedure).ToList();
-        }
-        return Tareas;
-    }
-    public static List<Categorias> GetCategorias(int IdUsuario){
+    
+    public static List<Categorias> GetCategorias(int id){
         List<Categorias> Categorias = null;
         using(SqlConnection db = new SqlConnection(_connectionString)){
-            string sp = "GetCategorias";
-            Categorias = db.Query<Categorias>(sp, new{IdUsuario = IdUsuario}, commandType: CommandType.StoredProcedure).ToList();
+            string sp = "ObtenerCategorias";
+            Categorias = db.Query<Categorias>(sp, new{Id = id}, commandType: CommandType.StoredProcedure).ToList();
         }
         return Categorias;
-    }*/
+    }
     public static Usuario LoginUsuario(string email, string contraseña)
         {
             Usuario usuario = null;
