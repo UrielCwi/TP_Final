@@ -29,6 +29,7 @@ public class HomeController : Controller
         ViewBag.BarraBusqueda = false;
         ViewBag.Error = null;
         ViewBag.Usuario = BD.LoginUsuario(Usuario, Contraseña);
+        ViewBag.Plato=BD.GetPlatos();
         if (ViewBag.Usuario == null)
         {
             ViewBag.Error = "Usuario o contraseña incorrectos";
@@ -85,7 +86,7 @@ public class HomeController : Controller
         ViewBag.BarraBusqueda = false;
         return View("Tareas");
     }*/
-    public IActionResult Home(int IdUsuario)
+    public IActionResult Home(int id)
     {
         
         //ViewBag.Tareas = BD.GetTareas(IdUsuario);

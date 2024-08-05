@@ -1,36 +1,28 @@
+@model Ingrediente
 @{
     ViewData["Title"] = "Agregar Ingrediente";
 }
 
-@*HAY QUE COPIAR LA ESTRUCTURA DE CREAR.CHTML DE PLATOS. Tambien hay que llamar a esto desde la home.cshtml o de algun lugar*@
-
 <h2>@ViewData["Title"]</h2>
 
-<h2>Gestión de Ingredientes</h2>
-
-<p>
-    <a asp-action="Create" class="btn btn-primary">Agregar Nuevo Ingrediente</a>
-</p>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>Descripcion</th>
-            <th>Cantidad</th>
-            <th>Valor por Unidad</th>
-        </tr>
-    </thead>
-    <tbody>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.descipcion</td>
-            <td>@item.id</td>
-            <td>
-                <a asp-action="Editar" asp-route-id="@item.id" class="btn btn-secondary">Editar</a> |
-                <a asp-action="Eliminar" asp-route-id="@item.id" class="btn btn-danger">Eliminar</a>
-            </td>
-        </tr>
-    }
-    </tbody>
-</table>
+<form Action='@Url.Action("Crear","Ingredientes")' method="post">
+    <input type="hidden" name="id" value="@Model.id" />
+    <div class="form-group">
+        <label asp-for="descripcion" class="control-label"></label>
+        <input type="text" name="descripcion" class="form-control" id="descripcion" text="@Model.descripcion" required />
+        <span asp-validation-for="descripcion" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="cantidad" class="control-label"></label>
+        <input name="cantidad" class="form-control" type="number" id="cantidad" text="@Model.cantidad" required />
+        <span asp-validation-for="cantidad" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="valorUnidad" class="control-label"></label>
+        <input name="valorUnidad" class="form-control" type="number" id="valorUnidad" text="@Model.valorUnidad" required />
+        <span asp-validation-for="valorUnidad" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Crear" class="btn btn-primary" />
+    </div>
+</form>

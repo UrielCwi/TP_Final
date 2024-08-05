@@ -45,11 +45,11 @@ public class BD{
             }
             return usuario;
         }
-    public static Usuario GetUsuario(int idUsuario){
+    public static Usuario GetUsuario(int id){
         Usuario Usuario = null;
         using(SqlConnection db = new SqlConnection(_connectionString)){
             string sp = "GetUsuario";
-            Usuario = db.QueryFirstOrDefault<Usuario>(sp, new{IdUsuario = idUsuario}, commandType: CommandType.StoredProcedure);
+            Usuario = db.QueryFirstOrDefault<Usuario>(sp, new{IDo = id}, commandType: CommandType.StoredProcedure);
         }
         return Usuario;
     }
@@ -57,7 +57,7 @@ public class BD{
         {
             using (SqlConnection db = new SqlConnection(_connectionString))
             {
-                string sp = "GetPlatos";
+                string sp = "ObtenerPlatos";
                 return db.Query<Plato>(sp, commandType: CommandType.StoredProcedure).ToList();
             }
         }
@@ -75,7 +75,7 @@ public class BD{
         {
             using (SqlConnection db = new SqlConnection(_connectionString))
             {
-                string sp = "GetPlato";
+                string sp = "ObtenerPlatosPorId";
                 return db.QueryFirstOrDefault<Plato>(sp, new { Id = id }, commandType: CommandType.StoredProcedure);
             }
         }
