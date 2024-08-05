@@ -23,6 +23,7 @@ namespace TP_FINAL.Controllers
             if (ModelState.IsValid)
             {
                 BD.InsertarPlato(plato);
+                ViewBag.Categorias=BD.GetCategorias(plato.id);
                 return RedirectToAction(nameof(Index));
             }
             return View(plato);
@@ -44,6 +45,7 @@ namespace TP_FINAL.Controllers
             if (ModelState.IsValid)
             {
                 BD.ActualizarPlato(plato);
+                ViewBag.Categorias=BD.GetCategorias(plato.id);
                 return RedirectToAction(nameof(Index));
             }
             return View(plato);
