@@ -48,7 +48,7 @@ public class BD{
     public static Usuario GetUsuario(int id){
         Usuario Usuario = null;
         using(SqlConnection db = new SqlConnection(_connectionString)){
-            string sp = "GetUsuario";
+            string sp = "ObtenerUsuario";
             Usuario = db.QueryFirstOrDefault<Usuario>(sp, new{IDo = id}, commandType: CommandType.StoredProcedure);
         }
         return Usuario;
@@ -65,7 +65,7 @@ public class BD{
         {
             using (SqlConnection db = new SqlConnection(_connectionString))
             {
-                string sp = "GetIngredientes";
+                string sp = "ObtenerIngredientes";
                 return db.Query<Ingrediente>(sp, commandType: CommandType.StoredProcedure).ToList();
             }
         }
@@ -83,7 +83,7 @@ public class BD{
         {
             using (SqlConnection db = new SqlConnection(_connectionString))
             {
-                string sp = "GetIngrediente";
+                string sp = "ObtenerIngrediente";
                 return db.QueryFirstOrDefault<Ingrediente>(sp, new { Id = id }, commandType: CommandType.StoredProcedure);
             }
         }
