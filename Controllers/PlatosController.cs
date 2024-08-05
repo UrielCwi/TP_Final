@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using TP_FINAL.Models;
-using System.Collections.Generic;
-
 namespace TP_FINAL.Controllers
 {
     public class PlatosController : Controller
