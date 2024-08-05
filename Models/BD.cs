@@ -8,10 +8,10 @@ public class BD{
     private static string _connectionString =  @"Server=.; Database=Grev; Trusted_Connection=True";
     
     public static List<Categorias> GetCategorias(int id){
-        List<Categorias> Categorias = null;
+        List<Categorias> Categorias = new List<Categorias>();
         using(SqlConnection db = new SqlConnection(_connectionString)){
             string sp = "ObtenerCategorias";
-            Categorias = db.Query<Categorias>(sp, new{Id = id}, commandType: CommandType.StoredProcedure).ToList();
+            Categorias = db.Query<Categorias>(sp, commandType: CommandType.StoredProcedure).ToList();
         }
         return Categorias;
     }
@@ -192,24 +192,24 @@ public class BD{
             string sp = "AgregarTarea";
             db.Execute(sp, new{IdUsuario = Tarea.IdUsuario, IdCategoria = Tarea.IdCategoria, Nombre = Tarea.Nombre, FechaRealizacion = Tarea.FechaRealizacion, Descripcion = Tarea.Descripcion}, commandType: CommandType.StoredProcedure);
         }
-    }
+    }*/
      public static void AgregarCategoria(Categorias Categoria){
         using(SqlConnection db = new SqlConnection(_connectionString)){
             string sp = "AgregarCategoria";
-            db.Execute(sp, new{IdUsuario = Categoria.IdUsuario, Nombre = Categoria.nombre}, commandType: CommandType.StoredProcedure);
+            db.Execute(sp, new{IdUsuario = Categoria.id, Nombre = Categoria.nombre}, commandType: CommandType.StoredProcedure);
         }
     }
-    public static List<Tareas> BuscarTareaPorNombre(int IdUsuario, string nombre)
+    public static List<Plato> BuscarPlatoPorNombre(int idUsuario, string nombre)
     {
-    List <Tareas> tarea = new List<Tareas>(); 
+    List <Plato> plato = new List<Plato>(); 
     using (SqlConnection db = new SqlConnection(_connectionString))
     {
         string sp = "BuscarTareaPorNombre"; 
-        tarea = db.Query<Tareas>(sp, new { IdUsuario = IdUsuario, Nombre = nombre }, commandType: CommandType.StoredProcedure).ToList();
+        plato = db.Query<Plato>(sp, new { IdUsuario = idUsuario, Nombre = nombre }, commandType: CommandType.StoredProcedure).ToList();
     }
-    return tarea;
+    return plato;
     }
-    public static void Hecho(int IdTarea)
+   /* public static void Hecho(int IdTarea)
     {
         using(SqlConnection db = new SqlConnection(_connectionString)){
             string sp = "MarcarComoHecho";

@@ -10,8 +10,9 @@ namespace TP_FINAL.Controllers
             return View(platos);
         }
 
-        public IActionResult Create()
+        public IActionResult Create(int idUsuario)
         {
+            ViewBag.Usuario=BD.GetUsuario(idUsuario);
             return View();
         }
 
@@ -27,13 +28,15 @@ namespace TP_FINAL.Controllers
             return View(plato);
         }
 
-        public IActionResult Editar(int id)
+        public IActionResult Editar(int id, int idUsuario)
         {
             Plato plato = BD.GetPlato(id);
             if (plato == null)
             {
                 return NotFound();
             }
+            ViewBag.Categorias=BD.GetCategorias(plato.id);
+            ViewBag.Usuario=BD.GetUsuario(idUsuario);
             return View(plato);
         }
 
@@ -43,15 +46,15 @@ namespace TP_FINAL.Controllers
             if (ModelState.IsValid)
             {
                 BD.ActualizarPlato(plato);
-                ViewBag.Categorias=BD.GetCategorias(plato.id);
                 return RedirectToAction(nameof(Index));
             }
             return View(plato);
         }
 
         [HttpPost]
-        public IActionResult Eliminar(int id)
+        public IActionResult Eliminar(int id, int idUsuario)
         {
+            ViewBag.Usuario=BD.GetUsuario(idUsuario);
             Plato plato = BD.GetPlato(id);
             if (plato == null)
             {

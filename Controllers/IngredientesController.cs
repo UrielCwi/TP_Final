@@ -10,8 +10,9 @@ namespace TP_FINAL.Controllers
             return View(ingredientes);
         }
 
-        public IActionResult Create()
+        public IActionResult Create(int idUsuario)
         {
+            ViewBag.Usuario=BD.GetUsuario(idUsuario);
             return View();
         }
 
@@ -26,8 +27,9 @@ namespace TP_FINAL.Controllers
             return View(ingrediente);
         }
 
-        public IActionResult Editar(int id)
+        public IActionResult Editar(int id, int idUsuario)
         {
+            ViewBag.Usuario=BD.GetUsuario(idUsuario);
             Ingrediente ingrediente = BD.GetIngrediente(id);
             if (ingrediente == null)
             {
@@ -48,8 +50,9 @@ namespace TP_FINAL.Controllers
         }
 
         [HttpPost]
-        public IActionResult Eliminar(int id)
+        public IActionResult Eliminar(int id, int idUsuario)
         {
+            ViewBag.Usuario=BD.GetUsuario(idUsuario);
             Ingrediente ingrediente = BD.GetIngrediente(id);
             if (ingrediente == null)
             {

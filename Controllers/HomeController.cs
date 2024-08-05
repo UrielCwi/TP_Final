@@ -14,13 +14,15 @@ public class HomeController : Controller
         ViewBag.ErrorMessage = errorMessage;
         return View();
     }*/
-    public IActionResult MandarRegistro()
+    public IActionResult MandarRegistro(int idUsuario)
     {
+        ViewBag.Usuario=BD.GetUsuario(idUsuario);
         ViewBag.BarraBusqueda = false;
         return View("Registro");
     }
-    public IActionResult MandarContraseña()
+    public IActionResult MandarContraseña(int idUsuario)
     {
+        ViewBag.Usuario=BD.GetUsuario(idUsuario);
         ViewBag.BarraBusqueda = false;
         return View("RecuperarContraseña");
     }
@@ -86,11 +88,11 @@ public class HomeController : Controller
         ViewBag.BarraBusqueda = false;
         return View("Tareas");
     }*/
-    public IActionResult Home(int id)
+    public IActionResult Home(int id, int idUsuario)
     {
-        
+        ViewBag.Usuario=BD.GetUsuario(idUsuario);
         //ViewBag.Tareas = BD.GetTareas(IdUsuario);
-       // ViewBag.Categorias = BD.GetCategorias(IdUsuario);
+       ViewBag.Categorias = BD.GetCategorias(idUsuario);
         ViewBag.BarraBusqueda = true;
         return View();
     }
@@ -98,13 +100,13 @@ public class HomeController : Controller
     {
         BD.AgregarTarea(tarea);
         return RedirectToAction("Home", new{IdUsuario = tarea.IdUsuario});
-    }
+    }*/
      public IActionResult AgregarCategoria (Categorias Categoria)
     {
         BD.AgregarCategoria(Categoria);
-        return RedirectToAction("Home", new{IdUsuario = Categoria.IdUsuario});
+        return RedirectToAction("Home", new{Id = Categoria.id});
     }
-    public IActionResult EditarTarea (Tareas tarea)
+    /*public IActionResult EditarTarea (Tareas tarea)
     {
         BD.EditarTarea(tarea);
         return RedirectToAction("Home", new{IdUsuario = tarea.IdUsuario});
@@ -117,20 +119,20 @@ public class HomeController : Controller
     {
         BD.BorrarTarea(IdTarea);
         return RedirectToAction("Home", new{IdUsuario = IdUsuario});
-    }
-    public IActionResult BuscarTareaPorNombre(string nombre, int IdUsuario)
+    }*/
+    public IActionResult BuscarTareaPorNombre(string nombre, int idUsuario)
     {
         ViewBag.BarraBusqueda = false;
-        ViewBag.Tareas = BD.GetTareas(IdUsuario); 
+        ViewBag.Tareas = BD.GetPlato(idUsuario); 
         if (!string.IsNullOrEmpty(nombre))
         {
-            ViewBag.Tareas = BD.BuscarTareaPorNombre(IdUsuario, nombre);
+            ViewBag.Tareas = BD.BuscarPlatoPorNombre(idUsuario, nombre);
         }
-        ViewBag.Categorias = BD.GetCategorias(IdUsuario);
-        ViewBag.Usuario = BD.GetUsuario(IdUsuario);
+        ViewBag.Categorias = BD.GetCategorias(idUsuario);
+        ViewBag.Usuario = BD.GetUsuario(idUsuario);
         return View("Home");
     }
-    public IActionResult MarcarCompletado(int IdUsuario, int IdTarea){
+    /*public IActionResult MarcarCompletado(int IdUsuario, int IdTarea){
         BD.Hecho(IdTarea);
         return RedirectToAction("Home", new{IdUsuario = IdUsuario});
     }
