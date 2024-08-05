@@ -13,11 +13,6 @@
         <input type="text" class="form-control" name="nombre" id="nombrePlato" text="@Model.nombre" required />
         <span asp-validation-for="nombre" class="text-danger"></span>
     </div>
-    <div class="form-group">
-        <label asp-for="idCategoria" class="control-label" text="IdCategoria"></label>
-        <input type="number" class="form-control" name="idCategoria" id="idCategoria" text="@Model.idCategoria" required />
-        <span asp-validation-for="idCategoria" class="text-danger"></span>
-    </div>
     <select class="form-select" name="id" aria-label="Default select example">
             <option selected>Elegi una categoria</option>
             @foreach (Categorias a in ViewBag.Categorias)

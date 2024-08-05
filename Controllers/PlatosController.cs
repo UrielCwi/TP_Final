@@ -31,12 +31,12 @@ namespace TP_FINAL.Controllers
         public IActionResult Editar(int id, int idUsuario)
         {
             Plato plato = BD.GetPlato(id);
+            ViewBag.Usuario=BD.GetUsuario(idUsuario);
             if (plato == null)
             {
                 return NotFound();
             }
             ViewBag.Categorias=BD.GetCategorias(plato.id);
-            ViewBag.Usuario=BD.GetUsuario(idUsuario);
             return View(plato);
         }
 

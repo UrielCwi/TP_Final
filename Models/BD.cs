@@ -39,12 +39,12 @@ public class BD{
             return usuario;
         }
     public static Usuario GetUsuario(int id){
-        Usuario Usuario = null;
         using(SqlConnection db = new SqlConnection(_connectionString)){
-            string sp = "ObtenerUsuario";
-            Usuario = db.QueryFirstOrDefault<Usuario>(sp, new{IDo = id}, commandType: CommandType.StoredProcedure);
+            string sp = "GetUsuario";
+            var Usuario = db.QueryFirstOrDefault<Usuario>(sp, new{IdUsuario = id}, commandType: CommandType.StoredProcedure);
+            return Usuario;
         }
-        return Usuario;
+       
     }
     public static List<Plato> GetPlatos()
         {
