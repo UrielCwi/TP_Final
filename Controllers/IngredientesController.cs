@@ -6,6 +6,7 @@ namespace TP_FINAL.Controllers
     {
         public IActionResult Index()
         {
+            ViewBag.Ingredientes=BD.GetIngredientes();
             List<Ingrediente> ingredientes = BD.GetIngredientes();
             return View(ingredientes);
         }
@@ -30,6 +31,7 @@ namespace TP_FINAL.Controllers
         public IActionResult Editar(int id, int idUsuario)
         {
             ViewBag.Usuario=BD.GetUsuario(idUsuario);
+            ViewBag.BarraBusqueda = true;
             Ingrediente ingrediente = BD.GetIngrediente(id);
             if (ingrediente == null)
             {

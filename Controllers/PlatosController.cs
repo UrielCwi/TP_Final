@@ -31,6 +31,7 @@ namespace TP_FINAL.Controllers
         public IActionResult Editar(int id, int idUsuario)
         {
             Plato plato = BD.GetPlato(id);
+            ViewBag.BarraBusqueda = true;
             ViewBag.Usuario = BD.GetUsuario(idUsuario);
             if (plato == null)
             {
