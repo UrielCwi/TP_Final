@@ -6,7 +6,7 @@ public class HomeController : Controller
 {
     public IActionResult Index()
     {
-        ViewBag.BarraBusqueda = false;
+        ViewBag.BarraBusqueda = true;
         return View();
     }
     /*public IActionResult Index(string errorMessage = null)
@@ -17,18 +17,18 @@ public class HomeController : Controller
     public IActionResult MandarRegistro(int idUsuario)
     {
         ViewBag.Usuario=BD.GetUsuario(idUsuario);
-        ViewBag.BarraBusqueda = false;
+        ViewBag.BarraBusqueda = true;
         return View("Registro");
     }
     public IActionResult MandarContraseña(int idUsuario)
     {
         ViewBag.Usuario=BD.GetUsuario(idUsuario);
-        ViewBag.BarraBusqueda = false;
+        ViewBag.BarraBusqueda = true;
         return View("RecuperarContraseña");
     }
     public IActionResult Login(string Usuario, string Contraseña)
     {
-        ViewBag.BarraBusqueda = false;
+        ViewBag.BarraBusqueda = true;
         ViewBag.Error = null;
         ViewBag.Usuario = BD.LoginUsuario(Usuario, Contraseña);
         ViewBag.Plato=BD.GetPlatos();
@@ -79,9 +79,9 @@ public class HomeController : Controller
         ViewBag.BarraBusqueda = false;
         return View("Tareas");
     }*/
-    public IActionResult Home(int id, int idUsuario)
+    public IActionResult Home(int idUsuario)
     {
-        ViewBag.Usuario=BD.GetUsuario(idUsuario);
+        ViewBag.Usuario = BD.GetUsuario(idUsuario);
         //ViewBag.Tareas = BD.GetTareas(IdUsuario);
        ViewBag.Categorias = BD.GetCategorias(idUsuario);
         ViewBag.BarraBusqueda = true;
@@ -119,5 +119,16 @@ public class HomeController : Controller
     public List<Tareas> GetTareas(int IdUsuario){
         return BD.GetTareas(IdUsuario);
     }*/
+    public IActionResult BuscarPlatoPorNombre(string nombre, int idUsuario)
+        {
+            ViewBag.BarraBusqueda = true;
+            ViewBag.Plato = BD.GetPlato(idUsuario); 
+            if (!string.IsNullOrEmpty(nombre))
+            {
+                ViewBag.Plato = BD.BuscarPlatoPorNombre (nombre);
+            }
+            ViewBag.Usuario = BD.GetUsuario(idUsuario);
+            return View("Home");
+        }
 }
 

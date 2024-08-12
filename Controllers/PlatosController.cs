@@ -31,12 +31,12 @@ namespace TP_FINAL.Controllers
         public IActionResult Editar(int id, int idUsuario)
         {
             Plato plato = BD.GetPlato(id);
-            ViewBag.Usuario=BD.GetUsuario(idUsuario);
+            ViewBag.Usuario = BD.GetUsuario(idUsuario);
             if (plato == null)
             {
                 return NotFound();
             }
-            ViewBag.Categorias=BD.GetCategorias(plato.id);
+            ViewBag.Categorias =BD.GetCategorias(plato.id);
             return View(plato);
         }
 
@@ -68,19 +68,6 @@ namespace TP_FINAL.Controllers
         {
             BD.EliminarPlato(id);
             return RedirectToAction(nameof(Index));
-        }
-
-        public IActionResult BuscarPlatoPorNombre(string nombre, int idUsuario)
-        {
-        ViewBag.BarraBusqueda = false;
-        ViewBag.Platos = BD.GetPlato(idUsuario); 
-        if (!string.IsNullOrEmpty(nombre))
-        {
-            ViewBag.Platos = BD.BuscarPlatoPorNombre(idUsuario, nombre);
-        }
-        ViewBag.Categorias = BD.GetCategorias(idUsuario);
-        ViewBag.Usuario = BD.GetUsuario(idUsuario);
-        return View("Home");
         }
     }
 }

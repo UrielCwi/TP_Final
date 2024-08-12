@@ -6,7 +6,7 @@
 
 <h2>@ViewData["Title"]</h2>
 
-<form Action='@Url.Action("Editar","Platos")' method="post">
+<form Action='@Url.Action("Editar","Platos")' method="post" style="position: absolute;top: 20%">
     <input type="hidden" name="id" value="@Model.id" />
     <div class="form-group">
         <label asp-for="nombre" class="control-label" text="Nombre"></label>
@@ -20,15 +20,6 @@
               <option value="@a.id">@a.nombre</option>
             }
           </select> 
-    @*USAR UN SELECT PARA HACER DESPLEGABLE LO DE ID CATEGORIA
-    <select class="form-select" name="IdCategoria" aria-label="Default select example">
-            <option selected>Elegi una categoria</option>
-            @foreach (Categorias a in ViewBag.Categorias)
-            {
-              <option value="@a.IdCategoria">@a.nombre</option>
-            }
-          </select> USAR UN SELECT PARA HACER DESPLEGABLE LO DEID CATEGORIA*@
-
     <div class="form-group">
         <label asp-for="precio" class="control-label" text="Precio"></label>
         <input type="number" class="form-control" name="precio" id="precio" text="@Model.precio" required />
