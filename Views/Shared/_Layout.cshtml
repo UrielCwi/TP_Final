@@ -28,14 +28,14 @@
               <li class="nav-item">
                 <a class="nav-link" href='@Url.Action("Ingredientes","Home", new{IdUsuario = ViewBag.Usuario.id})'>Ingredientes</a>
               </li>
-              @* if (ViewBag.BarraBusqueda){
+              if (ViewBag.BarraBusqueda){
               <button type="button" class="btn btn-outline-success me-2" data-bs-toggle="modal" data-bs-target="#ModalAgregarTarea">Nueva tarea</button>
-              <form class="d-flex" method="get" action='@Url.Action("BuscarTareaPorNombre", "Home")'>
-                <input type="hidden" name="IdUsuario" value="@ViewBag.Usuario.idUsuario"></input>
+              <form class="d-flex" method="get" action='@Url.Action("BuscarPlatoPorNombre", "Home")'>
+                <input type="hidden" name="IdUsuario" value="@ViewBag.Usuario.id"></input>
                 <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" name="nombre" id="nombre">
                 <button class="btn btn-outline-primary" type="submit">Buscar</button>
               </form>
-              }*@
+              }
             </ul>
           </div>
           <div class="navbar-end">

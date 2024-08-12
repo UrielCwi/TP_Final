@@ -71,15 +71,6 @@ public class HomeController : Controller
         BD.RecuperarContraseña(Usuario, Codigo, NuevaContraseña);
         return RedirectToAction("Index");
     }
-    
-    public IActionResult Calendario(int IdUsuario)
-    {
-        ViewBag.Usuario = BD.GetUsuario(IdUsuario);
-        ViewBag.Categoria = BD.GetCategorias(IdUsuario);        
-        ViewBag.Tareas = BD.GetTareas(IdUsuario);
-        ViewBag.BarraBusqueda = false;
-        return View("Calendario");
-    }
     public IActionResult Tareas(int IdUsuario)
     {
         ViewBag.Usuario = BD.GetUsuario(IdUsuario);
@@ -120,18 +111,7 @@ public class HomeController : Controller
         BD.BorrarTarea(IdTarea);
         return RedirectToAction("Home", new{IdUsuario = IdUsuario});
     }*/
-    public IActionResult BuscarTareaPorNombre(string nombre, int idUsuario)
-    {
-        ViewBag.BarraBusqueda = false;
-        ViewBag.Tareas = BD.GetPlato(idUsuario); 
-        if (!string.IsNullOrEmpty(nombre))
-        {
-            ViewBag.Tareas = BD.BuscarPlatoPorNombre(idUsuario, nombre);
-        }
-        ViewBag.Categorias = BD.GetCategorias(idUsuario);
-        ViewBag.Usuario = BD.GetUsuario(idUsuario);
-        return View("Home");
-    }
+   
     /*public IActionResult MarcarCompletado(int IdUsuario, int IdTarea){
         BD.Hecho(IdTarea);
         return RedirectToAction("Home", new{IdUsuario = IdUsuario});

@@ -69,5 +69,18 @@ namespace TP_FINAL.Controllers
             BD.EliminarPlato(id);
             return RedirectToAction(nameof(Index));
         }
+
+        public IActionResult BuscarPlatoPorNombre(string nombre, int idUsuario)
+        {
+        ViewBag.BarraBusqueda = false;
+        ViewBag.Platos = BD.GetPlato(idUsuario); 
+        if (!string.IsNullOrEmpty(nombre))
+        {
+            ViewBag.Platos = BD.BuscarPlatoPorNombre(idUsuario, nombre);
+        }
+        ViewBag.Categorias = BD.GetCategorias(idUsuario);
+        ViewBag.Usuario = BD.GetUsuario(idUsuario);
+        return View("Home");
+        }
     }
 }
