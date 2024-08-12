@@ -4,8 +4,10 @@ namespace TP_FINAL.Controllers
 {
     public class IngredientesController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(int idUsuario)
         {
+            ViewBag.BarraBusqueda = true;
+            ViewBag.Usuario=BD.GetUsuario(idUsuario);
             ViewBag.Ingredientes=BD.GetIngredientes();
             List<Ingrediente> ingredientes = BD.GetIngredientes();
             return View(ingredientes);

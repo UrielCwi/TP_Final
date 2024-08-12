@@ -26,7 +26,7 @@
                 <a class="nav-link" aria-current="page" href='@Url.Action("Home","Home", new{IdUsuario = ViewBag.Usuario.id})'>Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href='@Url.Action("Ingredientes","Home", new{IdUsuario = ViewBag.Usuario.id})'>Ingredientes</a>
+                <a class="nav-link" href='@Url.Action("Index","Ingredientes", new{IdUsuario = ViewBag.Usuario.id})'>Ingredientes</a>
               </li>
               @if (ViewBag.BarraBusqueda)
               {
