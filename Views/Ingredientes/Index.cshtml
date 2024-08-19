@@ -22,6 +22,7 @@
             <th>Descripcion</th>
             <th>Cantidad</th>
             <th>Valor por Unidad</th>
+            <th>Activo</th>
         </tr>
     </thead>
     <tbody>
@@ -31,7 +32,7 @@
             <td>@item.descripcion</td>
             <td>@item.id</td>
             <td>
-                <a asp-action="Editar" asp-route-id="@item.id" class="btn btn-secondary">Editar</a> |
+                <a href='@Url.Action("Editar", "ingredientes", new{IdUsuario = ViewBag.Usuario.id})' class="btn btn-sm btn-outline-secondary">Editar</a>
                 <a asp-action="Eliminar" asp-route-id="@item.id" class="btn btn-danger">Eliminar</a>
             </td>
         </tr>

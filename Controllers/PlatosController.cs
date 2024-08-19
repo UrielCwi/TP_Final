@@ -15,7 +15,8 @@ namespace TP_FINAL.Controllers
         {
             ViewBag.Usuario=BD.GetUsuario(idUsuario);
             ViewBag.BarraBusqueda = true;
-            ViewBag.Categorias = BD.GetCategorias();
+            ViewBag.Usuario = BD.GetUsuario(idUsuario);
+            ViewBag.Categorias=BD.GetCategorias();
             return View();
         }
 

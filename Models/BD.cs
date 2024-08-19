@@ -79,20 +79,22 @@ public class BD{
                 return db.QueryFirstOrDefault<Plato>(sp, new { Id = id }, commandType: CommandType.StoredProcedure);
             }
         }
+ 
          public static Ingrediente GetIngrediente(int id)
         {
             using (SqlConnection db = new SqlConnection(_connectionString))
             {
-                string sp = "ObtenerIngrediente";
+                string sp = "ObtenerIngredientesPorId";
                 return db.QueryFirstOrDefault<Ingrediente>(sp, new { Id = id }, commandType: CommandType.StoredProcedure);
             }
         }
+        
         public static void InsertarPlato(Plato plato)
         {
             using (SqlConnection db = new SqlConnection(_connectionString))
             {
                 string sp = "InsertarPlato";
-                db.Execute(sp, new { plato.nombre, plato.idCategoria, plato.precio }, commandType: CommandType.StoredProcedure);
+                db.Execute(sp, new { plato.nombre, plato.idCategoria, plato.precio, plato.activo }, commandType: CommandType.StoredProcedure);
             }
         }
          public static void InsertarIngrediente(Ingrediente ingrediente)
@@ -108,7 +110,7 @@ public class BD{
             using (SqlConnection db = new SqlConnection(_connectionString))
             {
                 string sp = "ActualizarPlato";
-                db.Execute(sp, new {plato.id, plato.nombre, plato.idCategoria, plato.precio }, commandType: CommandType.StoredProcedure);
+                db.Execute(sp, new {plato.id, plato.nombre, plato.idCategoria, plato.precio, plato.activo }, commandType: CommandType.StoredProcedure);
             }
         }
         public static void ActualizarIngrediente(Ingrediente ingrediente)

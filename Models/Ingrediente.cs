@@ -4,5 +4,7 @@ public class Ingrediente
     public string descripcion { get; set; }
     public string cantidad { get; set; }
     public int valorUnidad { get; set; }
+    public bool activo { get; set; }
+
 }
     
