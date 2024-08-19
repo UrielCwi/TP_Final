@@ -7,17 +7,20 @@ namespace TP_FINAL.Controllers
         public IActionResult Index()
         {
             List<Plato> platos = BD.GetPlatos();
+            
             return View(platos);
         }
 
-        public IActionResult Create(int idUsuario)
+        public IActionResult Crear(int idUsuario)
         {
             ViewBag.Usuario=BD.GetUsuario(idUsuario);
+            ViewBag.BarraBusqueda = true;
+            ViewBag.Categorias = BD.GetCategorias();
             return View();
         }
 
         [HttpPost]
-        public IActionResult Create(Plato plato)
+        public IActionResult Crear(Plato plato)
         {
             if (ModelState.IsValid)
             {
@@ -37,7 +40,7 @@ namespace TP_FINAL.Controllers
             {
                 return NotFound();
             }
-            ViewBag.Categorias =BD.GetCategorias(plato.id);
+            ViewBag.Categorias = BD.GetCategorias(plato.id);
             return View(plato);
         }
 

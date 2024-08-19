@@ -7,23 +7,24 @@
 <h2>@ViewData["Title"]</h2>
 
 <form Action='@Url.Action("Crear","Platos")' method="post">
-    <input type="hidden" name="id" value="@Model.id" />
     <div class="form-group">
         <label asp-for="nombre" class="control-label"></label>
-        <input type="text" name="nombre" class="form-control" id="nombrePlato" text="@Model.nombre" required />
+        <input type="text" name="nombre" class="form-control" id="nombrePlato"  required />
         <span asp-validation-for="nombre" class="text-danger"></span>
     </div>
-    <div class="form-group">
-        <label asp-for="idCategoria" class="control-label"></label>
-        <input name="idCategoria" class="form-control" type="number" id="idCategoria" text="@Model.nombre" required />
-        <span asp-validation-for="idCategoria" class="text-danger"></span>
-    </div>
+    <select class="form-select" name="idCategoria" aria-label="Default select example">
+            <option selected>Elegi una categoria</option>
+            @foreach (Categorias a in ViewBag.Categorias)
+            {
+              <option value="@a.id">@a.nombre</option>
+            }   
+    </select>
     <div class="form-group">
         <label asp-for="precio" class="control-label"></label>
-        <input name="precio" class="form-control" type="number" id="precio" text="@Model.precio" required />
+        <input name="precio" class="form-control" type="number" id="precio" required />
         <span asp-validation-for="precio" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <input type="submit" value="Crear" class="btn btn-primary" />
+        <input type="submit" value="Guardar" class="btn btn-primary" />
     </div>
 </form>

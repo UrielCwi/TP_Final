@@ -13,14 +13,15 @@ namespace TP_FINAL.Controllers
             return View(ingredientes);
         }
 
-        public IActionResult Create(int idUsuario)
+        public IActionResult Crear(int idUsuario)
         {
             ViewBag.Usuario=BD.GetUsuario(idUsuario);
+            ViewBag.BarraBusqueda = true;
             return View();
         }
 
         [HttpPost]
-        public IActionResult Create(Ingrediente ingrediente)
+        public IActionResult Crear(Ingrediente ingrediente)
         {
             if (ModelState.IsValid)
             {

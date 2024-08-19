@@ -7,7 +7,7 @@ namespace TP_FINAL.Models;
 public class BD{
     private static string _connectionString =  @"Server=.; Database=Grev; Trusted_Connection=True";
     
-    public static List<Categorias> GetCategorias(int id){
+    public static List<Categorias> GetCategorias(){
         List<Categorias> Categorias = new List<Categorias>();
         using(SqlConnection db = new SqlConnection(_connectionString)){
             string sp = "ObtenerCategorias";
@@ -15,6 +15,16 @@ public class BD{
         }
         return Categorias;
     }
+    public static List<Categorias> GetCategorias(int id)
+{
+    List<Categorias> Categorias = new List<Categorias>();
+    using(SqlConnection db = new SqlConnection(_connectionString))
+    {
+        string sp = "ObtenerCategoriasPorId";
+        Categorias = db.Query<Categorias>(sp, new { id = id }, commandType: CommandType.StoredProcedure).ToList();
+    }
+    return Categorias;
+}
     public static Usuario LoginUsuario(string email, string contraseña)
         {
             Usuario usuario = null;

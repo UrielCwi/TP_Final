@@ -13,13 +13,13 @@
         <input type="text" class="form-control" name="nombre" id="nombrePlato" text="@Model.nombre" required />
         <span asp-validation-for="nombre" class="text-danger"></span>
     </div>
-    <select class="form-select" name="id" aria-label="Default select example">
+    <select class="form-select" name="idCategoria" aria-label="Default select example">
             <option selected>Elegi una categoria</option>
             @foreach (Categorias a in ViewBag.Categorias)
             {
               <option value="@a.id">@a.nombre</option>
-            }
-          </select> 
+            }   
+    </select>
     <div class="form-group">
         <label asp-for="precio" class="control-label" text="Precio"></label>
         <input type="number" class="form-control" name="precio" id="precio" text="@Model.precio" required />

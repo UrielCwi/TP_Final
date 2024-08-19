@@ -28,7 +28,7 @@
         }
     </div>
     <div>
-      <a href='@Url.Action("Crear", "Platos")' class="btn btn-primary" style="width:200px; position: absolute;top: 20%" >Agregar Nuevo Plato</a>
+      <a href='@Url.Action("Crear", "Platos", new{IdUsuario = ViewBag.Usuario.id})' class="btn btn-primary" style="width:200px; position: absolute;top: 20%" >Agregar Nuevo Plato</a>
     </div>
 </div>
 @*
