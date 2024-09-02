@@ -1,14 +1,13 @@
 @model List<Plato>
 @{
-    ViewData["Title"] = "Gestion de Platos";
+    ViewData["Title"] = "Gestión de Platos";
 }
 
 <h2>@ViewData["Title"]</h2>
 
-<h2>Gestión de Platos</h2>
-
 <div>
-    <a asp-action="Create" class="btn btn-primary">Agregar Nuevo Plato</a>
+    <a asp-action="Crear" class="btn btn-primary">Agregar Nuevo Plato</a>
+    <a asp-action="CrearCategoria" class="btn btn-secondary">Agregar Nueva Categoría</a>
 </div>
 
 <table class="table">

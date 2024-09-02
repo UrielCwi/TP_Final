@@ -82,9 +82,10 @@ public class HomeController : Controller
     public IActionResult Home(int idUsuario)
     {
         ViewBag.Usuario = BD.GetUsuario(idUsuario);
-        //ViewBag.Tareas = BD.GetTareas(IdUsuario);
-       ViewBag.Categorias = BD.GetCategorias(idUsuario);
+        ViewBag.Categorias = BD.GetCategorias(idUsuario);
         ViewBag.BarraBusqueda = true;
+        List<Plato> platos = BD.GetPlatos();            
+        ViewBag.BarraBusqueda = true; 
         return View();
     }
    /* public IActionResult AgregarTarea (Tareas tarea)

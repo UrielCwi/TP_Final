@@ -30,10 +30,16 @@
     {
         <tr>
             <td>@item.descripcion</td>
-            <td>@item.id</td>
+            <td>@item.cantidad</td>
+            <td>@item.valorUnidad</td>
+            <td>@item.activo</td>
             <td>
                 <a href='@Url.Action("Editar", "ingredientes", new{IdUsuario = ViewBag.Usuario.id})' class="btn btn-sm btn-outline-secondary">Editar</a>
-                <a asp-action="Eliminar" asp-route-id="@item.id" class="btn btn-danger">Eliminar</a>
+                <form action='@Url.Action("Eliminar", "Ingredientes")' method="post" style="display:inline;">
+                    <input type="hidden" name="id" value="@item.id" />
+                    <input type="hidden" name="idUsuario" value="@ViewBag.Usuario.id" />
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este ingrediente?');">Eliminar</button>
+                </form>
             </td>
         </tr>
     }

@@ -11,43 +11,43 @@
         <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     </head>
     <body>
-<div class= "row">
-  <div class= "col-ig-6">
-    <header style="position:fixed; top: 0; margin: 10px 0px 20px 0px;">
-      <nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">GREV</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href='@Url.Action("Index","Platos", new{IdUsuario = ViewBag.Usuario.id})'>Platos</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href='@Url.Action("Index","Ingredientes", new{IdUsuario = ViewBag.Usuario.id})'>Ingredientes</a>
-              </li>
-              @if (ViewBag.BarraBusqueda)
-              {
-                <form class="d-flex" method="get" action='@Url.Action("BuscarPlatoPorNombre", "Home")'>
-                  <input type="hidden" name="idUsuario" value="@ViewBag.Usuario.id"></input>
-                  <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" name="nombre" id="nombre">
-                  <button class="btn btn-outline-primary" type="submit">Buscar</button>
-                </form>
-              }
-            </ul>
-          </div>
-          <div class="navbar-end">
-            <a class="nav-link ms-4 text-danger" href='@Url.Action("Home","Home", new{IdUsuario = ViewBag.Usuario.id})'>Cerrar sesión</a>
-          </div>
+        <div class="row">
+            <div class="col-ig-6">
+                <header style="position:fixed; top: 0; margin: 10px 0px 20px 0px;">
+                    <nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+                        <div class="container-fluid">
+                            <a class="navbar-brand" href='@Url.Action("Home","Home", new{IdUsuario = ViewBag.Usuario.id})'>GREV</a>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarNav">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href='@Url.Action("Index","Platos", new{IdUsuario = ViewBag.Usuario.id})'>Platos</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href='@Url.Action("Index","Ingredientes", new{IdUsuario = ViewBag.Usuario.id})'>Ingredientes</a>
+                                    </li>
+                                    @if (ViewBag.BarraBusqueda)
+                                    {
+                                        <form class="d-flex" method="get" action='@Url.Action("BuscarPlatoPorNombre", "Home")'>
+                                            <input type="hidden" name="idUsuario" value="@ViewBag.Usuario.id"></input>
+                                            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" name="nombre" id="nombre">
+                                            <button class="btn btn-outline-primary" type="submit">Buscar</button>
+                                        </form>
+                                    }
+                                </ul>
+                            </div>
+                            <div class="navbar-end">
+                                <a class="nav-link ms-4 text-danger" href='@Url.Action("Home","Home", new{IdUsuario = ViewBag.Usuario.id})'>Cerrar sesión</a>
+                            </div>
+                        </div>
+                    </nav>
+                </header>
+            </div>
         </div>
-      </nav>
-    </header>
-  </div>
-</div>
 
-  @RenderBody()
-  @await RenderSectionAsync("Scripts", required: false) 
+        @RenderBody()
+        @await RenderSectionAsync("Scripts", required: false)
     </body>
 </html>

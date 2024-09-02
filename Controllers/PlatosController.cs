@@ -4,10 +4,12 @@ namespace TP_FINAL.Controllers
 {
     public class PlatosController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(int idUsuario)
         {
-            List<Plato> platos = BD.GetPlatos();
-            
+            ViewBag.BarraBusqueda = true;
+            ViewBag.Usuario=BD.GetUsuario(idUsuario);
+            ViewBag.Platos=BD.GetPlatos();
+            List<Plato> platos = BD.GetPlatos();            
             return View(platos);
         }
 
@@ -73,6 +75,22 @@ namespace TP_FINAL.Controllers
         {
             BD.EliminarPlato(id);
             return RedirectToAction(nameof(Index));
+        }
+         public IActionResult CrearCategoria()
+        {
+            ViewBag.BarraBusqueda = true;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CrearCategoria(Categorias categoria)
+        {
+            if (ModelState.IsValid)
+            {
+                BD.AgregarCategoria(categoria);
+                return RedirectToAction("Index");
+            }
+            return View(categoria);
         }
     }
 }

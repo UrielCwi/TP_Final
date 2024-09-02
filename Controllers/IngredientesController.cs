@@ -70,7 +70,8 @@ namespace TP_FINAL.Controllers
         public IActionResult DeleteConfirmed(int id)
         {
             BD.EliminarIngrediente(id);
+            BD.DesactivarIngrediente(id);
             return RedirectToAction(nameof(Index));
         }
     }
-}
+    }
