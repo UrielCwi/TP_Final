@@ -84,7 +84,7 @@ public class HomeController : Controller
         ViewBag.Usuario = BD.GetUsuario(idUsuario);
         ViewBag.Categorias = BD.GetCategorias(idUsuario);
         ViewBag.BarraBusqueda = true;
-        List<Plato> platos = BD.GetPlatos();            
+        ViewBag.Plato= BD.GetPlatos();        
         ViewBag.BarraBusqueda = true; 
         return View();
     }

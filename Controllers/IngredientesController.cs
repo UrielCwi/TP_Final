@@ -54,24 +54,23 @@ namespace TP_FINAL.Controllers
             return View(ingrediente);
         }
 
+      
         [HttpPost]
         public IActionResult Eliminar(int id, int idUsuario)
         {
-            ViewBag.Usuario=BD.GetUsuario(idUsuario);
-            Ingrediente ingrediente = BD.GetIngrediente(id);
-            if (ingrediente == null)
-            {
-                return NotFound();
-            }
-            return View(ingrediente);
-        }
-
-        [HttpPost, ActionName("Eliminar")]
-        public IActionResult DeleteConfirmed(int id)
-        {
+            //validar q no este en un plato
+            try{
             BD.EliminarIngrediente(id);
-            BD.DesactivarIngrediente(id);
-            return RedirectToAction(nameof(Index));
+            }catch(Exception)
+            {
+                ViewBag.ErrorEliminar = "No se puede eliminar el ingrediente";
+            }
+            
+            ViewBag.BarraBusqueda = true;
+            ViewBag.Usuario=BD.GetUsuario(idUsuario);
+            ViewBag.Ingredientes=BD.GetIngredientes();
+            List<Ingrediente> ingredientes = BD.GetIngredientes();
+            return View("Index",ingredientes);
         }
     }
     }

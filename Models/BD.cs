@@ -118,7 +118,7 @@ public class BD{
             using (SqlConnection db = new SqlConnection(_connectionString))
             {
                 string sp = "ActualizarIngrediente";
-                db.Execute(sp, new {ingrediente.id, ingrediente.descripcion, ingrediente.cantidad, ingrediente.valorUnidad }, commandType: CommandType.StoredProcedure);
+                db.Execute(sp, new {ingrediente.id, ingrediente.descripcion, ingrediente.cantidad, ingrediente.valorUnidad, ingrediente.activo}, commandType: CommandType.StoredProcedure);
             }
         }
 
@@ -138,14 +138,7 @@ public class BD{
                 db.Execute(sp, new { Id = id }, commandType: CommandType.StoredProcedure);
             }
         }
-        public static void DesactivarIngrediente(int id)
-        {
-            using (SqlConnection db = new SqlConnection(_connectionString))
-            {
-                string sp = "DesactivarIngrediente"; // Nombre del procedimiento almacenado
-                db.Execute(sp, new { Id = id }, commandType: CommandType.StoredProcedure);
-            }
-        }
+
 
    /* public static Tareas VerDetalleTarea(int IdTarea){
         Tareas tarea = null;

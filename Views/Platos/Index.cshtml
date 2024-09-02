@@ -5,9 +5,18 @@
 
 <h2>@ViewData["Title"]</h2>
 
+<h2>Gestión de Platos</h2>
+
+<div class="container">
+    <h2>Lista de Platos</h2>
+
+</div>
+
+<h2>@ViewBag.ErrorEliminar</h2>
+
 <div>
     <a asp-action="Crear" class="btn btn-primary">Agregar Nuevo Plato</a>
-    <a asp-action="CrearCategoria" class="btn btn-secondary">Agregar Nueva Categoría</a>
+<a href='@Url.Action("CrearCategoria", "Categoria")' class="btn btn-primary">Agregar Nueva Categoría</a>
 </div>
 
 <table class="table">
@@ -25,8 +34,8 @@
             <td>@item.nombre</td>
             <td>@item.idCategoria</td>
             <td>
-                <a asp-action="Editar" asp-route-id="@item.id" class="btn btn-secondary">Editar</a> |
-                <a asp-action="Eliminar" asp-route-id="@item.id" class="btn btn-danger">Eliminar</a>
+                <a href='@Url.Action("Editar","Platos", new{IdUsuario = ViewBag.Usuario.id})' class="btn btn-secondary">Editar</a> |
+                <a href='@Url.Action("Eliminar","Platos", new{IdUsuario = ViewBag.Usuario.id})' class="btn btn-danger">Eliminar</a>
             </td>
         </tr>
     }

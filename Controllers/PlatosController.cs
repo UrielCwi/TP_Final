@@ -11,6 +11,7 @@ namespace TP_FINAL.Controllers
             ViewBag.Platos=BD.GetPlatos();
             List<Plato> platos = BD.GetPlatos();            
             return View(platos);
+    
         }
 
         public IActionResult Crear(int idUsuario)
@@ -61,13 +62,18 @@ namespace TP_FINAL.Controllers
         [HttpPost]
         public IActionResult Eliminar(int id, int idUsuario)
         {
-            ViewBag.Usuario=BD.GetUsuario(idUsuario);
-            Plato plato = BD.GetPlato(id);
-            if (plato == null)
+              try{
+            BD.EliminarPlato(id);
+            }catch(Exception)
             {
-                return NotFound();
+                ViewBag.ErrorEliminar = "No se puede eliminar el Plato";
             }
-            return View(plato);
+            
+            ViewBag.BarraBusqueda = true;
+            ViewBag.Usuario=BD.GetUsuario(idUsuario);
+            ViewBag.Platos=BD.GetPlatos();
+            List<Plato> platos = BD.GetPlatos();
+            return View("Index",platos);
         }
 
         [HttpPost, ActionName("Eliminar")]
