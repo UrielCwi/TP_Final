@@ -7,7 +7,7 @@ public class HomeController : Controller
     public IActionResult Index()
     {
         ViewBag.BarraBusqueda = true;
-        return View();
+        return View("Login");
     }
     /*public IActionResult Index(string errorMessage = null)
     {
