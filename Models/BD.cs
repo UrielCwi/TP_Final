@@ -63,6 +63,14 @@ public class BD{
                 return db.Query<Plato>(sp, commandType: CommandType.StoredProcedure).ToList();
             }
         }
+        public static List<Unidad> GetUnidad()
+        {
+            using (SqlConnection db = new SqlConnection(_connectionString))
+            {
+                string sp = "ObtenerUnidad";
+                return db.Query<Unidad>(sp, commandType: CommandType.StoredProcedure).ToList();
+            }
+        }
         public static List<Ingrediente> GetIngredientes()
         {
             using (SqlConnection db = new SqlConnection(_connectionString))
@@ -125,7 +133,7 @@ public class BD{
             using (SqlConnection db = new SqlConnection(_connectionString))
             {
                 string sp = "ActualizarIngrediente";
-                db.Execute(sp, new {ingrediente.id, ingrediente.descripcion, ingrediente.cantidad, ingrediente.valorUnidad, ingrediente.activo}, commandType: CommandType.StoredProcedure);
+                db.Execute(sp, new {ingrediente.id, ingrediente.descripcion, ingrediente.cantidad, ingrediente.valorUnidad, ingrediente.activo, ingrediente.idUnidad}, commandType: CommandType.StoredProcedure);
             }
         }
 

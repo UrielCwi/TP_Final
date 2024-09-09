@@ -27,6 +27,10 @@
             <label>Activo:</label>
             <p>@Model.activo</p>
         </div>
+        <div class="form-group">
+            <label>Unidad:</label>
+            <p>@Model.idUnidad</p>
+        </div>
         <button type="submit" class="btn btn-danger">Eliminar</button>
         <a href='@Url.Action("Index", "Ingredientes", new { IdUsuario = ViewBag.Usuario.id })' class="btn btn-secondary">Cancelar</a>
     </form>

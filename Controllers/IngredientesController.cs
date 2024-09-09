@@ -17,6 +17,7 @@ namespace TP_FINAL.Controllers
         {
             ViewBag.Usuario=BD.GetUsuario(idUsuario);
             ViewBag.BarraBusqueda = true;
+            ViewBag.Unidad=BD.GetUnidad();
             return View();
         }
 

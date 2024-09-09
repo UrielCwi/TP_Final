@@ -36,6 +36,7 @@
             <td>@item.cantidad</td>
             <td>@item.valorUnidad</td>
             <td>@item.activo</td>
+            <td>@item.idUnidad</td>
             <td>
                 <a href='@Url.Action("Editar", "ingredientes", new{IdUsuario = ViewBag.Usuario.id})' class="btn btn-sm btn-outline-secondary">Editar</a>
                 <form action='@Url.Action("Eliminar", "Ingredientes")' method="post" style="display:inline;">

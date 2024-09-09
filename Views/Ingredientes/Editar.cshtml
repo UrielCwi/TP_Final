@@ -24,6 +24,11 @@
         <span asp-validation-for="valorUnidad" class="text-danger"></span>
     </div>
     <div class="form-group">
+        <label asp-for="idUnidad" class="control-label" text="idUnidad"></label>
+        <input type="number" class="form-control" name="idUnidad" id="idUnidad" text="@Model.idUnidad" required />
+        <span asp-validation-for="idUnidad" class="text-danger"></span>
+    </div>
+    <div class="form-group">
         <label asp-for="activo" class="control-label" text="activo"></label>
         <input type="text" class="form-control" name="activo" id="activo" text="@Model.activo" required />
         <span asp-validation-for="activo" class="text-danger"></span>
