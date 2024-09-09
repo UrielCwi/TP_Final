@@ -32,7 +32,8 @@
         <input name="activo" class="form-control" type="number" id="activo" required />
         <span asp-validation-for="activo" class="text-danger"></span>
     </div>
-    <div class="form-group">
+    @*SOLUCIONAR ELEGIR INGREDIENTE, NO AGREGA PLATO TAMPOCO*@
+    @*<div class="form-group">
         <label for="ingrediente">Ingrediente</label>
         <select class="form-select" name="idIngrediente"  multiple aria-label="Seleccione los ingredientes">
             <option selected>Elegi un ingrediente</option>
@@ -41,7 +42,7 @@
                 <option value="@a.id">@a.descripcion</option>
             }   
         </select>
-    </div>
+    </div>*@
     <div class="form-group">
         <input type="submit" value="Guardar" class="btn btn-primary" />
     </div>

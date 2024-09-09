@@ -67,11 +67,11 @@ public class HomeController : Controller
         return RedirectToAction("Index");
     }
   */
-    public IActionResult Home(int idUsuario)
+    public IActionResult Home(int idUsuario, Ingrediente ingrediente)
     {
         ViewBag.Usuario = BD.GetUsuario(idUsuario);
         ViewBag.Categorias = BD.GetCategorias(idUsuario);
-        ViewBag.Plato= BD.GetPlatos();        
+        ViewBag.Plato= BD.GetPlatos();
         ViewBag.BarraBusqueda = true; 
         return View();
     }

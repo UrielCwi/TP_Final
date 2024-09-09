@@ -21,16 +21,17 @@
         <input name="valorUnidad" class="form-control" type="number" id="valorUnidad" required />
         <span asp-validation-for="valorUnidad" class="text-danger"></span>
     </div>
-   <div class="form-group">
-        <label for="categoria">Unidad</label>
+    @*NO SE AGREGA INGREDIENTE*@
+   @*<div class="form-group">
+        <label for="unidad">Unidad</label>
         <select class="form-select" name="idUnidad" aria-label="Default select example">
             <option selected>Elegi una unidad</option>
-            @foreach (Unidad a in ViewBag.unidad)
+            @foreach (Unidad a in ViewBag.Unidad)
             {
                 <option value="@a.id">@a.unidad</option>
             }   
         </select>
-    </div>
+    </div>*@
     <div class="form-group">
         <label asp-for="activo" class="control-label"></label>
         <input name="activo" class="form-control" type="number" id="activo" required />
