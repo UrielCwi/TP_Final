@@ -32,7 +32,7 @@ namespace TP_FINAL.Controllers
                 BD.InsertarPlato(plato);
                 foreach (var ingredienteId in ingredientesSeleccionados)
             {
-                BD.InsertarIngredientePlato(plato.id, ingredienteId, "1 ");
+                BD.InsertarIngredientePlato(plato.id, ingredienteId, "1");
             }
                 ViewBag.Categorias=BD.GetCategorias(plato.id);
                 return RedirectToAction(nameof(Index));
