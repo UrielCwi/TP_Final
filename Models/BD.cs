@@ -154,15 +154,7 @@ public class BD{
             tarea = db.QueryFirstOrDefault<Tareas>(sp, new{IdTarea = IdTarea}, commandType: CommandType.StoredProcedure);
         }
         return tarea;
-    }
-    public static List<Categorias> GetCategoriaById(int IdCategoria){
-        List<Categorias> Categorias = null;
-        using(SqlConnection db = new SqlConnection(_connectionString)){
-            string sp = "GetCategoriaById";
-            Categorias = db.Query<Categorias>(sp, new{IdCategoria = IdCategoria}, commandType: CommandType.StoredProcedure).ToList();
-        }
-        return Categorias;
-    }*/
+ */
     public static int RegistrarUsuario(Usuario usuario){
         int nuevoUsuarioId = -1;
         try{
@@ -194,7 +186,7 @@ public class BD{
      public static void AgregarCategoria(Categorias Categoria){
         using(SqlConnection db = new SqlConnection(_connectionString)){
             string sp = "AgregarCategoria";
-            db.Execute(sp, new{IdUsuario = Categoria.id, Nombre = Categoria.nombre}, commandType: CommandType.StoredProcedure);
+            db.Execute(sp, new{Nombre = Categoria.nombre}, commandType: CommandType.StoredProcedure);
         }
     }
     public static List<Plato> BuscarPlatoPorNombre(string nombre)

@@ -66,28 +66,21 @@ namespace TP_FINAL.Controllers
             return View(plato);
         }
 
-        [HttpPost]
         public IActionResult Eliminar(int id, int idUsuario)
         {
-              try{
+            //validar q no este en un plato
+            try{
             BD.EliminarPlato(id);
             }catch(Exception)
             {
-                ViewBag.ErrorEliminar = "No se puede eliminar el Plato";
+                ViewBag.ErrorEliminar = "No se puede eliminar el plato";
             }
             
             ViewBag.BarraBusqueda = true;
             ViewBag.Usuario=BD.GetUsuario(idUsuario);
-            ViewBag.Platos=BD.GetPlatos();
-            List<Plato> platos = BD.GetPlatos();
-            return View("Index",platos);
-        }
-
-        [HttpPost, ActionName("Eliminar")]
-        public IActionResult DeleteConfirmed(int id)
-        {
-            BD.EliminarPlato(id);
-            return RedirectToAction(nameof(Index));
+            ViewBag.Plato=BD.GetPlatos();
+            List<Plato> plato = BD.GetPlatos();
+            return View("Index",plato);
         }
         public IActionResult CrearCategoria(int idUsuario)   
         {
@@ -99,12 +92,12 @@ namespace TP_FINAL.Controllers
     
         }
         [HttpPost]
-        public IActionResult CrearCategoria(Categorias categoria)
+        public IActionResult CrearCategoria(Categorias categoria, int idUsuario)
         {
             if (ModelState.IsValid)
             {
                 BD.AgregarCategoria(categoria);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { idUsuario = idUsuario });
             }
             return View(categoria);
         }

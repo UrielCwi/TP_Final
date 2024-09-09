@@ -9,11 +9,6 @@ public class HomeController : Controller
         ViewBag.BarraBusqueda = true;
         return View("Index");
     }
-    /*public IActionResult Index(string errorMessage = null)
-    {
-        ViewBag.ErrorMessage = errorMessage;
-        return View();
-    }*/
     public IActionResult MandarRegistro(int idUsuario)
     {
         ViewBag.Usuario=BD.GetUsuario(idUsuario);
