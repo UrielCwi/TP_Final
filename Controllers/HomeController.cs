@@ -7,7 +7,7 @@ public class HomeController : Controller
     public IActionResult Index()
     {
         ViewBag.BarraBusqueda = true;
-        return View("Login");
+        return View("Index");
     }
     /*public IActionResult Index(string errorMessage = null)
     {
@@ -71,55 +71,32 @@ public class HomeController : Controller
         BD.RecuperarContraseña(Usuario, Codigo, NuevaContraseña);
         return RedirectToAction("Index");
     }
-    public IActionResult Tareas(int IdUsuario)
-    {
-        ViewBag.Usuario = BD.GetUsuario(IdUsuario);
-        ViewBag.Categoria = BD.GetCategorias(IdUsuario);        
-        ViewBag.Tareas = BD.GetTareas(IdUsuario);
-        ViewBag.BarraBusqueda = false;
-        return View("Tareas");
-    }*/
+  */
     public IActionResult Home(int idUsuario)
     {
         ViewBag.Usuario = BD.GetUsuario(idUsuario);
         ViewBag.Categorias = BD.GetCategorias(idUsuario);
-        ViewBag.BarraBusqueda = true;
         ViewBag.Plato= BD.GetPlatos();        
         ViewBag.BarraBusqueda = true; 
         return View();
     }
-   /* public IActionResult AgregarTarea (Tareas tarea)
-    {
-        BD.AgregarTarea(tarea);
-        return RedirectToAction("Home", new{IdUsuario = tarea.IdUsuario});
-    }*/
+ 
      public IActionResult AgregarCategoria (Categorias Categoria)
     {
+        ViewBag.BarraBusqueda = true; 
         BD.AgregarCategoria(Categoria);
         return RedirectToAction("Home", new{Id = Categoria.id});
     }
-    /*public IActionResult EditarTarea (Tareas tarea)
-    {
-        BD.EditarTarea(tarea);
-        return RedirectToAction("Home", new{IdUsuario = tarea.IdUsuario});
-    }
+    /*
     public Tareas VerDetalleTarea(int IdTarea)
     {
         return BD.VerDetalleTarea(IdTarea);
     }
-    public IActionResult EliminarTarea(int IdTarea, int IdUsuario)
-    {
-        BD.BorrarTarea(IdTarea);
-        return RedirectToAction("Home", new{IdUsuario = IdUsuario});
-    }*/
-   
-    /*public IActionResult MarcarCompletado(int IdUsuario, int IdTarea){
+    public IActionResult MarcarCompletado(int IdUsuario, int IdTarea){
         BD.Hecho(IdTarea);
         return RedirectToAction("Home", new{IdUsuario = IdUsuario});
     }
-    public List<Tareas> GetTareas(int IdUsuario){
-        return BD.GetTareas(IdUsuario);
-    }*/
+   */
     public IActionResult BuscarPlatoPorNombre(string nombre, int idUsuario)
         {
             ViewBag.BarraBusqueda = true;
@@ -127,6 +104,9 @@ public class HomeController : Controller
             if (!string.IsNullOrEmpty(nombre))
             {
                 ViewBag.Plato = BD.BuscarPlatoPorNombre (nombre);
+            }
+            else{
+                ViewBag.ErrorMessage="El campo esta vacio";
             }
             ViewBag.Usuario = BD.GetUsuario(idUsuario);
             return View("Home");

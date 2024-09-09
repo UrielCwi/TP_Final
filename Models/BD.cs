@@ -88,7 +88,14 @@ public class BD{
                 return db.QueryFirstOrDefault<Ingrediente>(sp, new { Id = id }, commandType: CommandType.StoredProcedure);
             }
         }
-        
+            public static void InsertarIngredientePlato(int idPlato, int idIngrediente, string cantXPlato)
+        {
+            using (SqlConnection db = new SqlConnection(_connectionString))
+            {
+                string sp = "InsertarIngredientePlato";
+                db.Execute(sp, new { IdPlato = idPlato, IdIngrediente = idIngrediente, CantXPlato = cantXPlato }, commandType: CommandType.StoredProcedure);
+            }
+        }        
         public static void InsertarPlato(Plato plato)
         {
             using (SqlConnection db = new SqlConnection(_connectionString))
@@ -176,30 +183,13 @@ public class BD{
             }
             return nuevoUsuarioId;
         }
-   /* public static void EditarTarea(Tareas Tarea){
-        using(SqlConnection db = new SqlConnection(_connectionString)){
-            string sp = "EditarTarea";
-            db.Execute(sp, new{IdTarea = Tarea.IdTarea, IdCategoria = Tarea.IdCategoria,
-            Nombre = Tarea.Nombre, FechaRealizacion = Tarea.FechaRealizacion, Descripcion = Tarea.Descripcion}, commandType: CommandType.StoredProcedure);
-        }
-    }
-    public static void BorrarTarea(int IdTarea){
-        using(SqlConnection db = new SqlConnection(_connectionString)){
-            string sp = "BorrarTarea";
-            db.Execute(sp, new{IdTarea = IdTarea}, commandType: CommandType.StoredProcedure);
-        }
-    }
+   /*
     public static void RecuperarContraseña(string Usuario, string Codigo,string NuevaContraseña){
         using(SqlConnection db = new SqlConnection(_connectionString)){
             string sp = "RecuperarContraseña";
             db.Execute(sp, new{Usuario = Usuario, Codigo=Codigo, NuevaContraseña = NuevaContraseña}, commandType: CommandType.StoredProcedure);
         }
     }
-     public static void AgregarTarea(Tareas Tarea){
-        using(SqlConnection db = new SqlConnection(_connectionString)){
-            string sp = "AgregarTarea";
-            db.Execute(sp, new{IdUsuario = Tarea.IdUsuario, IdCategoria = Tarea.IdCategoria, Nombre = Tarea.Nombre, FechaRealizacion = Tarea.FechaRealizacion, Descripcion = Tarea.Descripcion}, commandType: CommandType.StoredProcedure);
-        }
     }*/
      public static void AgregarCategoria(Categorias Categoria){
         using(SqlConnection db = new SqlConnection(_connectionString)){

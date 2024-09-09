@@ -19,19 +19,26 @@ namespace TP_FINAL.Controllers
             ViewBag.Usuario=BD.GetUsuario(idUsuario);
             ViewBag.BarraBusqueda = true;
             ViewBag.Usuario = BD.GetUsuario(idUsuario);
+            ViewBag.Ingrediente = BD.GetIngredientes();
             ViewBag.Categorias=BD.GetCategorias();
             return View();
         }
 
         [HttpPost]
-        public IActionResult Crear(Plato plato)
+        public IActionResult Crear(Plato plato, List<int> ingredientesSeleccionados)
         {
             if (ModelState.IsValid)
             {
                 BD.InsertarPlato(plato);
+                foreach (var ingredienteId in ingredientesSeleccionados)
+            {
+                BD.InsertarIngredientePlato(plato.id, ingredienteId, "1 ");
+            }
                 ViewBag.Categorias=BD.GetCategorias(plato.id);
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.Categorias=BD.GetCategorias();
+            ViewBag.Ingredientes = BD.GetIngredientes();
             return View(plato);
         }
 
@@ -82,12 +89,15 @@ namespace TP_FINAL.Controllers
             BD.EliminarPlato(id);
             return RedirectToAction(nameof(Index));
         }
-         public IActionResult CrearCategoria()
+        public IActionResult CrearCategoria(int idUsuario)   
         {
             ViewBag.BarraBusqueda = true;
+            ViewBag.Usuario=BD.GetUsuario(idUsuario);
+            ViewBag.Categoria=BD.GetCategorias();
+            List<Categorias> categorias = BD.GetCategorias();            
             return View();
+    
         }
-
         [HttpPost]
         public IActionResult CrearCategoria(Categorias categoria)
         {
