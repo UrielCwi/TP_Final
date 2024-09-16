@@ -24,6 +24,7 @@
         <tr>
             <th>Nombre</th>
             <th>Categoría</th>
+            <th>Precio</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -33,6 +34,7 @@
         <tr>
             <td>@item.nombre</td>
             <td>@item.idCategoria</td>
+            <td>@item.precio</td>
             <td>
                 <a href='@Url.Action("Editar","Platos", new{IdUsuario = ViewBag.Usuario.id, id = @item.id,})' class="btn btn-secondary">Editar</a> |
                 <form action='@Url.Action("Eliminar", "Platos")' method="post" style="display:inline;">
