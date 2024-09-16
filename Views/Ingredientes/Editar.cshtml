@@ -7,7 +7,7 @@
 <h2>@ViewData["Title"]</h2>
 
 <form Action='@Url.Action("Editar","Ingredientes")' method="post">
-    <input type="hidden" name="id" value="@Model.id" />
+    <input type="hidden" name="idUsuario" value="@ViewBag.Usuario.id" />
     <div class="form-group">
         <label asp-for="descripcion" class="control-label" text="Descripcion"></label>
         <input type="text" class="form-control" name="descripcion" id="descripcionIngrediente" text="@Model.descripcion" required />        

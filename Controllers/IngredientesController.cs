@@ -39,6 +39,7 @@ namespace TP_FINAL.Controllers
         {
             ViewBag.Usuario=BD.GetUsuario(idUsuario);
             ViewBag.BarraBusqueda = true;
+            ViewBag.Unidad=BD.GetUnidad();
             Ingrediente ingrediente = BD.GetIngrediente(id);
             if (ingrediente == null)
             {

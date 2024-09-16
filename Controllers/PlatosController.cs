@@ -50,6 +50,7 @@ namespace TP_FINAL.Controllers
             Plato plato = BD.GetPlato(id);
             ViewBag.BarraBusqueda = true;
             ViewBag.Usuario = BD.GetUsuario(idUsuario);
+            ViewBag.Ingrediente = BD.GetIngredientes();
             if (plato == null)
             {
                 return NotFound();
@@ -70,7 +71,7 @@ namespace TP_FINAL.Controllers
             ViewBag.BarraBusqueda = true;
             ViewBag.Unidad=BD.GetUnidad();
             ViewBag.Categorias=BD.GetCategorias();
-            ViewBag.Ingredientes = BD.GetIngredientes();
+            ViewBag.Ingredientes= BD.GetIngredientes();
             return View(plato);
         }
 

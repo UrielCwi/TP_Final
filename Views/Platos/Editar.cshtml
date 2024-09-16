@@ -7,7 +7,7 @@
 <h2>@ViewData["Title"]</h2>
 
 <form Action='@Url.Action("Editar","Platos")' method="post" style="position: absolute;top: 20%">
-    <input type="hidden" name="id" value="@Model.id" />
+    <input type="hidden" name="id" value="@ViewBag.Usuario.id" />
     <div class="form-group">
         <label asp-for="nombre" class="control-label" text="Nombre"></label>
         <input type="text" class="form-control" name="nombre" id="nombrePlato" text="@Model.nombre" required />
@@ -25,7 +25,28 @@
         <input type="number" class="form-control" name="precio" id="precio" text="@Model.precio" required />
         <span asp-validation-for="precio" class="text-danger"></span>
     </div>
-        <div class="form-group">
+    <div class="form-group">
+    <label for="ingrediente">Ingredientes</label>
+    <div class="form-check">
+        @foreach (Ingrediente a in ViewBag.Ingrediente)
+        {
+            <div class="form-check">
+                <input 
+                    class="form-check-input" 
+                    type="checkbox" 
+                    name="ingredientes" 
+                    value="@a.id" 
+                    id="ingrediente_@a.id" />
+                <label 
+                    class="form-check-label" 
+                    for="ingrediente_@a.id">
+                    @a.descripcion
+                </label>
+            </div>
+        }
+    </div>
+</div>
+    <div class="form-group">
         <label asp-for="activo" class="control-label" text="Activo"></label>
         @Html.CheckBoxFor(x=>x.activo)
         <span asp-validation-for="activo" class="text-danger"></span>
