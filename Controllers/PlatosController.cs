@@ -25,7 +25,7 @@ namespace TP_FINAL.Controllers
         }
 
         [HttpPost]
-        public IActionResult Crear(Plato plato, List<int> ingredientesSeleccionados)
+        public IActionResult Crear(Plato plato, List<int> ingredientesSeleccionados, int idUsuario)
         {
             if (ModelState.IsValid)
             {
@@ -35,8 +35,11 @@ namespace TP_FINAL.Controllers
                 BD.InsertarIngredientePlato(plato.id, ingredienteId, "1");
             }
                 ViewBag.Categorias=BD.GetCategorias(plato.id);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index), new { idUsuario = idUsuario });
             }
+            ViewBag.Usuario=BD.GetUsuario(idUsuario);
+            ViewBag.BarraBusqueda = true;
+            ViewBag.Unidad=BD.GetUnidad();
             ViewBag.Categorias=BD.GetCategorias();
             ViewBag.Ingredientes = BD.GetIngredientes();
             return View(plato);
@@ -56,13 +59,14 @@ namespace TP_FINAL.Controllers
         }
 
         [HttpPost]
-        public IActionResult Editar(Plato plato)
+        public IActionResult Editar(Plato plato, int idUsuario)
         {
             if (ModelState.IsValid)
             {
                 BD.ActualizarPlato(plato);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index), new { idUsuario = idUsuario });
             }
+            
             return View(plato);
         }
 
@@ -99,6 +103,11 @@ namespace TP_FINAL.Controllers
                 BD.AgregarCategoria(categoria);
                 return RedirectToAction("Index", new { idUsuario = idUsuario });
             }
+            ViewBag.Usuario=BD.GetUsuario(idUsuario);
+            ViewBag.BarraBusqueda = true;
+            ViewBag.Unidad=BD.GetUnidad();
+            ViewBag.Categorias=BD.GetCategorias();
+            ViewBag.Ingredientes = BD.GetIngredientes();
             return View(categoria);
         }
     }

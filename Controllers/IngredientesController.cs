@@ -22,13 +22,16 @@ namespace TP_FINAL.Controllers
         }
 
         [HttpPost]
-        public IActionResult Crear(Ingrediente ingrediente)
+        public IActionResult Crear(Ingrediente ingrediente, int idUsuario)
         {
             if (ModelState.IsValid)
             {
                 BD.InsertarIngrediente(ingrediente);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index), new { idUsuario = idUsuario });
             }
+            ViewBag.Usuario=BD.GetUsuario(idUsuario);
+            ViewBag.BarraBusqueda = true;
+            ViewBag.Unidad=BD.GetUnidad();
             return View(ingrediente);
         }
 
@@ -45,13 +48,16 @@ namespace TP_FINAL.Controllers
         }
 
         [HttpPost]
-        public IActionResult Editar(Ingrediente ingrediente)
+        public IActionResult Editar(Ingrediente ingrediente, int idUsuario)
         {
             if (ModelState.IsValid)
             {
                 BD.ActualizarIngrediente(ingrediente);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index), new { idUsuario = idUsuario});
             }
+            ViewBag.Usuario=BD.GetUsuario(idUsuario);
+            ViewBag.BarraBusqueda = true;
+            ViewBag.Unidad=BD.GetUnidad();
             return View(ingrediente);
         }
 

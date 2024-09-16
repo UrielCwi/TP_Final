@@ -6,6 +6,7 @@
 <h2>@ViewData["Title"]</h2>
 
 <form Action='@Url.Action("Crear","Ingredientes")' method="post">
+    <input type="hidden" name="idUsuario" value="@ViewBag.Usuario.id" />
     <div class="form-group">
         <label asp-for="descripcion" class="control-label"></label>
         <input type="text" name="descripcion" class="form-control" id="descripcion"  required />
@@ -22,7 +23,7 @@
         <span asp-validation-for="valorUnidad" class="text-danger"></span>
     </div>
     @*NO SE AGREGA INGREDIENTE*@
-   @*<div class="form-group">
+   <div class="form-group">
         <label for="unidad">Unidad</label>
         <select class="form-select" name="idUnidad" aria-label="Default select example">
             <option selected>Elegi una unidad</option>
@@ -31,10 +32,11 @@
                 <option value="@a.id">@a.unidad</option>
             }   
         </select>
-    </div>*@
+    </div>
     <div class="form-group">
         <label asp-for="activo" class="control-label"></label>
-        <input name="activo" class="form-control" type="number" id="activo" required />
+        @Html.CheckBoxFor(x=>x.activo)
+        
         <span asp-validation-for="activo" class="text-danger"></span>
     </div>
     <div class="form-group">

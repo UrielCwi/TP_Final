@@ -7,6 +7,7 @@
 <h2>@ViewData["Title"]</h2>
 
 <form Action='@Url.Action("Crear","Platos")' method="post">
+    <input type="hidden" name="idUsuario" value="@ViewBag.Usuario.id" />
     <div class="form-group">
         <label asp-for="nombre" class="control-label"></label>
         <input type="text" name="nombre" class="form-control" id="nombrePlato"  required />
@@ -27,22 +28,34 @@
         <input name="precio" class="form-control" type="number" id="precio" required />
         <span asp-validation-for="precio" class="text-danger"></span>
     </div>
+    @*SOLUCIONAR ELEGIR INGREDIENTE*@
+    <div class="form-group">
+    <label for="ingrediente">Ingredientes</label>
+    <div class="form-check">
+        @foreach (Ingrediente a in ViewBag.Ingrediente)
+        {
+            <div class="form-check">
+                <input 
+                    class="form-check-input" 
+                    type="checkbox" 
+                    name="ingredientes" 
+                    value="@a.id" 
+                    id="ingrediente_@a.id" />
+                <label 
+                    class="form-check-label" 
+                    for="ingrediente_@a.id">
+                    @a.descripcion
+                </label>
+            </div>
+        }
+    </div>
+</div>
     <div class="form-group">
         <label asp-for="activo" class="control-label"></label>
-        <input name="activo" class="form-control" type="number" id="activo" required />
+        @Html.CheckBoxFor(x=>x.activo)
         <span asp-validation-for="activo" class="text-danger"></span>
     </div>
-    @*SOLUCIONAR ELEGIR INGREDIENTE, NO AGREGA PLATO TAMPOCO*@
-    @*<div class="form-group">
-        <label for="ingrediente">Ingrediente</label>
-        <select class="form-select" name="idIngrediente"  multiple aria-label="Seleccione los ingredientes">
-            <option selected>Elegi un ingrediente</option>
-            @foreach (Ingrediente a in ViewBag.Ingrediente)
-            {
-                <option value="@a.id">@a.descripcion</option>
-            }   
-        </select>
-    </div>*@
+    
     <div class="form-group">
         <input type="submit" value="Guardar" class="btn btn-primary" />
     </div>
