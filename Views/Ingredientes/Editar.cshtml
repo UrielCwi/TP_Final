@@ -24,13 +24,18 @@
         <span asp-validation-for="valorUnidad" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="idUnidad" class="control-label" text="idUnidad"></label>
-        <input type="number" class="form-control" name="idUnidad" id="idUnidad" text="@Model.idUnidad" required />
-        <span asp-validation-for="idUnidad" class="text-danger"></span>
+        <label for="unidad">Unidad</label>
+        <select class="form-select" name="idUnidad" aria-label="Default select example">
+            <option selected>Elegi una unidad</option>
+            @foreach (Unidad a in ViewBag.Unidad)
+            {
+                <option value="@a.id">@a.unidad</option>
+            }   
+        </select>
     </div>
     <div class="form-group">
         <label asp-for="activo" class="control-label" text="activo"></label>
-        <input type="text" class="form-control" name="activo" id="activo" text="@Model.activo" required />
+        @Html.CheckBoxFor(x=>x.activo)
         <span asp-validation-for="activo" class="text-danger"></span>
     </div>
     <div class="form-group">

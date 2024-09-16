@@ -66,7 +66,11 @@ namespace TP_FINAL.Controllers
                 BD.ActualizarPlato(plato);
                 return RedirectToAction(nameof(Index), new { idUsuario = idUsuario });
             }
-            
+            ViewBag.Usuario=BD.GetUsuario(idUsuario);
+            ViewBag.BarraBusqueda = true;
+            ViewBag.Unidad=BD.GetUnidad();
+            ViewBag.Categorias=BD.GetCategorias();
+            ViewBag.Ingredientes = BD.GetIngredientes();
             return View(plato);
         }
 
