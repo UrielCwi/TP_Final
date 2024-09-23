@@ -19,15 +19,15 @@
               <form Action='@Url.Action("Registro","Home")' method="post">
                 <div class="Usuario">
                     <h2>Nombre</h2>
-                    <input type="text" class="inputlogin" name="Nombre" required></input>
+                    <input type="text" class="inputlogin" name="Nombre" maxlength="30" data-maxlength="30" required oninput="checkLength(this)"></input>
                 </div>
                 <div class="Usuario">
                     <h2>Apellido</h2>
-                    <input type="text" class="inputlogin" name="Apellido" required></input>
+                    <input type="text" class="inputlogin" name="Apellido" maxlength="20" data-maxlength="20" required oninput="checkLength(this)"></input>
                 </div>
                 <div class="Usuario">
                     <h2>Email</h2>
-                    <input type="email" class="inputlogin" name="Email" required placeholder=""></input>
+                    <input type="email" class="inputlogin" name="Email" maxlength="40" data-maxlength="40" required oninput="checkLength(this)" placeholder=""></input>
                 </div>
                 <div class="Usuario">
                     <h2>Contraseña</h2>
@@ -35,7 +35,7 @@
                 </div>
                 <div class="Usuario">
                     <h2>Empresa</h2>
-                    <input type="text" class="inputlogin" name="Empresa" required></input>
+                    <input type="text" class="inputlogin" name="Empresa" maxlength="20" data-maxlength="20" required oninput="checkLength(this)"></input>
                 </div>
                     <button class="inicio" type="submit" style="margin-top: 10px">Registrarse</button>
             </form>

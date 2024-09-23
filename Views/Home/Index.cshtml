@@ -28,11 +28,11 @@ Layout = "";
                         <form action='@Url.Action("Login","Home")' class="w-100">
                             <div class="form-group mb-3">
                                 <p class="text-start">Email</p>
-                                <input type="email" class="form-control" name="Usuario" required placeholder="Email">
+                                <input type="email" class="form-control" name="Usuario" required placeholder="Email" maxlength="40" data-maxlength="40" oninput="checkLength(this)">
                             </div>
                             <div class="form-group mb-3">
                                 <p class="text-start">Contraseña</p>
-                                <input type="password" class="form-control" name="Contraseña" required placeholder="Contraseña">
+                                <input type="password" class="form-control" name="Contraseña" required placeholder="Contraseña" maxlength="30" data-maxlength="30" oninput="checkLength(this)">
                             </div>
                             <button class="btn btn-primary w-100 mb-3" type="submit">Logearse</button>
                         </form>

@@ -10,7 +10,7 @@
     <input type="hidden" name="id" value="@ViewBag.Usuario.id" />
     <div class="form-group">
         <label asp-for="nombre" class="control-label" text="Nombre"></label>
-        <input type="text" class="form-control" name="nombre" id="nombrePlato" text="@Model.nombre" maxlength="40" required />
+        <input type="text" class="form-control" name="nombre" id="nombrePlato" text="@Model.nombre" maxlength="35" data-maxlength="35" required oninput="checkLength(this)" />
         <span asp-validation-for="nombre" class="text-danger"></span>
     </div>
     <select class="form-select" name="idCategoria" aria-label="Default select example">
@@ -22,7 +22,7 @@
     </select>
     <div class="form-group">
         <label asp-for="precio" class="control-label" text="Precio"></label>
-        <input type="number" class="form-control" name="precio" id="precio" text="@Model.precio" step="any" min="0" required />
+        <input type="text" class="form-control" name="precio" id="precio" text="@Model.precio" step="any" min="0" required />
         <span asp-validation-for="precio" class="text-danger"></span>
     </div>
     <div class="form-group">
