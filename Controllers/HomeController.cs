@@ -54,10 +54,10 @@ public class HomeController : Controller
         ViewBag.Error = "Por favor, completa todos los campos.";
         return View("Registro");
     }
-
+    
     try
     {
-        // Verificar si el email ya existe
+        
         Usuario existingUser = BD.GetUsuarioPorEmail(usuario.email);
         if (existingUser != null)
         {

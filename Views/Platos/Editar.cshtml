@@ -5,55 +5,6 @@
 }
 
 <h2>@ViewData["Title"]</h2>
-<style>
-    .container {
-        max-width: 600px;
-        margin: 50px auto; /* Alinea verticalmente */
-        background-color: #f8f9fa; /* Fondo suave para la página */
-        padding: 30px;
-        border-radius: 15px; /* Bordes redondeados para la sección */
-    }
-
-    .card {
-        border: none; /* Eliminar borde de la tarjeta */
-        background-color: transparent; /* Fondo transparente para la tarjeta */
-        box-shadow: none; /* Sin sombra */
-    }
-
-    .card-header {
-        border-bottom: none; /* Sin borde inferior */
-    }
-
-    .card-body {
-        padding: 0; /* Quitar el padding del cuerpo de la tarjeta */
-    }
-
-    .form-control, .form-select {
-        border-radius: 8px; /* Bordes redondeados */
-    }
-
-    .btn-primary {
-        background-color: #007bff; /* Color azul */
-        border: none; /* Sin borde */
-        border-radius: 50px; /* Bordes redondeados */
-        padding: 10px 20px; /* Relleno */
-        font-size: 16px; /* Tamaño del texto */
-        transition: background-color 0.3s; /* Efecto de transición */
-    }
-
-    .btn-primary:hover {
-        background-color: #0056b3; /* Color más oscuro al pasar el ratón */
-    }
-
-    .form-group label {
-        font-weight: bold;
-    }
-
-    .text-danger {
-        font-size: 12px;
-    }
-</style>
-
 
 <form Action='@Url.Action("Editar","Platos")' method="post" style="position: absolute;top: 20%">
     <input type="hidden" name="id" value="@ViewBag.Usuario.id" />

@@ -22,6 +22,7 @@
         <input name="valorUnidad" class="form-control" type="text" id="valorUnidad" step="any" min="0" required />
         <span asp-validation-for="valorUnidad" class="text-danger"></span>
     </div>
+    @*si type es text permite decimales. si es number no permite negativo. es uno o el otro*@
    <div class="form-group">
         <label for="unidad">Unidad</label>
         <select class="form-select" name="idUnidad" aria-label="Default select example">
