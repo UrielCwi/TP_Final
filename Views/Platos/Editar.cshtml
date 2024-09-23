@@ -4,54 +4,115 @@
     ViewData["Title"] = "Editar Plato";
 }
 
-<h2>@ViewData["Title"]</h2>
+<style>
+    .container {
+        max-width: 600px;
+        margin: 50px auto; /* Alinea verticalmente */
+    }
 
-<form Action='@Url.Action("Editar","Platos")' method="post" style="position: absolute;top: 20%">
-    <input type="hidden" name="id" value="@ViewBag.Usuario.id" />
-    <div class="form-group">
-        <label asp-for="nombre" class="control-label" text="Nombre"></label>
-        <input type="text" class="form-control" name="nombre" id="nombrePlato" text="@Model.nombre" maxlength="35" data-maxlength="35" required oninput="checkLength(this)" />
-        <span asp-validation-for="nombre" class="text-danger"></span>
-    </div>
-    <select class="form-select" name="idCategoria" aria-label="Default select example">
-            <option selected>Elegi una categoria</option>
-            @foreach (Categorias a in ViewBag.Categorias)
-            {
-              <option value="@a.id">@a.nombre</option>
-            }   
-    </select>
-    <div class="form-group">
-        <label asp-for="precio" class="control-label" text="Precio"></label>
-        <input type="text" class="form-control" name="precio" id="precio" text="@Model.precio" step="any" min="0" required />
-        <span asp-validation-for="precio" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label for="ingrediente">Ingredientes</label>
-    <div class="form-check">
-        @foreach (Ingrediente a in ViewBag.Ingrediente)
-        {
-            <div class="form-check">
-                <input 
-                    class="form-check-input" 
-                    type="checkbox" 
-                    name="ingredientes" 
-                    value="@a.id" 
-                    id="ingrediente_@a.id" />
-                <label 
-                    class="form-check-label" 
-                    for="ingrediente_@a.id">
-                    @a.descripcion
-                </label>
-            </div>
-        }
+    .card {
+        border: 1px solid #ddd;
+        border-radius: 15px;
+    }
+
+    .card-header {
+        background-color: #f8f9fa; /* Color de fondo claro */
+        border-bottom: none; /* Sin borde inferior */
+    }
+
+    .card-body {
+        padding: 30px;
+    }
+
+    .form-control, .form-select {
+        border-radius: 8px; /* Bordes redondeados */
+    }
+
+    .btn-primary {
+        background-color: #007bff; /* Color azul */
+        border: none; /* Sin borde */
+        border-radius: 50px; /* Bordes redondeados */
+        padding: 10px 20px; /* Relleno */
+        font-size: 16px; /* Tamaño del texto */
+        transition: background-color 0.3s; /* Efecto de transición */
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3; /* Color más oscuro al pasar el ratón */
+    }
+
+    .form-group label {
+        font-weight: bold;
+    }
+
+    .text-danger {
+        font-size: 12px;
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+        <div class="card-header text-center">
+            <h2>@ViewData["Title"]</h2>
+        </div>
+        <div class="card-body">
+            <form Action='@Url.Action("Editar","Platos")' method="post">
+                <input type="hidden" name="id" value="@ViewBag.Usuario.id" />
+                <div class="form-group mb-3">
+                    <label asp-for="nombre" class="control-label">Nombre</label>
+                    <input type="text" class="form-control" name="nombre" id="nombrePlato" text="@Model.nombre" maxlength="35" data-maxlength="35" required oninput="checkLength(this)" />
+                    <span asp-validation-for="nombre" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="idCategoria" class="control-label">Categoría</label>
+                    <select class="form-select" name="idCategoria" aria-label="Default select example">
+                        <option selected>Elegi una categoria</option>
+                        @foreach (Categorias a in ViewBag.Categorias)
+                        {
+                            <option value="@a.id">@a.nombre</option>
+                        }   
+                    </select>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="precio" class="control-label">Precio</label>
+                    <input type="number" class="form-control" name="precio" id="precio" text="@Model.precio" step="any" min="0" required />
+                    <span asp-validation-for="precio" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="ingrediente">Ingredientes</label>
+                    <div class="form-check">
+                        @foreach (Ingrediente a in ViewBag.Ingrediente)
+                        {
+                            <div class="form-check">
+                                <input 
+                                    class="form-check-input" 
+                                    type="checkbox" 
+                                    name="ingredientes" 
+                                    value="@a.id" 
+                                    id="ingrediente_@a.id" />
+                                <label 
+                                    class="form-check-label" 
+                                    for="ingrediente_@a.id">
+                                    @a.descripcion
+                                </label>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="activo" class="control-label">Activo</label>
+                    @Html.CheckBoxFor(x=>x.activo)
+                    <span asp-validation-for="activo" class="text-danger"></span>
+                </div>
+
+                <div class="form-group text-center">
+                    <input type="submit" value="Guardar" class="btn btn-primary btn-lg" />
+                </div>
+            </form>
+        </div>
     </div>
 </div>
-    <div class="form-group">
-        <label asp-for="activo" class="control-label" text="Activo"></label>
-        @Html.CheckBoxFor(x=>x.activo)
-        <span asp-validation-for="activo" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <input type="submit" value="Guardar" class="btn btn-primary" />
-    </div>
-</form>

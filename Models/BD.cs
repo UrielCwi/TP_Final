@@ -234,5 +234,16 @@ public class BD{
             connection.Execute(query, usuario);
         }
     }
-    
+public static Usuario GetUsuarioPorEmail(string email)
+{
+    using (SqlConnection db = new SqlConnection(_connectionString))
+    {
+        return db.QueryFirstOrDefault<Usuario>(
+            "GetUsuarioPorEmail",
+            new { Email = email },
+            commandType: CommandType.StoredProcedure);
+    }
+}
+
+ 
 }

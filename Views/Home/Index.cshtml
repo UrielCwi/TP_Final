@@ -19,12 +19,12 @@ Layout = "";
                     <h1 class="text-start">GREV</h1>
                     <h2 class="mb-4d">Login now</h2>
                     <p class="text-start">Hola, bienvenido de nuevo 👋</p>
-                    @*@if (ViewBag.ErrorMessage != null)
+                    @if (ViewBag.Error != null)
                     {
-                    <div class="alert alert-danger" role="alert">
-                        @ViewBag.ErrorMessage
-                    </div>
-                    }*@@*NO FUNCIONA*@
+                        <div class="alert alert-danger" role="alert">
+                        @ViewBag.Error
+                        </div>
+                    }
                         <form action='@Url.Action("Login","Home")' class="w-100">
                             <div class="form-group mb-3">
                                 <p class="text-start">Email</p>

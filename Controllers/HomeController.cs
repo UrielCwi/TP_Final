@@ -21,22 +21,32 @@ public class HomeController : Controller
         ViewBag.BarraBusqueda = true;
         return View("RecuperarContraseña");
     }
-    public IActionResult Login(string Usuario, string Contraseña)
+   public IActionResult Login(string Usuario, string Contraseña)
+{
+    ViewBag.BarraBusqueda = true;
+    ViewBag.Error = null;
+
+    if (string.IsNullOrEmpty(Usuario) || string.IsNullOrEmpty(Contraseña))
     {
-        ViewBag.BarraBusqueda = true;
-        ViewBag.Error = null;
-        ViewBag.Usuario = BD.LoginUsuario(Usuario, Contraseña);
-        ViewBag.Plato=BD.GetPlatos();
-        if (ViewBag.Usuario == null)
-        {
-            ViewBag.Error = "Usuario o contraseña incorrectos";
-            return View("Index");
-        }
-        else
-        {
-            return View("Home");
-        }
+        ViewBag.Error = "Por favor, completa todos los campos.";
+        return View("Index");
     }
+
+    Usuario usuario = BD.LoginUsuario(Usuario, Contraseña);
+    ViewBag.Usuario = usuario;
+    List<Plato> platos = BD.GetPlatos();
+    ViewBag.Plato = platos;
+
+    if (usuario == null)
+    {
+        ViewBag.Error = "Usuario o contraseña incorrectos.";
+        return View("Index");
+    }
+    else
+    {
+        return RedirectToAction("Home", new { idUsuario = usuario.id });
+    }
+}
     public IActionResult Registro(Usuario usuario)
         {
             try
