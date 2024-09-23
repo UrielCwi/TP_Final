@@ -48,28 +48,45 @@ public class HomeController : Controller
     }
 }
     public IActionResult Registro(Usuario usuario)
-        {
-            try
-            {
-                BD.InsertarUsuario(usuario);
-                ViewBag.Usuario = BD.LoginUsuario(usuario.email, usuario.contraseña);
+{
+    if (string.IsNullOrEmpty(usuario.email) || string.IsNullOrEmpty(usuario.contraseña))
+    {
+        ViewBag.Error = "Por favor, completa todos los campos.";
+        return View("Registro");
+    }
 
-                if (ViewBag.Usuario == null)
-                {
-                    ViewBag.Error = "Error en el registro.";
-                    return View("Registro");
-                }
-                else
-                {
-                    return RedirectToAction("Home", new { IdUsuario = ViewBag.Usuario.id });
-                }
-            }
-            catch (Exception ex)
-            {
-                ViewBag.Error = ex.Message;
-                return View("Registro");
-            }
+    try
+    {
+        // Verificar si el email ya existe
+        Usuario existingUser = BD.GetUsuarioPorEmail(usuario.email);
+        if (existingUser != null)
+        {
+            ViewBag.Error = "El correo electrónico ya está registrado.";
+            return View("Registro");
         }
+
+        // Insertar nuevo usuario
+        BD.InsertarUsuario(usuario);
+        Usuario loggedInUser = BD.LoginUsuario(usuario.email, usuario.contraseña);
+        ViewBag.Usuario = loggedInUser;
+
+        if (loggedInUser == null)
+        {
+            ViewBag.Error = "Error en el registro.";
+            return View("Registro");
+        }
+        else
+        {
+            return RedirectToAction("Home", new { idUsuario = loggedInUser.id });
+        }
+    }
+    catch (Exception ex)
+    {
+        ViewBag.Error = ex.Message;
+        return View("Registro");
+    }
+}
+
         
    /*public IActionResult RecuperarContraseña(string Usuario, string Codigo, string NuevaContraseña)
     {

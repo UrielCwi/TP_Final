@@ -16,6 +16,13 @@
     <div class="container-fluid vh-100 d-flex align-items-center justify-content-center">
         <div class="row w-100">
               <h2 class="mb-4d">Registro</h2>
+              @if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.Error
+    </div>
+}
+
               <form Action='@Url.Action("Registro","Home")' method="post">
                 <div class="Usuario">
                     <h2>Nombre</h2>
