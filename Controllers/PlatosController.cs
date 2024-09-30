@@ -9,7 +9,9 @@ namespace TP_FINAL.Controllers
             ViewBag.BarraBusqueda = true;
             ViewBag.Usuario=BD.GetUsuario(idUsuario);
             ViewBag.Platos=BD.GetPlatos();
-            List<Plato> platos = BD.GetPlatos();            
+            ViewBag.Categorias = BD.GetCategorias();
+            List<Plato> platos = BD.GetPlatos();
+            List<Categorias> categorias = BD.GetCategorias();     
             return View(platos);
     
         }

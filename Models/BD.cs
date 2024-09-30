@@ -245,5 +245,6 @@ public static Usuario GetUsuarioPorEmail(string email)
     }
 }
 
+
  
 }

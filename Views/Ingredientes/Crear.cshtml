@@ -1,45 +1,112 @@
 @model Ingrediente
+
 @{
     ViewData["Title"] = "Agregar Ingrediente";
 }
 
+<style>
+    body {
+        padding-top: 80px; /* Ajusta según la altura de tu navbar */
+    }
+
+    h2 {
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        font-weight: bold;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    .form-control, .form-select {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        padding: 10px 20px;
+        color: white;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .btn-primary:hover {
+        opacity: 0.9;
+    }
+
+    .text-danger {
+        color: #dc3545;
+        font-size: 0.9rem;
+    }
+
+    .container {
+        margin-top: 20px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    input[type="submit"] {
+        width: 100%;
+        font-size: 16px;
+    }
+
+</style>
+
 <h2>@ViewData["Title"]</h2>
 
-<form Action='@Url.Action("Crear","Ingredientes")' method="post">
-    <input type="hidden" name="idUsuario" value="@ViewBag.Usuario.id" />
-    <div class="form-group">
-        <label asp-for="descripcion" class="control-label"></label>
-        <input type="text" name="descripcion" class="form-control" id="descripcion" maxlength="35" data-maxlength="35" required oninput="checkLength(this)" />
-        <span asp-validation-for="descripcion" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="cantidad" class="control-label"></label>
-        <input name="cantidad" class="form-control" type="text" id="cantidad" step="any" min="0" required />
-        <span asp-validation-for="cantidad" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="valorUnidad" class="control-label"></label>
-        <input name="valorUnidad" class="form-control" type="text" id="valorUnidad" step="any" min="0" required />
-        <span asp-validation-for="valorUnidad" class="text-danger"></span>
-    </div>
-    @*si type es text permite decimales. si es number no permite negativo. es uno o el otro*@
-   <div class="form-group">
-        <label for="unidad">Unidad</label>
-        <select class="form-select" name="idUnidad" aria-label="Default select example">
-            <option selected>Elegi una unidad</option>
-            @foreach (Unidad a in ViewBag.Unidad)
-            {
-                <option value="@a.id">@a.unidad</option>
-            }   
-        </select>
-    </div>
-    <div class="form-group">
-        <label asp-for="activo" class="control-label"></label>
-        @Html.CheckBoxFor(x=>x.activo)
-        
-        <span asp-validation-for="activo" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <input type="submit" value="Crear" class="btn btn-primary" />
-    </div>
-</form>
+<div class="container">
+    <form action='@Url.Action("Crear", "Ingredientes")' method="post">
+        <input type="hidden" name="idUsuario" value="@ViewBag.Usuario.id" />
+
+        <div class="form-group">
+            <label asp-for="descripcion" class="control-label">Descripción</label>
+            <input type="text" name="descripcion" class="form-control" id="descripcion" maxlength="35" data-maxlength="35" required oninput="checkLength(this)" />
+            <span asp-validation-for="descripcion" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="cantidad" class="control-label">Cantidad</label>
+            <input name="cantidad" class="form-control" type="text" id="cantidad" step="any" min="0" required />
+            <span asp-validation-for="cantidad" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="valorUnidad" class="control-label">Valor por Unidad</label>
+            <input name="valorUnidad" class="form-control" type="text" id="valorUnidad" step="any" min="0" required />
+            <span asp-validation-for="valorUnidad" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="unidad">Unidad</label>
+            <select class="form-select" name="idUnidad" aria-label="Seleccione una unidad">
+                <option selected>Elegi una unidad</option>
+                @foreach (Unidad a in ViewBag.Unidad)
+                {
+                    <option value="@a.id">@a.unidad</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="activo" class="control-label">Activo</label>
+            @Html.CheckBoxFor(x => x.activo)
+            <span asp-validation-for="activo" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Crear" class="btn btn-primary" />
+        </div>
+    </form>
+</div>

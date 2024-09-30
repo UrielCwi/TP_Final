@@ -1,22 +1,82 @@
 @model List<Plato>
-@{
-    ViewData["Title"] = "Gestión de Platos";
-}
+
+<style>
+    body {
+        padding-top: 80px; /* Ajusta este valor según la altura de tu navbar */
+    }
+
+    h2 {
+        margin-bottom: 20px;
+    }
+
+    .table {
+        width: 100%;
+        margin-bottom: 20px;
+        background-color: white;
+        border-collapse: collapse;
+    }
+
+    .table th, .table td {
+        padding: 12px 15px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
+
+    .table th {
+        background-color: #f2f2f2;
+    }
+
+    .table tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        margin-right: 10px;
+        border: none;
+        color: white;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+    }
+
+    /* Estilos para mejorar el aspecto general */
+    .container {
+        margin-top: 20px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    a.btn:hover {
+        opacity: 0.85;
+    }
+
+</style>
 
 <h2>@ViewData["Title"]</h2>
 
-<h2>Gestión de Platos</h2>
-
 <div class="container">
     <h2>Lista de Platos</h2>
-
 </div>
 
 <h2>@ViewBag.ErrorEliminar</h2>
 
 <div>
-    <a href='@Url.Action("Crear", "Platos", new{IdUsuario = ViewBag.Usuario.id})' class="btn btn-primary">Agregar Nuevo Plato</a>
-    <a href='@Url.Action("CrearCategoria", "Platos", new{IdUsuario = ViewBag.Usuario.id})' class="btn btn-primary">Agregar Nueva Categoría</a>
+    <a href='@Url.Action("Crear", "Platos", new { IdUsuario = ViewBag.Usuario.id })' class="btn btn-primary">Agregar Nuevo Plato</a>
+    <a href='@Url.Action("CrearCategoria", "Platos", new { IdUsuario = ViewBag.Usuario.id })' class="btn btn-primary">Agregar Nueva Categoría</a>
 </div>
 
 <table class="table">
@@ -31,17 +91,27 @@
     <tbody>
     @foreach (var item in Model)
     {
+        string categoriaNombre = "Categoría no encontrada";
+        foreach (var cat in ViewBag.Categorias)
+        {
+            if (cat.id == item.idCategoria)
+            {
+                categoriaNombre = cat.nombre;
+                break;
+            }
+        }
+
         <tr>
             <td>@item.nombre</td>
-            <td>@item.idCategoria</td>
+            <td>@categoriaNombre</td>
             <td>@item.precio</td>
             <td>
-                <a href='@Url.Action("Editar","Platos", new{IdUsuario = ViewBag.Usuario.id, id = @item.id,})' class="btn btn-secondary">Editar</a> |
+                <a href='@Url.Action("Editar", "Platos", new { IdUsuario = ViewBag.Usuario.id, id = @item.id })' class="btn btn-secondary">Editar</a> |
                 <form action='@Url.Action("Eliminar", "Platos")' method="post" style="display:inline;">
                     <input type="hidden" name="id" value="@item.id" />
                     <input type="hidden" name="idUsuario" value="@ViewBag.Usuario.id" />
                     <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este Plato?');">Eliminar</button>
-                </form>            
+                </form>
             </td>
         </tr>
     }
