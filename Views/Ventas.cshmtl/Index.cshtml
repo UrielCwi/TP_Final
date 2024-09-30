@@ -111,7 +111,7 @@
                 <span class="counter-display">@* Aquí iría la cantidad vendida real *@ 0</span>
             </td>
             <td>
-                <form method="post" action="@Url.Action("VenderPlato", "Ventas")">
+                <form method="post" action='@Url.Action("VenderPlato", "Ventas")'>
                     <input type="hidden" name="idPlato" value="@item.id" />
                     <button type="submit" class="counter-button">Vender Plato</button>
                 </form>
