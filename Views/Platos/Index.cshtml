@@ -64,6 +64,26 @@
         opacity: 0.85;
     }
 
+    /* Estilos para el contador */
+    .counter {
+        display: flex;
+        align-items: center;
+    }
+
+    .counter-button {
+        padding: 5px 10px;
+        background-color: #28a745; /* Color verde para el botón de venta */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+
+    .counter-display {
+        font-size: 18px;
+        font-weight: bold;
+    }
 </style>
 
 <h2>@ViewData["Title"]</h2>
@@ -86,6 +106,7 @@
             <th>Categoría</th>
             <th>Precio</th>
             <th>Acciones</th>
+            <th>Contador de Ventas</th> <!-- Nueva columna para el contador -->
         </tr>
     </thead>
     <tbody>
@@ -113,7 +134,27 @@
                     <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este Plato?');">Eliminar</button>
                 </form>
             </td>
+            <td>
+                <div class="counter">
+                    <button class="counter-button" onclick="incrementCounter(this, @item.precio)">Vender</button>
+                    <span class="counter-display">0</span>
+                </div>
+            </td>
         </tr>
     }
     </tbody>
 </table>
+
+<script>
+    function incrementCounter(button, price) {
+        const counterDisplay = button.nextElementSibling; // Obtiene el span que muestra el contador
+        let count = parseInt(counterDisplay.innerText) || 0; // Obtiene el contador actual
+        count++; // Incrementa el contador
+        counterDisplay.innerText = count; // Actualiza el display
+
+        // Aquí puedes agregar lógica para manejar la suma total si es necesario
+        // Por ejemplo, podrías almacenar el precio total en una variable
+        const totalPrice = count * price;
+        console.log(`Precio total de ventas para este plato: $${totalPrice.toFixed(2)}`);
+    }
+</script>

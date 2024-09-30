@@ -1,0 +1,122 @@
+@model List<Plato>
+
+<style>
+    body {
+        padding-top: 80px; /* Ajusta este valor según la altura de tu navbar */
+    }
+
+    h2 {
+        margin-bottom: 20px;
+    }
+
+    .table {
+        width: 100%;
+        margin-bottom: 20px;
+        background-color: white;
+        border-collapse: collapse;
+    }
+
+    .table th, .table td {
+        padding: 12px 15px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
+
+    .table th {
+        background-color: #f2f2f2;
+    }
+
+    .table tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        margin-right: 10px;
+        border: none;
+        color: white;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+    }
+
+    .container {
+        margin-top: 20px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    a.btn:hover {
+        opacity: 0.85;
+    }
+
+    .counter {
+        display: flex;
+        align-items: center;
+    }
+
+    .counter-button {
+        padding: 5px 10px;
+        background-color: #28a745; /* Color verde para el botón de venta */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+
+    .counter-display {
+        font-size: 18px;
+        font-weight: bold;
+    }
+</style>
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="container">
+    <h2>Lista de Platos</h2>
+</div>
+
+<h2>@ViewBag.ErrorEliminar</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Cantidad Vendida</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.nombre</td>
+            <td>@item.precio</td>
+            <td>
+                <span class="counter-display">@* Aquí iría la cantidad vendida real *@ 0</span>
+            </td>
+            <td>
+                <form method="post" action="@Url.Action("VenderPlato", "Ventas")">
+                    <input type="hidden" name="idPlato" value="@item.id" />
+                    <button type="submit" class="counter-button">Vender Plato</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

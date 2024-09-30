@@ -1,45 +1,35 @@
 using Microsoft.AspNetCore.Mvc;
 using TP_FINAL.Models;
-
 namespace TP_FINAL.Controllers
+
 {
     public class VentasController : Controller
     {
         public IActionResult Index(int idUsuario)
         {
-            ViewBag.BarraBusqueda = true;
             ViewBag.Usuario = BD.GetUsuario(idUsuario);
-            return View();
-        }
-
-        public IActionResult Crear(int idUsuario)
-        {
-            ViewBag.Usuario = BD.GetUsuario(idUsuario);
+            ViewBag.Platos=BD.GetPlatos();
             ViewBag.BarraBusqueda = true;
-            ViewBag.Platos = BD.GetPlatos(); 
-            return View();
+            List<Plato> platos = BD.GetPlatos();
+            return View(platos);
         }
 
         [HttpPost]
-        public IActionResult Crear(int idUsuario, List<Venta> ventas)
+        public IActionResult VenderPlato(int idPlato)
         {
-            if (ventas != null && ventas.Count > 0)
-            {
-                var total = ventas.Sum(v => v.cantidad * v.precioUnitario);
-                int idVenta = BD.RegistrarVenta(idUsuario, DateTime.Now, total);
-                
-                foreach (var venta in ventas)
-                {
-                    BD.RegistrarDetalleVenta(idVenta, venta.idPlato, venta.cantidad, venta.precioUnitario);
-                }
+            // Obtener el plato
+            var plato = BD.GetPlato(idPlato);
 
-                return RedirectToAction(nameof(Index), new { idUsuario });
-            }
+            // Aquí podrías agregar lógica para registrar la venta
+            // Por ejemplo, incrementar la cantidad de platos vendidos
 
-            ViewBag.Usuario = BD.GetUsuario(idUsuario);
-            ViewBag.BarraBusqueda = true;
-            ViewBag.Error = "No se han registrado productos para la venta.";
-            return View();
+            // Simulando la actualización de ventas
+            int cantidadVendida = 0; // Aquí puedes obtener la cantidad vendida de la base de datos
+            cantidadVendida++; // Incrementar la cantidad vendida
+            // Actualiza la base de datos si es necesario
+
+            // Redirigir de nuevo a la vista Index
+            return RedirectToAction("Index");
         }
     }
 }
