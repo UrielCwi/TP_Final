@@ -245,6 +245,23 @@ public static Usuario GetUsuarioPorEmail(string email)
     }
 }
 
+public static int RegistrarVenta(int idUsuario, DateTime fecha, double total)
+{
+    using (SqlConnection db = new SqlConnection(_connectionString))
+    {
+        string sp = "RegistrarVenta";
+        return db.QuerySingle<int>(sp, new { idUsuario, fecha, total }, commandType: CommandType.StoredProcedure);
+    }
+}
+
+public static void RegistrarDetalleVenta(int idVenta, int idPlato, int cantidad, double precioUnitario)
+{
+    using (SqlConnection db = new SqlConnection(_connectionString))
+    {
+        string sp = "RegistrarDetalleVenta";
+        db.Execute(sp, new { idVenta, idPlato, cantidad, precioUnitario }, commandType: CommandType.StoredProcedure);
+    }
+}
 
  
 }
