@@ -154,15 +154,6 @@ public class BD{
             }
         }
 
-
-   /* public static Tareas VerDetalleTarea(int IdTarea){
-        Tareas tarea = null;
-        using(SqlConnection db = new SqlConnection(_connectionString)){
-            string sp = "VerDetalleTarea";
-            tarea = db.QueryFirstOrDefault<Tareas>(sp, new{IdTarea = IdTarea}, commandType: CommandType.StoredProcedure);
-        }
-        return tarea;
- */
     public static int RegistrarUsuario(Usuario usuario){
         int nuevoUsuarioId = -1;
         try{
@@ -207,13 +198,6 @@ public class BD{
     }
     return plato;
     }
-   /* public static void Hecho(int IdTarea)
-    {
-        using(SqlConnection db = new SqlConnection(_connectionString)){
-            string sp = "MarcarComoHecho";
-            db.Execute(sp, new{IdTarea = IdTarea}, commandType: CommandType.StoredProcedure);
-        }
-    }*/
 
     public Usuario GetUsuarioPorId(int id)
     {

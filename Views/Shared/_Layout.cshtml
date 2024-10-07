@@ -17,6 +17,18 @@
                     input.value = input.value.slice(0, maxLength);
                 }
             }
+            /*document.addEventListener('DOMContentLoaded', function() {
+            const inputs = document.querySelectorAll('input[type="number"]');
+                input.addEventListener('input', function() {
+                    const value = parseFloat(this.value);
+                    // Validación: no permitir negativos ni strings y permitir números con o sin decimales
+                    if (isNaN(value) || value < 0 || !/^\d+(\.\d{1,2})?$/.test(this.value)) {
+                        this.setCustomValidity("Por favor ingrese un número válido positivo (con o sin decimales).");
+                    } else {
+                        this.setCustomValidity("");  // Válido
+                    }
+                });
+            });*/
         </script>
     </head>
     <body>

@@ -101,22 +101,40 @@
             <th>Acciones</th>
         </tr>
     </thead>
-    <tbody>
+  <tbody>
     @foreach (var item in Model)
     {
         <tr>
             <td>@item.nombre</td>
             <td>@item.precio</td>
             <td>
-                <span class="counter-display">@* Aquí iría la cantidad vendida real *@ 0</span>
+                <!-- Aquí se muestra la cantidad vendida real -->
+                <span class="counter-display" id="cantidadVendida-@item.id">0</span>
             </td>
             <td>
-                <form method="post" action='@Url.Action("VenderPlato", "Ventas")'>
-                    <input type="hidden" name="idPlato" value="@item.id" />
-                    <button type="submit" class="counter-button">Vender Plato</button>
-                </form>
+                <div class="counter">
+                    <button class="counter-button" onclick="incrementCounter(@item.id, @item.precio)">Vender</button>
+                </div>
             </td>
         </tr>
     }
-    </tbody>
+</tbody>
 </table>
+
+<script>
+    function incrementCounter(platoId, price) {
+        // Obtener el elemento que muestra la cantidad vendida
+        const counterDisplay = document.getElementById(`cantidadVendida-${platoId}`);
+
+        // Obtener el contador actual y sumarle uno
+        let count = parseInt(counterDisplay.innerText) || 0;
+        count++; // Incrementar el contador
+
+        // Actualizar el valor visual en la página
+        counterDisplay.innerText = count;
+
+        // Aquí puedes agregar lógica para manejar la suma total si es necesario
+        const totalPrice = count * price;
+        console.log(`Precio total de ventas para este plato: $${totalPrice.toFixed(2)}`);
+    }
+</script>
