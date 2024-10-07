@@ -9,5 +9,6 @@ public class Plato
     [Required(ErrorMessage = "Debe ser un número mayor a 0")]
     [Range(1, double.MaxValue, ErrorMessage = "Debe ser un número mayor a 0")]
     public double precio { get; set; }
+    public int cantidadVendida { get; set; }
     public bool activo { get; set; }
 }

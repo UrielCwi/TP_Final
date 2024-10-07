@@ -1,4 +1,4 @@
-@model List<Plato>
+@model List<dynamic>
 
 <style>
     body {
@@ -43,14 +43,6 @@
         background-color: #007bff;
     }
 
-    .btn-secondary {
-        background-color: #6c757d;
-    }
-
-    .btn-danger {
-        background-color: #dc3545;
-    }
-
     .container {
         margin-top: 20px;
         padding: 20px;
@@ -58,83 +50,40 @@
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
-
-    a.btn:hover {
-        opacity: 0.85;
-    }
-
-    .counter {
-        display: flex;
-        align-items: center;
-    }
-
-    .counter-button {
-        padding: 5px 10px;
-        background-color: #28a745; /* Color verde para el botón de venta */
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-right: 10px;
-    }
-
-    .counter-display {
-        font-size: 18px;
-        font-weight: bold;
-    }
 </style>
 
 <h2>@ViewData["Title"]</h2>
 
 <div class="container">
-    <h2>Lista de Platos</h2>
+    <h2>Lista de Ventas</h2>
 </div>
-
-<h2>@ViewBag.ErrorEliminar</h2>
 
 <table class="table">
     <thead>
         <tr>
-            <th>Nombre</th>
+            <th>Nombre del Plato</th>
             <th>Precio</th>
             <th>Cantidad Vendida</th>
+            <th>Total Acumulado</th>
             <th>Acciones</th>
         </tr>
     </thead>
-  <tbody>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.nombre</td>
-            <td>@item.precio</td>
-            <td>
-                <!-- Aquí se muestra la cantidad vendida real -->
-                <span class="counter-display" id="cantidadVendida-@item.id">0</span>
-            </td>
-            <td>
-                <div class="counter">
-                    <button class="counter-button" onclick="incrementCounter(@item.id, @item.precio)">Vender</button>
-                </div>
-            </td>
-        </tr>
-    }
-</tbody>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            var totalAcumulado = item.Plato.precio * item.CantidadVendida;
+            <tr>
+                <td>@item.Plato.nombre</td>
+                <td>@item.Plato.precio</td>
+                <td>
+                    <form method="post" action='@Url.Action("VenderPlato", "Ventas")'>
+                        <input type="hidden" name="idPlato" value="@item.Plato.id" />
+                        <input type="number" name="cantidad" min="1" required />
+                        <button type="submit" class="btn btn-primary">Vender</button>
+                    </form>
+                </td>
+                <td>@totalAcumulado</td>
+            </tr>
+        }
+    </tbody>
 </table>
-
-<script>
-    function incrementCounter(platoId, price) {
-        // Obtener el elemento que muestra la cantidad vendida
-        const counterDisplay = document.getElementById(`cantidadVendida-${platoId}`);
-
-        // Obtener el contador actual y sumarle uno
-        let count = parseInt(counterDisplay.innerText) || 0;
-        count++; // Incrementar el contador
-
-        // Actualizar el valor visual en la página
-        counterDisplay.innerText = count;
-
-        // Aquí puedes agregar lógica para manejar la suma total si es necesario
-        const totalPrice = count * price;
-        console.log(`Precio total de ventas para este plato: $${totalPrice.toFixed(2)}`);
-    }
-</script>

@@ -98,7 +98,6 @@
         <div class="form-group">
             <label asp-for="precio" class="control-label">Precio</label>
            @Html.EditorFor(model => model.precio, new { htmlAttributes = new { @class = "form-control"} })
-            @*hay que hacer una validacion para que permita decimales, no permita string y no permita negativos*@
             <span asp-validation-for="precio" class="text-danger"></span>
         </div>
 
