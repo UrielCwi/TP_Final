@@ -1,4 +1,4 @@
-@model List<dynamic>
+@model List<Plato>
 
 <style>
     body {
@@ -65,19 +65,19 @@
             <th>Precio</th>
             <th>Cantidad Vendida</th>
             <th>Total Acumulado</th>
-            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            var totalAcumulado = item.Plato.precio * item.CantidadVendida;
+            var totalAcumulado = item.precio * item.cantidadVendida;
             <tr>
-                <td>@item.Plato.nombre</td>
-                <td>@item.Plato.precio</td>
+                <td>@item.nombre</td>
+                <td>@item.precio</td>
                 <td>
                     <form method="post" action='@Url.Action("VenderPlato", "Ventas")'>
-                        <input type="hidden" name="idPlato" value="@item.Plato.id" />
+                        <input type="hidden" name="idUsuario" value="@ViewBag.Usuario.id" />
+                        <input type="hidden" name="idPlato" value="@item.id" />
                         <input type="number" name="cantidad" min="1" required />
                         <button type="submit" class="btn btn-primary">Vender</button>
                     </form>

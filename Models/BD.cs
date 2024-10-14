@@ -51,8 +51,8 @@ public class BD{
     public static Usuario GetUsuario(int id){
         using(SqlConnection db = new SqlConnection(_connectionString)){
             string sp = "GetUsuario";
-            var Usuario = db.QueryFirstOrDefault<Usuario>(sp, new{IdUsuario = id}, commandType: CommandType.StoredProcedure);
-            return Usuario;
+                return db.QueryFirstOrDefault<Usuario>(sp, new { IdUsuario = id }, commandType: CommandType.StoredProcedure);
+
         }
     }
     public static List<Plato> GetPlatos()
@@ -174,14 +174,7 @@ public class BD{
             }
             return nuevoUsuarioId;
         }
-   /*
-    public static void RecuperarContraseña(string Usuario, string Codigo,string NuevaContraseña){
-        using(SqlConnection db = new SqlConnection(_connectionString)){
-            string sp = "RecuperarContraseña";
-            db.Execute(sp, new{Usuario = Usuario, Codigo=Codigo, NuevaContraseña = NuevaContraseña}, commandType: CommandType.StoredProcedure);
-        }
-    }
-    }*/
+
      public static void AgregarCategoria(Categorias Categoria){
         using(SqlConnection db = new SqlConnection(_connectionString)){
             string sp = "AgregarCategoria";
@@ -248,16 +241,11 @@ public static void RegistrarDetalleVenta(int idVenta, int idPlato, int cantidad,
 }
 public static void InsertarVenta(int idPlato, int cantidad, double precioUnitario)
 {
-    using (SqlConnection connection = new SqlConnection(_connectionString))
-    {
-        SqlCommand command = new SqlCommand("InsertarVenta", connection);
-        command.CommandType = CommandType.StoredProcedure;
-        command.Parameters.AddWithValue("@idPlato", idPlato);
-        command.Parameters.AddWithValue("@cantidad", cantidad);
-        command.Parameters.AddWithValue("@precioUnitario", precioUnitario);
-        connection.Open();
-        command.ExecuteNonQuery();
-    }
+    using (SqlConnection db = new SqlConnection(_connectionString))
+        {
+            string sp = "InsertarVenta";  // Procedimiento almacenado para registrar una venta
+            db.Execute(sp, new { idPlato = idPlato, cantidad = cantidad, precioUnitario = precioUnitario }, commandType: CommandType.StoredProcedure);
+        }
 }
  public static void InsertarDetalleVenta(int idVenta, int idUsuario, DateTime fecha, double total)
     {
@@ -323,5 +311,15 @@ public static void RegistrarVenta(Ventas venta)
         db.Execute(sp, new { venta.idPlato, venta.cantidad, venta.precioUnitario }, commandType: CommandType.StoredProcedure);
     }
 }
+
+ public static List<Plato> ObtenerPlatosConVentas()
+        {
+            using (SqlConnection db = new SqlConnection(_connectionString))
+            {
+                string sp = "ObtenerPlatosConVentas";  // Procedimiento almacenado para obtener platos con ventas
+                return db.Query<Plato>(sp, commandType: CommandType.StoredProcedure).ToList();
+            }
+        }
+
 
 }
