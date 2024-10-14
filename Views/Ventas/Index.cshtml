@@ -58,12 +58,19 @@
     <h2>Lista de Ventas</h2>
 </div>
 
+@{
+    // Variable para acumular el total de todas las ventas
+    double Totalp = 0;
+    double cantp=0;
+}
+
 <table class="table">
     <thead>
         <tr>
             <th>Nombre del Plato</th>
             <th>Precio</th>
             <th>Cantidad Vendida</th>
+            <th>Cantidad de ventas</th>
             <th>Total Acumulado</th>
         </tr>
     </thead>
@@ -71,6 +78,8 @@
         @foreach (var item in Model)
         {
             var totalAcumulado = item.precio * item.cantidadVendida;
+            Totalp += totalAcumulado;
+            cantp += item.cantidadVendida;
             <tr>
                 <td>@item.nombre</td>
                 <td>@item.precio</td>
@@ -82,8 +91,14 @@
                         <button type="submit" class="btn btn-primary">Vender</button>
                     </form>
                 </td>
+                <td>@item.cantidadVendida</td>
                 <td>@totalAcumulado</td>
             </tr>
         }
+          <tr>
+            <th colspan="3">Total Ventas</th>
+            <td>@cantp</td>
+            <td>@Totalp</td>
+        </tr>
     </tbody>
 </table>
