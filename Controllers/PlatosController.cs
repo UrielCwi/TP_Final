@@ -6,14 +6,17 @@ namespace TP_FINAL.Controllers
     {
         public IActionResult Index(int idUsuario)
         {
-            ViewBag.BarraBusqueda = true;
-            ViewBag.Usuario=BD.GetUsuario(idUsuario);
-            ViewBag.Platos=BD.GetPlatos();
+            ViewBag.Usuario = BD.GetUsuario(idUsuario);
+            ViewBag.Platos = BD.GetPlatos();
+            ViewBag.BarraBusqueda=true;
             ViewBag.Categorias = BD.GetCategorias();
-            List<Plato> platos = BD.GetPlatos();
-            List<Categorias> categorias = BD.GetCategorias();     
-            return View(platos);
-    
+            var listaIngredientes = new List<IngredientePlato>();
+            foreach(var plato in ViewBag.Platos)
+            {
+                listaIngredientes.AddRange(BD.GetIngredientesPorPlato(plato.id));
+            }
+            ViewBag.IngredientesPlato = listaIngredientes;
+            return View(ViewBag.Platos);
         }
 
         public IActionResult Crear(int idUsuario)

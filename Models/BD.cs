@@ -71,6 +71,14 @@ public class BD{
                 return db.Query<Unidad>(sp, commandType: CommandType.StoredProcedure).ToList();
             }
         }
+        public static List<IngredientePlato> GetIngredientesPorPlato(int idPlato)
+        {
+            using (SqlConnection db = new SqlConnection(_connectionString))
+            {
+                string sp = "ObtenerIngredientesPorPlato"; // Nombre del procedimiento almacenado
+                return db.Query<IngredientePlato>(sp, new { idPlato }, commandType: CommandType.StoredProcedure).ToList();
+            }
+        }
         public static List<Ingrediente> GetIngredientes()
         {
             using (SqlConnection db = new SqlConnection(_connectionString))
@@ -308,7 +316,7 @@ public static void RegistrarVenta(Ventas venta)
     using (SqlConnection db = new SqlConnection(_connectionString))
     {
         string sp = "RegistrarVenta";
-        db.Execute(sp, new { venta.idPlato, venta.cantidad, venta.precioUnitario }, commandType: CommandType.StoredProcedure);
+        db.Execute(sp, new { venta.idPlato, venta.cantidad, venta.precioUnitario, venta.fecha }, commandType: CommandType.StoredProcedure);
     }
 }
 
@@ -320,6 +328,4 @@ public static void RegistrarVenta(Ventas venta)
                 return db.Query<Plato>(sp, commandType: CommandType.StoredProcedure).ToList();
             }
         }
-
-
 }

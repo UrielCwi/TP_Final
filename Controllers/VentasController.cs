@@ -12,9 +12,9 @@ namespace TP_FINAL.Controllers
             ViewBag.BarraBusqueda = true;
             List<Plato> platos = BD.GetPlatos();
             // Llamada al procedimiento almacenado para obtener la lista de platos con sus ventas
-            var platosConVentas = BD.ObtenerPlatosConVentas();
+            ViewBag.PlatosConVentas = BD.ObtenerPlatosConVentas();
 
-            return View(platosConVentas);
+            return View(ViewBag.PlatosConVentas);
         }
 
         [HttpPost]

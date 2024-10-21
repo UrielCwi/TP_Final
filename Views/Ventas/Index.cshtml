@@ -57,9 +57,13 @@
 <div class="container">
     <h2>Lista de Ventas</h2>
 </div>
+@*
 
+hay que utilizar la tabla de las ventas para que se guarden las ventas. 
+Tanto las fechas que deben tener con la fecha de cuando se apreta el boton "vender" como la cantidad de ventas que se realizaron
+
+*@
 @{
-    // Variable para acumular el total de todas las ventas
     double Totalp = 0;
     double cantp=0;
 }
@@ -80,6 +84,7 @@
             var totalAcumulado = item.precio * item.cantidadVendida;
             Totalp += totalAcumulado;
             cantp += item.cantidadVendida;
+
             <tr>
                 <td>@item.nombre</td>
                 <td>@item.precio</td>

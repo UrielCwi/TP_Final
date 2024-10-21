@@ -104,6 +104,7 @@
         <tr>
             <th>Nombre</th>
             <th>Categoría</th>
+            <th>Lista de ingredientes</th>
             <th>Precio</th>
             <th>Acciones</th>
         </tr>
@@ -111,7 +112,10 @@
     <tbody>
     @foreach (var item in Model)
     {
+        string listaIngredientes = "";
+        var lista = ((List<IngredientePlato>)ViewBag.IngredientesPlato).Where(x=>x.idPlato == item.id);
         string categoriaNombre = "Categoría no encontrada";
+
         foreach (var cat in ViewBag.Categorias)
         {
             if (cat.id == item.idCategoria)
@@ -120,9 +124,21 @@
                 break;
             }
         }
+        foreach(var ing in lista)
+            {
+                @if (ing.idPlato ==item.id )
+                {
+                    listaIngredientes += ", " + ing.descripcion;
+                }
+                else
+                {
+                    listaIngredientes = "lista no encontrada";
+                }
+            }
         <tr>
             <td>@item.nombre</td>
             <td>@categoriaNombre</td>
+            <td>@listaIngredientes</td>
             <td>@item.precio</td>
             <td>
                 <a href='@Url.Action("Editar", "Platos", new { IdUsuario = ViewBag.Usuario.id, id = @item.id })' class="btn btn-secondary">Editar</a> |
