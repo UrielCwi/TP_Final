@@ -137,19 +137,13 @@
                 scales: {
                     y: {
                         beginAtZero: true
-                    },
-                    x: {
-                        type: 'time',
-                        time: {
-                            unit: 'day' // Esto agrupa por día, ajusta según tus necesidades (puede ser 'week', 'month', etc.)
-                        }
                     }
                 }
             }
         };
 
         var ventasFechaChart = new Chart(
-            document.getElementById('ventasFechaChart'),
+            document.getElementById('ventasPorFechaChart'),
             ventasFechaConfig
         );
     </script>

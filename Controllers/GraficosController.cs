@@ -6,7 +6,7 @@ namespace TP_FINAL.Controllers
 {
     public class GraficosController : Controller
     {
-        public IActionResult Index(int idUsuario)
+        public IActionResult Index(int idUsuario, DateTime fecha)
         {
             ViewBag.Usuario = BD.GetUsuario(idUsuario);
             ViewBag.BarraBusqueda = true;

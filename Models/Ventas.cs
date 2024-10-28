@@ -6,4 +6,5 @@ public class Ventas
     public double precioUnitario { get; set; }
     public DateTime fecha { get; set; }
     public string? NombrePlato {get;set;}
+    public double? totalVenta {get;set;}
 }

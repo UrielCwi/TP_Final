@@ -35,7 +35,6 @@
         padding: 10px 20px;
         margin-right: 10px;
         border: none;
-        color: white;
         text-decoration: none;
         font-size: 14px;
     }
@@ -81,11 +80,13 @@
     <a href='@Url.Action("Crear", "Ingredientes", new { IdUsuario = ViewBag.Usuario.id })' class="btn btn-primary add-ingredient-btn">Agregar Nuevo Ingrediente</a>
 </p>
 
+
 <table class="table">
     <thead>
         <tr>
             <th>Descripción</th>
             <th>Cantidad</th>
+            <th>Unidad</th>
             <th>Valor por Unidad</th>
             <th>Activo</th>
             <th>Acciones</th>
@@ -94,13 +95,24 @@
     <tbody>
     @foreach (var item in Model)
     {
+        string unidadNombre = "Unidad no encontrada";
+
+       foreach(var uni in ViewBag.Unidad)
+        {
+        if (uni.id == item.idUnidad)
+            {
+                unidadNombre = uni.nombre;
+                break;
+            }
+        }
         <tr>
             <td>@item.descripcion</td>
             <td>@item.cantidad</td>
+            <td>0</td>
             <td>@item.valorUnidad</td>
             <td>@item.activo</td>
             <td>
-                <a href='@Url.Action("Editar", "ingredientes", new { IdUsuario = ViewBag.Usuario.id, id = @item.id })' class="btn btn-sm btn-outline-secondary">Editar</a>
+                <a href='@Url.Action("Editar", "ingredientes", new { IdUsuario = ViewBag.Usuario.id, id = @item.id })' class="btn btn-secondary">Editar</a>
                 <form action='@Url.Action("Eliminar", "Ingredientes")' method="post" style="display:inline;">
                     <input type="hidden" name="id" value="@item.id" />
                     <input type="hidden" name="idUsuario" value="@ViewBag.Usuario.id" />
