@@ -328,4 +328,12 @@ public static void RegistrarVenta(Ventas venta)
                 return db.Query<Ventas>(sp, commandType: CommandType.StoredProcedure).ToList();
             }
         }
+public static List<Ventas> ObtenerVentasPorFecha()
+    {
+        using (SqlConnection db = new SqlConnection(_connectionString))
+        {
+            string sp = "ObtenerVentasPorFecha"; // Nombre del procedimiento almacenado para agrupar ventas por fecha
+            return db.Query<Ventas>(sp, commandType: CommandType.StoredProcedure).ToList();
+        }
+    }
 }

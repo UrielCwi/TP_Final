@@ -7,16 +7,16 @@ namespace TP_FINAL.Controllers
         public IActionResult Index(int idUsuario)
         {
             ViewBag.Usuario = BD.GetUsuario(idUsuario);
-            ViewBag.Platos = BD.GetPlatos();
+            var platos = BD.GetPlatos();
             ViewBag.BarraBusqueda=true;
             ViewBag.Categorias = BD.GetCategorias();
             var listaIngredientes = new List<IngredientePlato>();
-            foreach(var plato in ViewBag.Platos)
+            foreach(var plato in platos)
             {
                 listaIngredientes.AddRange(BD.GetIngredientesPorPlato(plato.id));
             }
             ViewBag.IngredientesPlato = listaIngredientes;
-            return View(ViewBag.Platos);
+            return View(platos);
         }
 
         public IActionResult Crear(int idUsuario)
@@ -79,22 +79,29 @@ namespace TP_FINAL.Controllers
             ViewBag.Ingredientes = BD.GetIngredientes();
             return View(plato);
         }
-
+            [HttpPost]
+            [HttpGet]
         public IActionResult Eliminar(int id, int idUsuario)
         {
             //validar q no este en un plato
             try{
             BD.EliminarPlato(id);
-            }catch(Exception)
+            }catch(Exception ex)
             {
-                ViewBag.ErrorEliminar = "No se puede eliminar el plato";
+                ViewBag.ErrorEliminar = "No se puede eliminar el plato: " + ex.Message;
             }
             
             ViewBag.BarraBusqueda = true;
             ViewBag.Usuario=BD.GetUsuario(idUsuario);
-            ViewBag.Plato=BD.GetPlatos();
-            List<Plato> plato = BD.GetPlatos();
-            return View("Index",plato);
+            List<Plato> platos = BD.GetPlatos();
+             ViewBag.Categorias = BD.GetCategorias();
+            var listaIngredientes = new List<IngredientePlato>();
+            foreach(var plato in platos)
+            {
+                listaIngredientes.AddRange(BD.GetIngredientesPorPlato(plato.id));
+            }
+            ViewBag.IngredientesPlato = listaIngredientes;
+            return View("Index",platos);
         }
         public IActionResult CrearCategoria(int idUsuario)   
         {

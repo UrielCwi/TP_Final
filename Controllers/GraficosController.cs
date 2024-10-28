@@ -22,7 +22,10 @@ namespace TP_FINAL.Controllers
             // Obtener platos
             var platos = BD.GetPlatos();
             ViewBag.Platos = platos;
-
+            
+            // Obtener datos de ventas por fecha
+            var ventasPorFecha = BD.ObtenerVentasPorFecha();
+            ViewBag.VentasPorFecha = ventasPorFecha;
             return View();
         }
     }

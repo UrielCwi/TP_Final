@@ -19,7 +19,7 @@
                             <div class="btn-group">
                                 <a href='@Url.Action("Index", "Platos", new { id = plato.id, idUsuario=ViewBag.Usuario.id })' class="btn btn-sm btn-outline-secondary">Ver</a>
                                 <a href='@Url.Action("Editar", "Platos", new { id = plato.id, idUsuario=ViewBag.Usuario.id })' class="btn btn-sm btn-outline-secondary">Editar</a>
-                                <a href='@Url.Action("Eliminar", "Platos", new { id = plato.id, idUsuario=ViewBag.Usuario.id })' class="btn btn-sm btn-outline-danger">Eliminar</a>
+                                <a href='@Url.Action("Eliminar", "Platos", new { id = plato.id, idUsuario=ViewBag.Usuario.id })' class="btn btn-sm btn-outline-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este Plato?')">Eliminar</a>
                             </div>
                         </div>
                     </div>
