@@ -97,18 +97,18 @@
     {
         string unidadNombre = "Unidad no encontrada";
 
-       foreach(var uni in ViewBag.Unidad)
+       @*foreach(var uni in ViewBag.Unidad)
         {
-        if (uni.id == item.idUnidad)
-            {
-                unidadNombre = uni.nombre;
-                break;
-            }
-        }
+            if (uni.id == item.idUnidad)
+                {
+                    unidadNombre = uni.nombre;
+                    break;
+                }
+        }*@
         <tr>
             <td>@item.descripcion</td>
             <td>@item.cantidad</td>
-            <td>0</td>
+            <td>0@*@unidadNombre*@</td>
             <td>@item.valorUnidad</td>
             <td>@item.activo</td>
             <td>
