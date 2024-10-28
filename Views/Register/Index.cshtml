@@ -23,7 +23,7 @@
     </div>
 }
 
-              <form Action='@Url.Action("Registro","Home")' method="post">
+              <form Action='@Url.Action("Registro","Register")' method="post">
                 <div class="Usuario">
                     <h2>Nombre</h2>
                     <input type="text" class="inputlogin" name="Nombre" maxlength="30" data-maxlength="30" required oninput="checkLength(this)"></input>
@@ -46,7 +46,7 @@
                 </div>
                     <button class="inicio" type="submit" style="margin-top: 10px">Registrarse</button>
             </form>
-            <form Action='@Url.Action("Index","Home")'>
+            <form Action='@Url.Action("Index","Login")'>
                 <button class="inicio" type="submit" style="margin-top: 30px">Iniciar Sesion</button>
             </form>
             </div>

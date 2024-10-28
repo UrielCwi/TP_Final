@@ -1,4 +1,4 @@
-@model List<Plato>
+@model List<Ventas>
 
 <style>
     body {
@@ -65,7 +65,7 @@ Tanto las fechas que deben tener con la fecha de cuando se apreta el boton "vend
 *@
 @{
     double Totalp = 0;
-    double cantp=0;
+    double cantp = 0;
 }
 
 <table class="table">
@@ -74,20 +74,21 @@ Tanto las fechas que deben tener con la fecha de cuando se apreta el boton "vend
             <th>Nombre del Plato</th>
             <th>Precio</th>
             <th>Cantidad Vendida</th>
-            <th>Cantidad de ventas</th>
+            <th>Cantidad de Ventas</th>
             <th>Total Acumulado</th>
+            <th>Fecha de Última Venta</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            var totalAcumulado = item.precio * item.cantidadVendida;
+            var totalAcumulado = item.precioUnitario * item.cantidad;
             Totalp += totalAcumulado;
-            cantp += item.cantidadVendida;
+            cantp += item.cantidad;
 
             <tr>
-                <td>@item.nombre</td>
-                <td>@item.precio</td>
+                <td>@item.NombrePlato</td>
+                <td>@item.precioUnitario</td>
                 <td>
                     <form method="post" action='@Url.Action("VenderPlato", "Ventas")'>
                         <input type="hidden" name="idUsuario" value="@ViewBag.Usuario.id" />
@@ -96,14 +97,16 @@ Tanto las fechas que deben tener con la fecha de cuando se apreta el boton "vend
                         <button type="submit" class="btn btn-primary">Vender</button>
                     </form>
                 </td>
-                <td>@item.cantidadVendida</td>
+                <td>@item.cantidad</td>
                 <td>@totalAcumulado</td>
+                <td>@item.fecha</td>
             </tr>
         }
-          <tr>
+        <tr>
             <th colspan="3">Total Ventas</th>
             <td>@cantp</td>
             <td>@Totalp</td>
+            <td></td>
         </tr>
     </tbody>
 </table>

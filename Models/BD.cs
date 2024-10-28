@@ -247,12 +247,12 @@ public static void RegistrarDetalleVenta(int idVenta, int idPlato, int cantidad,
         db.Execute(sp, new { idVenta, idPlato, cantidad, precioUnitario }, commandType: CommandType.StoredProcedure);
     }
 }
-public static void InsertarVenta(int idPlato, int cantidad, double precioUnitario)
+public static void InsertarVenta(int idPlato, int cantidad, double precioUnitario, DateTime fecha)
 {
     using (SqlConnection db = new SqlConnection(_connectionString))
         {
             string sp = "InsertarVenta";  // Procedimiento almacenado para registrar una venta
-            db.Execute(sp, new { idPlato = idPlato, cantidad = cantidad, precioUnitario = precioUnitario }, commandType: CommandType.StoredProcedure);
+            db.Execute(sp, new { idPlato = idPlato, cantidad = cantidad, precioUnitario = precioUnitario, fecha =fecha }, commandType: CommandType.StoredProcedure);
         }
 }
  public static void InsertarDetalleVenta(int idVenta, int idUsuario, DateTime fecha, double total)
@@ -320,12 +320,12 @@ public static void RegistrarVenta(Ventas venta)
     }
 }
 
- public static List<Plato> ObtenerPlatosConVentas()
+ public static List<Ventas> ObtenerPlatosConVentas()
         {
             using (SqlConnection db = new SqlConnection(_connectionString))
             {
                 string sp = "ObtenerPlatosConVentas";  // Procedimiento almacenado para obtener platos con ventas
-                return db.Query<Plato>(sp, commandType: CommandType.StoredProcedure).ToList();
+                return db.Query<Ventas>(sp, commandType: CommandType.StoredProcedure).ToList();
             }
         }
 }

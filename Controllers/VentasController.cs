@@ -10,7 +10,7 @@ namespace TP_FINAL.Controllers
         {
             ViewBag.Usuario = BD.GetUsuario(idUsuario);
             ViewBag.BarraBusqueda = true;
-            List<Plato> platos = BD.GetPlatos();
+            List<Ventas> ventas = BD.GetVentas();
             // Llamada al procedimiento almacenado para obtener la lista de platos con sus ventas
             ViewBag.PlatosConVentas = BD.ObtenerPlatosConVentas();
 
@@ -18,16 +18,17 @@ namespace TP_FINAL.Controllers
         }
 
         [HttpPost]
-        public IActionResult VenderPlato(int idUsuario, int idPlato, int cantidad, double precioUnitario)
+        public IActionResult VenderPlato(int idUsuario, int idPlato, int cantidad, double precioUnitario, DateTime fecha)
         {
             ViewBag.Usuario = BD.GetUsuario(idUsuario);
             ViewBag.BarraBusqueda = true;
-            
+            fecha = DateTime.Now;
+
             if (cantidad <= 0) 
                 return BadRequest("La cantidad debe ser mayor a cero.");
 
             // Llamada al procedimiento almacenado para registrar la venta
-            BD.InsertarVenta(idPlato, cantidad, precioUnitario);
+            BD.InsertarVenta(idPlato, cantidad, precioUnitario, fecha);
 
             return RedirectToAction("Index", new { idUsuario = idUsuario });
         }
