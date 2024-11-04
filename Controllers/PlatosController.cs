@@ -64,11 +64,11 @@ namespace TP_FINAL.Controllers
         }
 
         [HttpPost]
-        public IActionResult Editar(Plato plato, int idUsuario)
+        public IActionResult Editar(Plato plato, int idUsuario, IngredientePlato ingredientePlato) 
         {
             if (ModelState.IsValid)
             {
-                BD.ActualizarPlato(plato);
+                BD.ActualizarPlato(plato, ingredientePlato);
                 return RedirectToAction(nameof(Index), new { idUsuario = idUsuario });
             }
             ViewBag.Usuario = BD.GetUsuario(idUsuario);

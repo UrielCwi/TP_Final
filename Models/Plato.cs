@@ -11,4 +11,7 @@ public class Plato
     public double precio { get; set; }
     public int cantidadVendida { get; set; }
     public bool activo { get; set; }
+
+    public List<int> ingredientes {get;set;}
+    public List<int> cantidadXIngredientes {get;set;}
 }

@@ -107,12 +107,30 @@
                 @foreach (Ingrediente a in ViewBag.Ingrediente)
                 {
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="ingredientes" value="@a.id" id="ingrediente_@a.id" />
-                        <label class="form-check-label" for="ingrediente_@a.id">
+                        <input 
+                            class="form-check-input" 
+                            type="checkbox" 
+                            name="ingredientes" 
+                            value="@a.id" 
+                            id="ingrediente_@a.id" />
+                        <label 
+                            class="form-check-label" 
+                            for="ingrediente_@a.id">
                             @a.descripcion
                         </label>
-                                      @*  <input type="number" name="cantidades[@a.id]" min="1" class="form-control" placeholder="Cantidad" />*@
-
+                    </div>
+                    <div class="form-check">
+                        <input 
+                            class="form-check-input" 
+                            type="text" 
+                            name="cantidadXIngredientes" 
+                            value="@a.id" 
+                            id="ingrediente_@a.id" />
+                        <label 
+                            class="form-check-label" 
+                            for="ingrediente_@a.id">
+                            Cantidad de @a.descripcion
+                        </label>
                     </div>
                 }
             </div>

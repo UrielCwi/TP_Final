@@ -138,13 +138,23 @@ public class BD{
                 db.Execute(sp, new { ingrediente.descripcion, ingrediente.cantidad, ingrediente.valorUnidad, ingrediente.activo}, commandType: CommandType.StoredProcedure);
             }
         }
-        public static void ActualizarPlato(Plato plato)
+        public static void ActualizarPlato(Plato plato, IngredientePlato ingredientePlato)
         {
             using (SqlConnection db = new SqlConnection(_connectionString))
             {
                 string sp = "ActualizarPlato";
                 db.Execute(sp, new {plato.id, plato.nombre, plato.idCategoria, plato.precio, plato.activo }, commandType: CommandType.StoredProcedure);
-            }
+                //1)borrar todos los ingredientes que tenga el plato en la tabla ingredienteplato
+                string deleteQuery = "DELETE FROM IngredientePlato WHERE idPlato = @idPlato";
+                db.Execute(deleteQuery, new { idPlato = plato.id });
+                //2)insert en ingredienteplato una vez por ingrediente siempre usando el mismo id de plato
+                string insertQuery = "INSERT INTO IngredientePlato (idPlato, idIngrediente, cantXPlato) VALUES (@idPlato, @idIngrediente, @cantXPlato)";
+                
+                for(int i=0; i<plato.ingredientes.Count; i++)
+                {
+                    db.Execute(insertQuery, new { idPlato = plato.id, idIngrediente = plato.ingredientes.ElementAt(i), cantXPlato = plato.cantidadXIngredientes.ElementAt(i) });
+                }
+            } 
         }
         public static void ActualizarIngrediente(Ingrediente ingrediente)
         {
