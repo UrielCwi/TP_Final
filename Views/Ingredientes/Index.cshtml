@@ -3,7 +3,7 @@
 
 <style>
     body {
-        padding-top: 80px; /* Ajusta según la altura de tu navbar */
+        padding-top: 80px;
     }
 
     h2 {
@@ -80,7 +80,9 @@
     <a href='@Url.Action("Crear", "Ingredientes", new { IdUsuario = ViewBag.Usuario.id })' class="btn btn-primary add-ingredient-btn">Agregar Nuevo Ingrediente</a>
 </p>
 
-
+@{
+    string unidadNombre = "Unidad no encontrada";
+}
 <table class="table">
     <thead>
         <tr>
@@ -95,7 +97,7 @@
     <tbody>
     @foreach (var item in Model)
     {
-        string unidadNombre = "Unidad no encontrada";
+        
 
        @*foreach(var uni in ViewBag.Unidad)
         {

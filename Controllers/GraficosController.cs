@@ -6,7 +6,7 @@ namespace TP_FINAL.Controllers
 {
     public class GraficosController : Controller
     {
-        public IActionResult Index(int idUsuario, DateTime fecha)
+        public IActionResult Index(int idUsuario)
         {
             ViewBag.Usuario = BD.GetUsuario(idUsuario);
             ViewBag.BarraBusqueda = true;
@@ -24,7 +24,7 @@ namespace TP_FINAL.Controllers
             ViewBag.Platos = platos;
             
             // Obtener datos de ventas por fecha
-            var ventasPorFecha = BD.ObtenerVentasPorFecha();
+            var ventasPorFecha = BD.ObtenerVentasPorFecha(DateTime.Now);
             ViewBag.VentasPorFecha = ventasPorFecha;
             return View();
         }

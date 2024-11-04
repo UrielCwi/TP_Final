@@ -18,7 +18,7 @@ namespace TP_FINAL.Controllers
         }
 
         [HttpPost]
-        public IActionResult VenderPlato(int idUsuario, int idPlato, int cantidad, double precioUnitario, DateTime fecha)
+        public IActionResult VenderPlato(int idUsuario, int idPlato, int cantidad, double precioUnitario, DateTime fecha, string nombrePlato)
         {
             ViewBag.Usuario = BD.GetUsuario(idUsuario);
             ViewBag.BarraBusqueda = true;
@@ -28,7 +28,7 @@ namespace TP_FINAL.Controllers
                 return BadRequest("La cantidad debe ser mayor a cero.");
 
             // Llamada al procedimiento almacenado para registrar la venta
-            BD.InsertarVenta(idPlato, cantidad, precioUnitario, fecha);
+            BD.InsertarVenta(idPlato, cantidad, precioUnitario, fecha, nombrePlato);
 
             return RedirectToAction("Index", new { idUsuario = idUsuario });
         }

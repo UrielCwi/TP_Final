@@ -66,7 +66,6 @@ namespace TP_FINAL.Controllers
         [HttpPost]
         public IActionResult Eliminar(int id, int idUsuario)
         {
-            //validar q no este en un plato
             try{
             BD.EliminarIngrediente(id);
             }catch(Exception)
