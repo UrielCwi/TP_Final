@@ -125,7 +125,7 @@ public class BD{
             using (SqlConnection db = new SqlConnection(_connectionString))
             {
                 string sp = "InsertarIngrediente";
-                db.Execute(sp, new { ingrediente.descripcion, ingrediente.cantidad, ingrediente.valorUnidad, ingrediente.activo, ingrediente.idUnidad}, commandType: CommandType.StoredProcedure);
+                db.Execute(sp, new { ingrediente.descripcion, ingrediente.cantidad, ingrediente.valorUnidad, ingrediente.activo}, commandType: CommandType.StoredProcedure);
             }
         }
         public static void ActualizarPlato(Plato plato)
