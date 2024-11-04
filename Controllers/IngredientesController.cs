@@ -9,6 +9,7 @@ namespace TP_FINAL.Controllers
             ViewBag.BarraBusqueda = true;
             ViewBag.Usuario=BD.GetUsuario(idUsuario);
             ViewBag.Ingredientes=BD.GetIngredientes();
+            ViewBag.Unidad=BD.GetUnidad();
             List<Ingrediente> ingredientes = BD.GetIngredientes();
             return View(ingredientes);
         }

@@ -115,7 +115,6 @@
         string listaIngredientes = "";
         var lista = ((List<IngredientePlato>)ViewBag.IngredientesPlato).Where(x=>x.idPlato == item.id);
         string categoriaNombre = "Categoría no encontrada";
-
         foreach (var cat in ViewBag.Categorias)
         {
             if (cat.id == item.idCategoria)
@@ -128,7 +127,10 @@
             {
                 @if (ing.idPlato ==item.id )
                 {
-                    listaIngredientes += ", " + ing.descripcion;
+                    if (string.IsNullOrEmpty(listaIngredientes))
+                        listaIngredientes += ing.descripcion ;
+                    else
+                        listaIngredientes += ", " + ing.descripcion ;
                 }
                 else
                 {

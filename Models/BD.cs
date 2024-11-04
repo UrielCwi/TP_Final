@@ -16,15 +16,15 @@ public class BD{
         return Categorias;
     }
     public static List<Categorias> GetCategorias(int id)
-{
-    List<Categorias> Categorias = new List<Categorias>();
-    using(SqlConnection db = new SqlConnection(_connectionString))
     {
-        string sp = "ObtenerCategoriasPorId";
-        Categorias = db.Query<Categorias>(sp, new { id = id }, commandType: CommandType.StoredProcedure).ToList();
+        List<Categorias> Categorias = new List<Categorias>();
+        using(SqlConnection db = new SqlConnection(_connectionString))
+        {
+            string sp = "ObtenerCategoriasPorId";
+            Categorias = db.Query<Categorias>(sp, new { id = id }, commandType: CommandType.StoredProcedure).ToList();
+        }
+        return Categorias;
     }
-    return Categorias;
-}
     public static Usuario LoginUsuario(string email, string contraseña)
         {
             Usuario usuario = null;
@@ -70,6 +70,16 @@ public class BD{
                 string sp = "ObtenerUnidad";
                 return db.Query<Unidad>(sp, commandType: CommandType.StoredProcedure).ToList();
             }
+        }
+        public static List<Unidad> GetUnidad(int id)
+        {
+            List<Unidad> Unidad = new List<Unidad>();
+            using(SqlConnection db = new SqlConnection(_connectionString))
+            {
+                string sp = "ObtenerUnidadesPorId";
+                Unidad = db.Query<Unidad>(sp, new { id = id }, commandType: CommandType.StoredProcedure).ToList();
+            }
+            return Unidad;
         }
         public static List<IngredientePlato> GetIngredientesPorPlato(int idPlato)
         {

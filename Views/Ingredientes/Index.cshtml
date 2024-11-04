@@ -80,9 +80,6 @@
     <a href='@Url.Action("Crear", "Ingredientes", new { IdUsuario = ViewBag.Usuario.id })' class="btn btn-primary add-ingredient-btn">Agregar Nuevo Ingrediente</a>
 </p>
 
-@{
-    string unidadNombre = "Unidad no encontrada";
-}
 <table class="table">
     <thead>
         <tr>
@@ -97,20 +94,19 @@
     <tbody>
     @foreach (var item in Model)
     {
-        
-
-       @*foreach(var uni in ViewBag.Unidad)
+       string unidadNombre = "Unidad no encontrada";
+       foreach(var uni in ViewBag.Unidad)
         {
             if (uni.id == item.idUnidad)
                 {
-                    unidadNombre = uni.nombre;
+                    unidadNombre = uni.unidad;
                     break;
                 } 
-        }*@@*hay que crear una variable para unidad en Ingrediente y hacer un sp para que combine el nombre con id*@
+        }@*hay que crear una variable para unidad en Ingrediente y hacer un sp para que combine el nombre con id*@
         <tr>
             <td>@item.descripcion</td>
             <td>@item.cantidad</td>
-            <td>0@*@unidadNombre*@</td>
+            <td>@unidadNombre</td>
             <td>@item.valorUnidad</td>
             <td>@item.activo</td>
             <td>

@@ -92,14 +92,14 @@ Tanto las fechas que deben tener con la fecha de cuando se apreta el boton "vend
                 <td>
                     <form method="post" action='@Url.Action("VenderPlato", "Ventas")'>
                         <input type="hidden" name="idUsuario" value="@ViewBag.Usuario.id" />
-                        <input type="hidden" name="idPlato" value="@item.id" />
+                        <input type="hidden" name="idPlato" value="@item.idPlato" />
                         <input type="number" name="cantidad" min="1" required />
                         <button type="submit" class="btn btn-primary">Vender</button>
                     </form>
                 </td>
                 <td>@item.cantidad</td>
                 <td>@totalAcumulado</td>
-                <td>@item.fecha</td>
+                <td>@item.fecha.ToString("dd/MM/yyyy")</td>
             </tr>
         }
         <tr>

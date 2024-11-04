@@ -10,11 +10,8 @@ namespace TP_FINAL.Controllers
         {
             ViewBag.Usuario = BD.GetUsuario(idUsuario);
             ViewBag.BarraBusqueda = true;
-            List<Ventas> ventas = BD.GetVentas();
-            // Llamada al procedimiento almacenado para obtener la lista de platos con sus ventas
-            ViewBag.PlatosConVentas = BD.ObtenerPlatosConVentas();
-
-            return View(ViewBag.PlatosConVentas);
+            List<Ventas> ventas = BD.ObtenerPlatosConVentas();
+            return View(ventas);
         }
 
         [HttpPost]

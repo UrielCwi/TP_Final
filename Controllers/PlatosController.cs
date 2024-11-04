@@ -23,7 +23,6 @@ namespace TP_FINAL.Controllers
         {
             ViewBag.Usuario=BD.GetUsuario(idUsuario);
             ViewBag.BarraBusqueda = true;
-            ViewBag.Usuario = BD.GetUsuario(idUsuario);
             ViewBag.Ingrediente = BD.GetIngredientes();
             ViewBag.Categorias=BD.GetCategorias();
             return View();
