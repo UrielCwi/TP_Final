@@ -142,6 +142,7 @@ public class BD{
         {
             using (SqlConnection db = new SqlConnection(_connectionString))
             {
+                //Lo siguiente hay que probarlo con el tema de las unidades
                 string sp = "ActualizarPlato";
                 db.Execute(sp, new {plato.id, plato.nombre, plato.idCategoria, plato.precio, plato.activo }, commandType: CommandType.StoredProcedure);
                 //1)borrar todos los ingredientes que tenga el plato en la tabla ingredienteplato

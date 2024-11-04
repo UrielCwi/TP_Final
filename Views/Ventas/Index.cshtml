@@ -80,6 +80,7 @@ Tanto las fechas que deben tener con la fecha de cuando se apreta el boton "vend
         </tr>
     </thead>
     <tbody>
+    @*no se guradan las ventas*@
         @foreach (var item in Model)
         {
             var totalAcumulado = item.precioUnitario * item.cantidad;
