@@ -105,6 +105,7 @@
             <th>Nombre</th>
             <th>Categoría</th>
             <th>Lista de ingredientes</th>
+            <th>Cant de ingredientes por plato</th>
             <th>Precio</th>
             <th>Acciones</th>
         </tr>
@@ -141,6 +142,7 @@
             <td>@item.nombre</td>
             <td>@categoriaNombre</td>
             <td>@listaIngredientes.</td>
+            <td></td>
             <td>@item.precio</td>
             <td>
                 <a href='@Url.Action("Editar", "Platos", new { IdUsuario = ViewBag.Usuario.id, id = @item.id })' class="btn btn-secondary">Editar</a> |

@@ -89,15 +89,20 @@ Tanto las fechas que deben tener con la fecha de cuando se apreta el boton "vend
 
             <tr>
                 <td>@item.NombrePlato</td>
-                <td>@item.precioUnitario</td>
-                <td>
-                    <form method="post" action='@Url.Action("VenderPlato", "Ventas")'>
+                <form method="post" action='@Url.Action("VenderPlato", "Ventas")'>
+                    
+                    <td> 
+                        <label>@item.precioUnitario</label>
+                         <input type="hidden" name="precioUnitario" id="precioUnitario" value="@item.precioUnitario" />
+                    </td>
+                    <td>
                         <input type="hidden" name="idUsuario" value="@ViewBag.Usuario.id" />
                         <input type="hidden" name="idPlato" value="@item.idPlato" />
                         <input type="number" name="cantidad" min="1" required />
                         <button type="submit" class="btn btn-primary">Vender</button>
-                    </form>
-                </td>
+                   
+                    </td>
+                 </form>
                 <td>@item.cantidad</td>
                 <td>@totalAcumulado</td>
                 <td>@item.fecha</td>
