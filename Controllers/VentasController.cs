@@ -11,6 +11,8 @@ namespace TP_FINAL.Controllers
             ViewBag.Usuario = BD.GetUsuario(idUsuario);
             ViewBag.BarraBusqueda = true;
             List<Ventas> ventas = BD.ObtenerPlatosConVentas();
+            ViewBag.Ingredientes = BD.GetIngredientes(); 
+            ViewBag.Platos = BD.GetPlatos();
             return View(ventas);
         }
 
