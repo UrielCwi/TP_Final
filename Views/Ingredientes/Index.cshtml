@@ -103,6 +103,14 @@
                     break;
                 } 
         }@*solo aparecen las unidades que se guardan en la bd, no edita unidad*@
+        if (item.cantidad <= 10)
+        {
+            <text>
+                <script type="text/javascript">
+                    alert("¡Atención! La cantidad del ingrediente '@item.descripcion' es baja: @item.cantidad unidades restantes.");
+                </script>
+            </text>
+        }
         <tr>
             <td>@item.descripcion</td>
             <td>@item.cantidad</td>
