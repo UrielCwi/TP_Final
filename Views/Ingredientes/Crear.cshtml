@@ -71,7 +71,7 @@
         <input type="hidden" name="idUsuario" value="@ViewBag.Usuario.id" />
 
         <div class="form-group">
-            <label asp-for="descripcion" class="control-label">Descripción</label>
+            <label asp-for="descripcion" class="control-label">Nombre</label>
             <input type="text" name="descripcion" class="form-control" id="descripcion" maxlength="35" data-maxlength="35" required oninput="checkLength(this)" />
             <span asp-validation-for="descripcion" class="text-danger"></span>
         </div>

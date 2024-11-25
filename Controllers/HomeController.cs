@@ -18,7 +18,7 @@ public class HomeController : Controller
     {
         ViewBag.BarraBusqueda = true; 
         BD.AgregarCategoria(Categoria);
-        return RedirectToAction("Home", new{Id = Categoria.id});
+        return RedirectToAction("Index", new{Id = Categoria.id});
     }
     public IActionResult BuscarPlatoPorNombre(string nombre, int idUsuario)
         {
@@ -32,7 +32,7 @@ public class HomeController : Controller
                 ViewBag.ErrorMessage="El campo esta vacio";
             }
             ViewBag.Usuario = BD.GetUsuario(idUsuario);
-            return View("Home");
+            return View("Index");
         }
 }
 
