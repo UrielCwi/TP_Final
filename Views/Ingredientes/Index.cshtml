@@ -97,7 +97,7 @@
        string unidadNombre = "Unidad no encontrada";//se queda con esto y no actualiza la unidad
        foreach(var uni in ViewBag.Unidad)
         {
-            if (uni.id == item.idUnidad)
+            if (uni.id == item.id)
                 {
                     unidadNombre = uni.unidad;
                     break;
