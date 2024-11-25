@@ -94,17 +94,15 @@
     <tbody>
     @foreach (var item in Model)
     {
-       string unidadNombre = "Unidad no encontrada";//se queda con esto y no actualiza la unidad
+       string unidadNombre = "Unidad no encontrada";
        foreach(var uni in ViewBag.Unidad)
         {
-            if (uni.id == item.idUnidad)//si dice id solo aparecen las unidades en el orden que esta la bd y no como lo seleccionamos, si dice idUnidad solo aparece kg
+            if (uni.id == item.idUnidad)
                 {
-                    Console.WriteLine("item: " + item.idUnidad);
-                    Console.WriteLine("uni: " + uni.id);
                     unidadNombre = uni.unidad;
                     break;
                 } 
-        }@*solo aparecen las unidades que se guardan en la bd, no edita unidad*@
+        }
         if (item.cantidad <= 20)
         {
             <text>

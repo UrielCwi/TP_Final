@@ -32,6 +32,7 @@
             <p>@Model.idUnidad</p>
         </div>
         <button type="submit" class="btn btn-danger">Eliminar</button>
-        <a href='@Url.Action("Index", "Ingredientes", new { IdUsuario = ViewBag.Usuario.id })' class="btn btn-secondary">Cancelar</a>
+        <a href='@Url.Action("Eliminar", "Ingredientes", new { IdUsuario = ViewBag.Usuario.id })' class="btn btn-secondary">Cancelar</a>
+        
     </form>
 </div>
