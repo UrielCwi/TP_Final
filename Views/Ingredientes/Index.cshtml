@@ -97,8 +97,10 @@
        string unidadNombre = "Unidad no encontrada";//se queda con esto y no actualiza la unidad
        foreach(var uni in ViewBag.Unidad)
         {
-            if (uni.id == item.id)
+            if (uni.id == item.idUnidad)//si dice id solo aparecen las unidades en el orden que esta la bd y no como lo seleccionamos, si dice idUnidad solo aparece kg
                 {
+                    Console.WriteLine("item: " + item.idUnidad);
+                    Console.WriteLine("uni: " + uni.id);
                     unidadNombre = uni.unidad;
                     break;
                 } 

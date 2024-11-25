@@ -135,7 +135,8 @@ public class BD{
             using (SqlConnection db = new SqlConnection(_connectionString))
             {
                 string sp = "InsertarIngrediente";
-                db.Execute(sp, new { ingrediente.descripcion, ingrediente.cantidad, ingrediente.valorUnidad, ingrediente.activo}, commandType: CommandType.StoredProcedure);
+                db.Execute(sp, new { ingrediente.descripcion, ingrediente.cantidad, ingrediente.valorUnidad, ingrediente.activo, ingrediente.idUnidad }, commandType: CommandType.StoredProcedure);
+            //si agregamos idUnidad nos aparece que tenemos argumentos de mas, pero ya lo cambiamos en la bd y sigue fallando
             }
         }
         public static void ActualizarPlato(Plato plato, IngredientePlato ingredientePlato)
