@@ -93,39 +93,33 @@
     </thead>
     <tbody>
     @foreach (var item in Model)
+{
+    string unidadNombre = "Unidad no encontrada";
+    if (ViewBag.Unidad != null)
     {
-       string unidadNombre = "Unidad no encontrada";
-       foreach(var uni in ViewBag.Unidad)
+        foreach (var uni in ViewBag.Unidad)
         {
             if (uni.id == item.idUnidad)
-                {
-                    unidadNombre = uni.unidad;
-                    break;
-                } 
+            {
+                unidadNombre = uni.unidad ?? "Unidad sin nombre";
+                break;
+            }
         }
-        if (item.cantidad <= 20)
-        {
-            <text>
-                <script type="text/javascript">
-                    alert("¡Atención! La cantidad del ingrediente '@item.descripcion' es baja: @item.cantidad unidades restantes.");
-                </script>
-            </text>
-        }
-        <tr>
-            <td>@item.descripcion.Substring(0, 1).ToUpper()@item.descripcion.Substring(1)</td>
-            <td>@item.cantidad</td>
-            <td>@unidadNombre</td>
-            <td>@item.valorUnidad</td>
-            <td>@item.activo</td>
-            <td>
-                <a href='@Url.Action("Editar", "ingredientes", new { IdUsuario = ViewBag.Usuario.id, id = @item.id })' class="btn btn-secondary">Editar</a>
-                <form action='@Url.Action("Eliminar", "Ingredientes")' method="post" style="display:inline;">@*cuando tocas eliminar, elimina pero tirar error y debes volver para atras para ver que si elimino*@
-                    <input type="hidden" name="id" value="@item.id" />
-                    <input type="hidden" name="idUsuario" value="@ViewBag.Usuario.id" />
-                    <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este ingrediente?');">Eliminar</button>
-                </form>
-            </td>
-        </tr>
     }
-    </tbody>
-</table>
+
+    <tr>
+        <td>@item.descripcion.Substring(0, 1).ToUpper()@item.descripcion.Substring(1)</td>
+        <td>@item.cantidad</td>
+        <td>@unidadNombre</td>
+        <td>@item.valorUnidad</td>
+        <td>@item.activo</td>
+        <td>
+            <a href='@Url.Action("Editar", "ingredientes", new { IdUsuario = ViewBag.Usuario.id, id = @item.id })' class="btn btn-secondary">Editar</a>
+            <form action='@Url.Action("Eliminar", "Ingredientes")' method="post" style="display:inline;">
+                <input type="hidden" name="id" value="@item.id" />
+                <input type="hidden" name="idUsuario" value="@ViewBag.Usuario.id" />
+                <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este ingrediente?');">Eliminar</button>
+            </form>
+        </td>
+    </tr>
+}

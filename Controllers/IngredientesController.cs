@@ -64,21 +64,46 @@ namespace TP_FINAL.Controllers
         }
 
       
-        [HttpPost]
+            [HttpPost]
         public IActionResult Eliminar(int id, int idUsuario)
         {
-            try{
-            BD.EliminarIngrediente(id);
-            }catch(Exception)
+            try
+            {
+                BD.EliminarIngrediente(id);
+            }
+            catch (Exception)
             {
                 ViewBag.ErrorEliminar = "No se puede eliminar el ingrediente";
             }
-            
+
             ViewBag.BarraBusqueda = true;
-            ViewBag.Usuario=BD.GetUsuario(idUsuario);
-            ViewBag.Ingredientes=BD.GetIngredientes();
-            List<Ingrediente> ingredientes = BD.GetIngredientes();
-            return View("Index",ingredientes);
+
+            // Obtén usuario y maneja posibles valores nulos.
+            var usuario = BD.GetUsuario(idUsuario);
+            if (usuario == null)
+            {
+                ViewBag.ErrorUsuario = "No se pudo encontrar el usuario.";
+                return View("Error");
+            }
+            ViewBag.Usuario = usuario;
+
+            // Obtén los ingredientes
+            List<Ingrediente> ingredientes = BD.GetIngredientes() ?? new List<Ingrediente>();
+            ViewBag.Ingredientes = ingredientes;
+
+            // Construye la lista de unidades única basada en los ingredientes
+            var unidades = new List<Unidad>();
+            foreach (var ingrediente in ingredientes)
+            {
+                var unidad = BD.GetUnidad(ingrediente.idUnidad).FirstOrDefault(); // Obtenemos solo la primera coincidencia
+                if (unidad != null && !unidades.Any(u => u.id == unidad.id)) // Evita duplicados
+                {
+                    unidades.Add(unidad);
+                }
+            }
+            ViewBag.Unidad = unidades;
+
+            return View("Index", ingredientes);
         }
     }
     }

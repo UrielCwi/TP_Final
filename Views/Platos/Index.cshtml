@@ -121,7 +121,7 @@
         {
             if (cat.id == item.idCategoria)
             {
-                categoriaNombre = cat.nombre;
+                categoriaNombre = cat.nombre.Substring(0, 1).ToUpper()+cat.nombre.Substring(1);
                 break;
             }
         }
@@ -144,9 +144,9 @@
                 @if (ing.idPlato ==item.id )
                 {
                     if (string.IsNullOrEmpty(listaIngredientes))
-                        listaIngredientes += ing.descripcion ;
+                        listaIngredientes += ing.descripcion.Substring(0, 1).ToUpper()+ing.descripcion.Substring(1);
                     else
-                        listaIngredientes += ", " + ing.descripcion ;
+                        listaIngredientes += ", " + ing.descripcion.Substring(0, 1).ToUpper()+ing.descripcion.Substring(1);
                 }
                 else
                 {

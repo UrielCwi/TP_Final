@@ -87,7 +87,7 @@ Tanto las fechas que deben tener con la fecha de cuando se apreta el boton "vend
             cantp += item.cantidad;
 
             <tr>
-                <td>@item.NombrePlato</td>
+                <td>@item.NombrePlato.Substring(0, 1).ToUpper()@item.NombrePlato.Substring(1)</td>
                 <form method="post" action='@Url.Action("VenderPlato", "Ventas")'>
                     
                     <td> 
