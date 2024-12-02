@@ -6,6 +6,8 @@ namespace TP_FINAL.Controllers
         {
             public IActionResult Index()
             {
+                ViewBag.BarraBusqueda = true;
+
                 return View();
             }
             public IActionResult Login(string Usuario, string Contraseña)

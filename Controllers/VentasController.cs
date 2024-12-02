@@ -8,7 +8,9 @@ namespace TP_FINAL.Controllers
     {
         public IActionResult Index(int idUsuario)
         {
+
             ViewBag.Usuario = BD.GetUsuario(idUsuario);
+
             ViewBag.BarraBusqueda = true;
             List<Ventas> ventas = BD.ObtenerPlatosConVentas();
             ViewBag.Ingredientes = BD.GetIngredientes(); 

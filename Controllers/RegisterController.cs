@@ -4,11 +4,10 @@ namespace TP_FINAL.Controllers
 {
     public class RegisterController : Controller
         {
-            public IActionResult MandarRegistro(int idUsuario)
+            public IActionResult Index()
             {
-                ViewBag.Usuario=BD.GetUsuario(idUsuario);
                 ViewBag.BarraBusqueda = true;
-                return RedirectToAction("Index","Login");
+                return View();
             }
             public IActionResult MandarContraseña(int idUsuario)
             {
@@ -19,6 +18,12 @@ namespace TP_FINAL.Controllers
         
             public IActionResult Registro(Usuario usuario)
         {
+            Console.WriteLine(usuario.nombre);
+            Console.WriteLine(usuario.apellido);
+            Console.WriteLine(usuario.email);
+            Console.WriteLine(usuario.contraseña);
+            Console.WriteLine(usuario.empresa);
+            Console.WriteLine("apodjasdlksajdjaslkdasjlkdjsalkdjaslkdjakldjaslkdjalksjdlksajdlsajdlasjlkdaslkdjaslkdksaldjlksadlkasdlksalkdaslkdjaslkdsalkdlksa");
             if (string.IsNullOrEmpty(usuario.email) || string.IsNullOrEmpty(usuario.contraseña))
             {
                 ViewBag.Error = "Por favor, completa todos los campos.";
@@ -27,28 +32,19 @@ namespace TP_FINAL.Controllers
             
             try
             {
-                
-                Usuario existingUser = BD.GetUsuarioPorEmail(usuario.email);
-                if (existingUser != null)
-                {
-                    ViewBag.Error = "El correo electrónico ya está registrado.";
-                    return View("Index");
-                }
-
+                Console.WriteLine("Antes de chequear mail ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+                // Usuario existingUser = BD.GetUsuarioPorEmail(usuario.email);
+                // if (existingUser != null)
+                // {
+                //     ViewBag.Error = "El correo electrónico ya está registrado.";
+                //     return View("Index");
+                // }
+                Console.WriteLine("Antes de insertar usuario ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
                 // Insertar nuevo usuario
-                BD.InsertarUsuario(usuario);
+                BD.InsertarUsuario(usuario.nombre, usuario.apellido, usuario.email, usuario.contraseña, usuario.empresa);
                 Usuario loggedInUser = BD.LoginUsuario(usuario.email, usuario.contraseña);
-                ViewBag.Usuario = loggedInUser;
 
-                if (loggedInUser == null)
-                {
-                    ViewBag.Error = "Error en el registro.";
-                    return View("Index");
-                }
-                else
-                {
-                    return RedirectToAction("Index","Login", new { idUsuario = loggedInUser.id });
-                }
+                    return RedirectToAction("Index","Login");
             }
             catch (Exception ex)
             {

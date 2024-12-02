@@ -5,8 +5,10 @@ namespace TP_FINAL.Controllers
     public class PlatosController : Controller
     {
         public IActionResult Index(int idUsuario)
-        {
+        {                    
+
             ViewBag.Usuario = BD.GetUsuario(idUsuario);
+
             var platos = BD.GetPlatos();
             ViewBag.BarraBusqueda=true;
             ViewBag.Categorias = BD.GetCategorias();
@@ -29,15 +31,16 @@ namespace TP_FINAL.Controllers
         }
 
         [HttpPost]
-        public IActionResult Crear(Plato plato, List<int> ingredientesSeleccionados, int idUsuario)
+        public IActionResult Crear(Plato plato, int idUsuario)
         {
             if (ModelState.IsValid)
             {
-                BD.InsertarPlato(plato);
-                foreach (var ingredienteId in ingredientesSeleccionados)
-            {
-                BD.InsertarIngredientePlato(plato.id, ingredienteId, "1");
-            }
+                plato.cantidadXIngredientes = plato.cantidadXIngredientes.Where(x=>x > 0).ToList();
+                plato.id = BD.InsertarPlato(plato);
+                for(int i=0; i<plato.ingredientes.Count; i++)
+                {
+                    BD.InsertarIngredientePlato(plato.id, plato.ingredientes.ElementAt(i), plato.cantidadXIngredientes.ElementAt(i).ToString()); 
+                }
                 ViewBag.Categorias=BD.GetCategorias(plato.id);
                 return RedirectToAction(nameof(Index), new { idUsuario = idUsuario });
             }

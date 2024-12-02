@@ -122,12 +122,12 @@ public class BD{
                 db.Execute(sp, new { IdPlato = idPlato, IdIngrediente = idIngrediente, CantXPlato = cantXPlato }, commandType: CommandType.StoredProcedure);
             }
         }        
-        public static void InsertarPlato(Plato plato)
+        public static int InsertarPlato(Plato plato)
         {
             using (SqlConnection db = new SqlConnection(_connectionString))
             {
                 string sp = "InsertarPlato";
-                db.Execute(sp, new { plato.nombre, plato.idCategoria, plato.precio, plato.activo }, commandType: CommandType.StoredProcedure);
+                return db.QueryFirst<int>(sp, new { plato.nombre, plato.idCategoria, plato.precio, plato.activo }, commandType: CommandType.StoredProcedure);
             }
         }
          public static void InsertarIngrediente(Ingrediente ingrediente)
@@ -232,15 +232,19 @@ public class BD{
             }
         }
 
-        public static void InsertarUsuario(Usuario usuario)
-        {
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                connection.Open();
-                string query = @"INSERT INTO Usuario (nombre, apellido, email, contraseña, empresa) VALUES (@Nombre, @Apellido, @Email, @Contraseña, @Empresa)";
-                connection.Execute(query, usuario);
-            }
-        }
+public static void InsertarUsuario(string nombre, string apellido, string email, string contraseña, string empresa)
+{
+    Console.WriteLine("Antes de insertar usuario ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+    using (var connection = new SqlConnection(_connectionString))
+    {
+        connection.Open();
+        string query = $"INSERT INTO Usuario (nombre, apellido, email, contraseña, empresa) VALUES ('{nombre}', '{apellido}', '{email}', '{contraseña}', '{empresa}')";
+        
+        // Ejecutar la consulta
+        connection.Execute(query);
+    }
+}
+
     public static Usuario GetUsuarioPorEmail(string email)
     {
         using (SqlConnection db = new SqlConnection(_connectionString))
