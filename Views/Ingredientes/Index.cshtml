@@ -77,7 +77,7 @@
 <h2>@ViewBag.ErrorEliminar</h2>
 
 <p>
-    <a href='@Url.Action("Crear", "Ingredientes", new { IdUsuario = ViewBag.Usuario.id })' class="btn btn-primary add-ingredient-btn">Agregar Nuevo Ingrediente</a>@*mejorar estilo*@
+    <a href='@Url.Action("Crear", "Ingredientes", new { IdUsuario = ViewBag.Usuario.id })' class="btn btn-primary">Agregar Nuevo Ingrediente</a>@*mejorar estilo*@
 </p>
 
 <table class="table">
@@ -112,7 +112,7 @@
             </text>
         }
         <tr>
-            <td>@item.descripcion</td>
+            <td>@item.descripcion.Substring(0, 1).ToUpper()@item.descripcion.Substring(1)</td>
             <td>@item.cantidad</td>
             <td>@unidadNombre</td>
             <td>@item.valorUnidad</td>
